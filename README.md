@@ -6,7 +6,7 @@
 
 app原理是根据各书源网站设置正则匹配规则，过滤广告等信息，无需服务器即可使用。
 
-下载链接：[xx阅读直链下载](https://pan.imtwa.top/p/dTCHigXu84/xxRead2.1.0.apk)
+下载链接：[xx阅读直链下载](https://github.com/imtwa/xxRead/releases/download/xxRead/xxRead.2.1.0.apk)
 
 # 部署教程
 
