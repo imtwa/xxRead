@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/books/books",
+    "pages/user/user",
+    "pages/search/search",
+    "pages/bookHomepage/bookHomepage",
+    "pages/bookRead/bookRead",
+    "pages/bookChapter/bookChapter",
+    "pages/bookRanking/bookRanking",
+    "pages/user/bookHistory/bookHistory",
+    "pages/user/bookCache/bookCache",
+    "pages/user/userAbout/userAbout",
+    "pages/user/userUp/userUp",
+    "pages/user/bookTxt/bookTxt",
+    "pages/image/image",
+    "pages/user/bookOrigin/bookOrigin",
+    "pages/bookClass/bookClass",
+    "pages/bookClassShow/bookClassShow"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "XX阅读",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#2c2c2c",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "书架",
+        "iconPath": "static/images/tabBar/index0.png",
+        "selectedIconPath": "static/images/tabBar/index1.png"
+      },
+      {
+        "pagePath": "pages/books/books",
+        "text": "书城",
+        "iconPath": "static/images/tabBar/books0.png",
+        "selectedIconPath": "static/images/tabBar/books1.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "static/images/tabBar/user0.png",
+        "selectedIconPath": "static/images/tabBar/user1.png"
+      }
+    ]
+  },
+  "themeLocation": "theme.json",
+  "usingComponents": {
+    "font-awesome": "/components/Am-FontAwesome/index"
+  }
+}

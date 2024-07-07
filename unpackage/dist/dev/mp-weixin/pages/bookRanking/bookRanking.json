@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "榜单",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
+    "book-list": "/components/BookList/BookList"
+  }
+}

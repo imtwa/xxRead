@@ -1,0 +1,366 @@
+
+
+var scrollTop = {}; //滚动条位置
+// 排序列表
+var sortList={};
+var isMove = false; //是否可拖动 长按事件控制切换这个状态
+var touchTimer = false; //长按事件定时器
+// 当页面有多个当前组件时，guid用来识别当前的列表的。因为一个页面内多个组件的wxs作用域相同。
+
+
+function setScrollTop(tmpGuid) {
+	if (typeof scrollTop[tmpGuid] == "undefined") {
+		scrollTop[tmpGuid] = 0;
+	}
+}
+
+function scroll(event, instance) {
+	var dataView = instance.selectComponent('#dataView');
+	var viewData = dataView.getDataset();
+	setScrollTop(viewData.guid)
+	scrollTop[viewData.guid] = event.detail.scrollTop;
+}
+
+function initVar(state, instance) {
+	var dataView = instance.selectComponent('#dataView');
+	var viewData = dataView.getDataset();
+	// 读取配置项
+	// 获取scroll-view id
+	config = All_Config[viewData.guid];
+	
+	setScrollTop(config.guid);
+	state.initscrollTop = scrollTop[config.guid];
+	
+}
+function getRowSort(findId,instance){
+	for (var i = 0; i < sortList[config.guid].length; i++) {
+		if(sortList[config.guid][i].id==findId){
+			currentRowView = sortList[config.guid][i].rowView;
+			return sortList[config.guid][i].lastSort;
+		}
+	}
+}
+var shadowRowBoxView=null;
+var shadowRowView = null;
+var currentRowView=null;
+var rowSort=0;
+var sorting = false;
+function touchstart(event, instance) {
+	if(sorting){
+		return ;
+	}
+	sorting = true;
+	// 兼容setTimeout
+	if(typeof setTimeout ==="undefined" && typeof instance.setTimeout !== 'undefined'){
+		setTimeout = instance.setTimeout;
+		clearTimeout = instance.clearTimeout;
+	}
+	
+	isMove = false;
+	var rowData = event.instance.getDataset();
+	var state = instance.getState();
+	if (event.touches.length == 1) {
+		state.point = event.touches[0];
+
+		state.islongTap = true;
+		state.rowData = rowData;
+		//读取数据
+		initVar(state, instance);
+	}
+	var rowStyle = event.instance.getComputedStyle(['height']);
+	config.rowHeight = parseFloat(rowStyle.height); //获取行高
+	// 计算shadowRow.style.top
+	
+	rowSort = getRowSort(rowData.id,instance);
+	var shadowRowTop = rowSort * config.rowHeight;
+	shadowRowTop = shadowRowTop - scrollTop[config.guid];
+	// 加载shadowRow数据
+	instance.callMethod("loadShadowRow", {
+		rowSort: rowSort
+	});
+	state.shadowRowTop = shadowRowTop;
+	// 设置shadowRow初始位置
+	shadowRowBoxView = instance.selectComponent('#shadowRowBox');
+	shadowRowBoxView.setStyle({
+		'top': shadowRowTop + 'px'
+	})
+	shadowRowView = instance.selectComponent('#shadowRow')
+	//长按事件
+	if (config.longTouch) {
+		touchTimer && clearTimeout(touchTimer);
+		touchTimer = setTimeout(function() {
+			longpress(event, instance);
+		}, config.longTouchTime)
+	}
+}
+
+function longpress(event, instance) {
+	if (config.longTouch) {
+		isMove = true;
+		moveRow(instance, 0)
+	}
+}
+
+function touchmove(event, instance) {
+	var state = instance.getState();
+	var rowData = event.instance.getDataset();
+	var movePoint = event.touches[0];
+	var initPoint = state.point;
+	var moveY = movePoint.pageY - initPoint.pageY;
+	if (config.longTouch) {
+		if (Math.abs(moveY) > 10) {
+			clearTimeout(touchTimer);
+		}
+		if (!isMove) {
+			return;
+		}
+	} 
+	moveRow(instance, moveY);
+	//阻止滚动页面
+	if (event.preventDefault) {
+		event.preventDefault();
+	}
+	return false;
+}
+function touchend(event, instance) {
+	if (config.longTouch) {
+		clearTimeout(touchTimer);
+	}
+	if (lastCommand != "stop") {
+		lastCommand = "stop";
+		config.autoScroll && instance.callMethod("pageScroll", {
+			'guid': config.guid,
+			'command': "stop"
+		});
+	}
+	var state = instance.getState();
+	// 把隐藏的行重新显示
+	resetRowStyle(instance,state.rowData.id)
+	// 隐藏ShadowRow
+	resetShadowRowStyle(instance,state.offset)
+	if (typeof state.offset !== "undefined" && rowSort != state.offset && state.offset != null) {
+		var sortArray=[];
+		for (var i = 0; i < sortList[config.guid].length; i++) {
+			sortList[config.guid][i].lastSort = sortList[config.guid][i].newSort;
+			sortArray.push(sortList[config.guid][i].newSort);
+			sortList[config.guid][i].rowView.removeClass('ani');
+		}
+		instance.callMethod("sort", {
+			index: rowSort,
+			offset: state.offset,
+			sortArray:sortArray
+		});
+	} else {
+		sorting = false;
+		triggerFeedbackGenerator(instance); //震动反馈
+		return false;
+	}
+	state.offset = null;
+	oldOffset = null;
+	sorting = false;
+	triggerFeedbackGenerator(instance); //震动反馈
+	return false;
+}
+// 重置列表行
+function resetRowStyle(instance,id) {
+	currentRowView.removeClass('hide');
+}
+// 重置拖拽行
+function resetShadowRowStyle(instance,offset) {
+	shadowRowBoxView.removeClass('show');
+	shadowRowBoxView.addClass('hide');
+	shadowRowBoxView.setStyle({});	
+}
+var lastCommand = '';
+
+// move Row
+function moveRow(instance, moveY) {
+	var state = instance.getState();
+
+	// 显示shadowRowBox
+	shadowRowBoxView.removeClass('hide');
+	shadowRowBoxView.hasClass('show') || shadowRowBoxView.addClass('show');
+	// 移动shadowRowBox里面的shadowRow
+	shadowRowView.setStyle({
+		'transform': 'translate3d(0,' + moveY + 'px,10px)',
+		'-webkit-transform': 'translate3d(0,' + moveY + 'px,10px)'
+	});
+	// 隐藏列表对应行
+	currentRowView.hasClass('hide') || currentRowView.addClass('hide');
+	currentRowView.removeClass('ani')
+	var listClientY = state.shadowRowTop + moveY + config.rowHeight/2;
+	var tmpscrollListTop = scrollTop[config.guid];
+	
+	// 拖拽至边缘滚动视图 距离顶部距离1.5行高触发上滚动 下滚动同理
+	var callMethodData = {
+		guid: config.guid,
+		command: listClientY < config.ListHeight * 0.2 ? "up" : listClientY > config.ListHeight - (config.ListHeight * 0.2) ? "down" :
+			"stop",
+		scrollTop: tmpscrollListTop,
+	}
+	// 把滚动指令发给逻辑层
+	if (lastCommand != callMethodData.command) {
+		lastCommand = callMethodData.command;
+		config.autoScroll && instance.callMethod("pageScroll", callMethodData);
+	}
+
+	var moveOffset = moveY + scrollTop[config.guid] - state.initscrollTop;
+	var offset = calcOffset(rowSort, moveOffset);
+	if (offset <= 2 || offset >= config.listLength - 2) {
+		callMethodData.command = 'stop';
+	}
+	// 为减少卡顿，微信小程序端，在滚动视图期间不进行列表位置交换
+	if (config.autoScroll && (!config.isAppH5) && callMethodData.command != 'stop') {
+		return;
+	}
+	oldOffset = oldOffset == null ? rowSort : oldOffset;
+	if (offset < 0 || offset >= config.listLength) {
+		return;
+	}
+	if (offset == oldOffset) {
+		return;
+	}
+
+	oldOffset = offset;
+	state.offset = offset;
+	//触发change事件 并交换列表位置
+	instance.callMethod("change", {
+		index: rowSort,
+		moveTo: state.offset
+	});
+	for (var i = 0; i < sortList[config.guid].length; i++) {
+		var sort = sortList[config.guid][i].lastSort;
+		var newSort = sortList[config.guid][i].newSort;
+		if ((sort >= offset && sort <= rowSort) || (sort <= offset && sort >= rowSort)) {
+			if(sort == rowSort) {
+				newSort = offset;
+			}else{
+				newSort = sort < rowSort ? sort+1 : sort-1;
+			}
+		}else{
+			newSort = sort;
+		}
+		if(sortList[config.guid][i].newSort == newSort){
+			continue;
+		}
+		sortList[config.guid][i].newSort = newSort;
+		var translateY = (sortList[config.guid][i].newSort-sortList[config.guid][i].sort) * 100;
+		sortList[config.guid][i].rowView.hasClass('ani') || sortList[config.guid][i].rowView.addClass('ani');
+		sortList[config.guid][i].rowView.setStyle({
+			'transform': 'translate3d(0,' + translateY + '%,0)',
+			'-webkit-transform': 'translate3d(0,' + translateY + '%,0)'
+		});
+	}
+	triggerFeedbackGenerator(instance); //震动反馈
+}
+//计算偏移index
+var oldOffset = null;
+function calcOffset(initSort, moveY) {
+	var offset = initSort + parseInt(moveY / config.rowHeight); //偏移 行高的倍数
+	var rest = moveY % config.rowHeight;
+	if (rest > 0) {
+		offset = offset + (rest / config.rowHeight >= 0.6 ? 1 : 0);
+		if (offset < oldOffset) {
+			offset = rest / config.rowHeight <= 0.4 ? offset : oldOffset;
+		}
+	} else 
+	{
+		offset = offset + (rest / config.rowHeight <= -0.6 ? -1 : 0);
+		if (offset > oldOffset) {
+			offset = rest / config.rowHeight >= -0.4 ? offset : oldOffset;
+		}
+	}
+	return offset;
+}
+
+//触感反馈
+//wxs 不支持条件编译，所以用此方法判断
+var isiOSAPP = typeof plus != "undefined" && plus.os.name == 'iOS';
+var UISelectionFeedbackGenerator;
+var impact
+
+if (isiOSAPP) {
+	UISelectionFeedbackGenerator = plus.ios.importClass("UISelectionFeedbackGenerator");
+	impact = new UISelectionFeedbackGenerator();
+	impact.init();
+}
+function triggerFeedbackGenerator(instance) {
+	if (!config.feedbackGenerator) {
+		//关闭触感反馈
+		return;
+	}
+	if (isiOSAPP) {
+		//异步，避免与点击事件冲突
+		setTimeout(function(){
+			impact.selectionChanged();
+		},0)
+	} else {
+		if (typeof plus != "undefined") {
+			plus.device.vibrate(12)
+		} else {
+			instance.callMethod("vibrate");
+		}
+	}
+}
+var All_Config={};
+var config = {};
+function receiveData(e,state, instance){
+	var data = JSON.parse(e);
+	var tmp_config = {};
+	var hasGuid = false;
+	var sortArray=[];
+	for(var i=0;i<data.length;i++){
+		var arr = data[i];
+		switch (arr[0]){
+			case "sortArray":
+				sortArray = arr[1];
+				break;
+			default:
+				if(arr[0]=='guid'){
+					hasGuid = true;
+				}
+				tmp_config[arr[0]] = arr[1];
+				break;
+		}
+	}
+	if(!hasGuid){
+		return;
+	}
+	var isUpdateList = false;
+	if(typeof All_Config[tmp_config.guid] == "undefined" ||typeof All_Config[tmp_config.guid].lastInitTime == "undefined" ||  All_Config[tmp_config.guid].lastInitTime!=tmp_config.lastInitTime){
+		isUpdateList = true;
+	}
+	All_Config[tmp_config.guid] = tmp_config;
+	if(isUpdateList){
+		updateSortList(tmp_config.guid, instance,sortArray);
+	}
+}
+// 更新guid对应的排序列表
+function updateSortList(guid, instance,sortArray) {
+	
+	sortList[guid]=[];
+	var pageSortList = instance.selectAllComponents('.hm-row');
+	for (var i = 0; i < pageSortList.length; i++){
+		var tmp_row = {id:pageSortList[i].getDataset().id,sort:i,lastSort:parseInt(pageSortList[i].getDataset().sort),newSort:i,rowView:pageSortList[i]};
+		if(sortArray.length>0){
+			tmp_row.lastSort = sortArray[i];
+			tmp_row.newSort = tmp_row.lastSort;
+		}
+		sortList[guid].push(tmp_row);
+		var translateY = (tmp_row.lastSort-tmp_row.sort) * 100;
+		tmp_row.rowView.setStyle({
+			'transform': 'translate3d(0,' + translateY + '%,0)',
+			'-webkit-transform': 'translate3d(0,' + translateY + '%,0)'
+		});
+	}
+
+}
+// 输出
+module.exports = {
+	receiveData:receiveData,
+	scroll: scroll,
+	longpress: longpress,
+	touchstart: touchstart,
+	touchmove: touchmove,
+	touchend: touchend
+}

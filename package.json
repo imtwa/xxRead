@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@vue/cli-service": "^5.0.8",
+    "chardet": "^1.6.0",
+    "crypto-js": "^4.2.0",
+    "iconv-lite": "^0.6.3",
+    "jschardet": "^3.0.0",
+    "pako": "^2.1.0",
+    "react-native-worker": "^0.0.0",
+    "touchjs": "^0.2.14",
+    "xmldom": "^0.6.0"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "dev": "vue-cli-service serve"
+  }
+}

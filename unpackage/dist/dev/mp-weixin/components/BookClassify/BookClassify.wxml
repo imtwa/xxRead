@@ -1,0 +1,1 @@
+<view class="zoo"><block wx:for="{{classifys}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view data-event-opts="{{[['tap',[['goBookClass',['$0'],[[['classifys','',index]]]]]]]}}" class="item-container" bindtap="__e"><view class="pic"><image class="svg" src="{{svg[index]}}"></image></view><view class="title">{{item.title}}</view></view></block></view>

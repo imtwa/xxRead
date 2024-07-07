@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['gochapter',['$0'],['item.chapterurl']]]]]}}" class="directory-listItem data-v-85769d34" bindtap="__e">{{''+item.chaptername+''}}</view>

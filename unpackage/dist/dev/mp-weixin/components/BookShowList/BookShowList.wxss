@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* uview-ui的主体样式 */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.zoo.data-v-2509b004 {
+  margin: 8px;
+  padding: 8px 16px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+.zoo .title.data-v-2509b004 {
+  width: 100%;
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.zoo .title .title-text.data-v-2509b004 {
+  /* 根据需要设置文本样式 */
+}
+.zoo .title .arrow-container.data-v-2509b004 {
+  padding-top: 7px;
+  height: 100%;
+  /* 根据需要设置箭头容器样式 */
+}
+.zoo .book-container.data-v-2509b004 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.zoo .book-container .book-item.data-v-2509b004 {
+  flex-basis: 25%;
+  padding-top: 8px;
+  margin-bottom: 5px;
+  max-width: 22%;
+  box-sizing: border-box;
+}
+.zoo .book-container .book-item .book-cover.data-v-2509b004 {
+  width: 100%;
+  max-width: 72px;
+  height: 100px;
+  position: relative;
+  /* 或 absolute */
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-radius: 5px;
+  background-color: #efefef;
+}
+.zoo .book-container .book-item .book-name.data-v-2509b004 {
+  text-align: center;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #111;
+}
+

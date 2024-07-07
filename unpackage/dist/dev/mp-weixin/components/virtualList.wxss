@@ -1,0 +1,23 @@
+
+.list.data-v-319d63de {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+.action-bar-box.data-v-319d63de{
+	padding: 3px;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-around;
+	align-items: center;
+	position: absolute;
+	right: 0;
+	background-color: transparent;
+	border-radius: 10rpx;
+	box-shadow: 0 0 5px #000;
+	width: 20px;
+	height: 40px;
+	z-index:2;
+}
+

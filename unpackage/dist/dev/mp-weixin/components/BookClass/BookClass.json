@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "book-list": "/components/BookList/BookList"
+  },
+  "component": true
+}

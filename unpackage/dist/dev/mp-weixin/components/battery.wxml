@@ -1,0 +1,1 @@
+<view class="battery-container data-v-0a161022"><view class="battery-body data-v-0a161022"><view class="battery data-v-0a161022" style="{{'width:'+(level+'%')+';'}}"></view></view><view class="battery-head data-v-0a161022"></view></view>

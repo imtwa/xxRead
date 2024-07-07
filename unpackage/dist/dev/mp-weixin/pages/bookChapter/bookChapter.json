@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "目录",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "battery": "/components/battery",
+    "virtual-list": "/components/virtualList"
+  }
+}

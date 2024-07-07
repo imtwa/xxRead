@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "book-list": "/components/BookList/BookList",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "u--text": "/uni_modules/uview-ui/components/u--text/u--text"
+  },
+  "component": true
+}

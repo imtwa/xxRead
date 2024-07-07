@@ -1,0 +1,1 @@
+<view style="background-color:black;height:100vh;"><image class="imgsrc" src="{{imgsrc}}" mode="widthFix"></image><view class="element"><view data-event-opts="{{[['tap',[['save',['$event']]]]]}}" class="eitem" bindtap="__e">保存</view><view data-event-opts="{{[['tap',[['goBack',['$event']]]]]}}" class="eitem" bindtap="__e">退出</view></view></view>

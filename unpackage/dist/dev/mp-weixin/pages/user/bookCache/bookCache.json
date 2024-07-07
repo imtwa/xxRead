@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "缓存管理",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-empty": "/uni_modules/uview-ui/components/u-empty/u-empty",
+    "u-line-progress": "/uni_modules/uview-ui/components/u-line-progress/u-line-progress",
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "u-modal": "/uni_modules/uview-ui/components/u-modal/u-modal"
+  }
+}

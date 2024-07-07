@@ -1,0 +1,200 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				// "navigationBarTitleText": "",
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"bounce": "none", //关闭窗口回弹效果,禁用拉伸
+					"pullToRefresh": { //下拉刷新样式
+						"color": "#00A8FF",
+						"style": "circle",
+						"offset": "70px",
+						"support": true
+					}
+				}
+			}
+		}, {
+			"path": "pages/books/books",
+			"style": {
+				// "navigationBarTitleText": "",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"bounce": "none", //关闭窗口回弹效果,禁用拉伸
+					"pullToRefresh": { //下拉刷新样式
+						"color": "#00A8FF",
+						"style": "circle",
+						"offset": "56px",
+						"support": true
+					}
+				}
+			}
+
+		}, {
+			"path": "pages/user/user",
+			"style": {
+				// "navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+
+			}
+
+		}, {
+			"path": "pages/search/search",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": true
+			}
+
+		}, {
+			"path": "pages/bookHomepage/bookHomepage",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+
+		, {
+			"path": "pages/bookRead/bookRead",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				//取消原生顶栏
+				"navigationStyle": "custom"
+
+			}
+
+		}, {
+			"path": "pages/bookChapter/bookChapter",
+			"style": {
+				"navigationBarTitleText": "目录",
+				"enablePullDownRefresh": false
+				//取消原生顶栏
+				// "navigationStyle": "custom"
+			}
+
+		}, {
+			"path": "pages/bookRanking/bookRanking",
+			"style": {
+				"navigationBarTitleText": "榜单",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/user/bookHistory/bookHistory",
+			"style": {
+				"navigationBarTitleText": "浏览记录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/user/bookCache/bookCache",
+			"style": {
+				"navigationBarTitleText": "缓存管理",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/user/userAbout/userAbout",
+			"style": {
+				"navigationBarTitleText": "关于我们",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/user/userUp/userUp",
+			"style": {
+				"navigationBarTitleText": "个人信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/user/bookTxt/bookTxt",
+			"style": {
+				"navigationBarTitleText": "导出管理",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/image/image",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/user/bookOrigin/bookOrigin",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/bookClass/bookClass",
+			"style": {
+				"navigationBarTitleText": "分类",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"bounce": "none", //关闭窗口回弹效果,禁用拉伸
+					"pullToRefresh": { //下拉刷新样式
+						"color": "#00A8FF",
+						"style": "circle",
+						"offset": "0px",
+						"support": true
+					}
+				}
+			}
+		},
+		{
+			"path" : "pages/bookClassShow/bookClassShow",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : true
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "XX阅读",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff",
+		"app-plus": {
+			"bounce": "none" //关闭窗口回弹效果,禁用拉伸
+		}
+		//不使用原生导航栏
+		// "navigationStyle": "custom"
+	},
+
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#bfbfbf",
+		"selectedColor": "#2c2c2c",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "书架",
+				"iconPath": "static/images/tabBar/index0.png",
+				"selectedIconPath": "static/images/tabBar/index1.png"
+			},
+			{
+				"pagePath": "pages/books/books",
+				"text": "书城",
+				"iconPath": "static/images/tabBar/books0.png",
+				"selectedIconPath": "static/images/tabBar/books1.png"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"text": "我的",
+				"iconPath": "static/images/tabBar/user0.png",
+				"selectedIconPath": "static/images/tabBar/user1.png"
+			}
+		]
+	}
+}

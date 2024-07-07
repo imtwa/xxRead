@@ -1,0 +1,10 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "u-search": "/uni_modules/uview-ui/components/u-search/u-search",
+    "u-swiper": "/uni_modules/uview-ui/components/u-swiper/u-swiper",
+    "book-classify": "/components/BookClassify/BookClassify",
+    "book-show-list": "/components/BookShowList/BookShowList",
+    "carousel": "/components/vear-carousel/vear-carousel"
+  }
+}
