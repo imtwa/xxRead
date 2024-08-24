@@ -74,8 +74,6 @@
 		<!-- 确认删除弹窗 -->
 		<u-modal :show="visModaHistory" :title="clearTitle" showCancelButton closeOnClickOverlay :zoom="false"
 			@cancel="cancelmodalD" @confirm="confirmmodalD" @close="closemodalD"></u-modal>
-
-
 	</view>
 
 </template>
@@ -141,6 +139,9 @@
 
 			//打开书籍主页
 			goBookHome(book) {
+				if(this.visSelect){
+					return;
+				}
 				// 同时传递书籍五个参数
 				// uni.navigateTo({
 				// 	url: `/pages/bookHomepage/bookHomepage?author=${book.author}&bookname=${book.bookname}
@@ -200,7 +201,10 @@
 
 			// 选中某个单选框时，由radio时触发
 			radioChange(e) {
-				console.log(e);
+				// console.log(e);
+				this.selecValue = e;
+				// 触发排序
+				this.bookSort();
 			},
 			// 选中任一radio时，由radio-group触发
 			// 点击已选中也会重复触发
@@ -229,11 +233,13 @@
 				this.$store.commit('addToHistoryItems', this.keyword);
 
 				const bookOrigins = this.$store.state.bookOrigins
+
 				/**
 				 * 异步请求，加快搜索速度
 				 * */
 				const requests = bookOrigins.map(async config => {
 					try {
+						// 该书源是否选中
 						if (config.isSelect) {
 							const id = config.id;
 							const book = await this.$getNetwork.search(id, this.keyword);
@@ -244,33 +250,8 @@
 							} else {
 								// 添加到列表中显示
 								this.books.push(...book)
-								this.books.sort((a, b) => {
-									if (a.bookname.toLowerCase() === b.bookname.toLowerCase()) {
-										//如果a和b完全匹配
-										return 0;
-									}
-									const similarityA = this.similarity(a.bookname, this.keyword);
-									const similarityB = this.similarity(b.bookname, this.keyword);
-									if (a.bookname.toLowerCase() === this.keyword.toLowerCase()) {
-										// 如果a的书名与搜索关键词完全匹配  
-										return -1;
-									} else if (b.bookname.toLowerCase() === this.keyword
-										.toLowerCase()) {
-										// 如果b的书名与搜索关键词完全匹配  
-										return 1;
-									} else if (a.bookname.startsWith(this.keyword.toLowerCase())) {
-										// 如果a的书名以搜索关键词开头，则a更匹配
-										return -1;
-									} else if (b.bookname.startsWith(this.keyword.toLowerCase())) {
-										// 如果b的书名以搜索关键词开头，则b更匹配
-										return 1;
-									} else {
-										// 如果a与b的书名开头都不是搜索关键词，则按照相似度排序
-										return similarityB - similarityA;
-									}
-									return similarityA - similarityB;
-								});
-								this.showBooks = this.books.slice(0, 20);
+								// 排序
+								this.bookSort();
 							}
 						}
 
@@ -301,7 +282,49 @@
 						// 取消等待动画，显示列表
 						this.uloading = false;
 					});
+			},
 
+			/**
+			 * 根据相似度排序
+			 * 依赖selecValue区分是搜索书名还是搜索作者
+			 */
+			bookSort() {
+				let propertyName = 'bookname';
+				if(this.selecValue === '搜索书名'){
+					propertyName = 'bookname'
+				}else if(this.selecValue === '搜索作者'){
+					propertyName = 'author'
+				}
+				// console.log(this.selecValue);
+				// console.log(propertyName);
+				
+				this.books.sort((a, b) => {
+					if (a[propertyName].toLowerCase() === b[propertyName].toLowerCase()) {
+						//如果a和b完全匹配
+						return 0;
+					}
+					const similarityA = this.similarity(a[propertyName], this.keyword);
+					const similarityB = this.similarity(b[propertyName], this.keyword);
+					if (a[propertyName].toLowerCase() === this.keyword.toLowerCase()) {
+						// 如果a的书名与搜索关键词完全匹配  
+						return -1;
+					} else if (b[propertyName].toLowerCase() === this.keyword.toLowerCase()) {
+						// 如果b的书名与搜索关键词完全匹配  
+						return 1;
+					} else if (a[propertyName].startsWith(this.keyword.toLowerCase())) {
+						// 如果a的书名以搜索关键词开头，则a更匹配
+						return -1;
+					} else if (b[propertyName].startsWith(this.keyword.toLowerCase())) {
+						// 如果b的书名以搜索关键词开头，则b更匹配
+						return 1;
+					} else {
+						// 如果a与b的书名开头都不是搜索关键词，则按照相似度排序
+						return similarityB - similarityA;
+					}
+				});
+				// 排序后将结果展示 若展示列表为空则先展示前二十本
+				this.showBooks = this.books.slice(0, 20)
+				// console.log(this.showBooks);
 			},
 
 			/**
@@ -358,7 +381,7 @@
 		left: 0;
 		right: 0;
 		z-index: 9999;
-		// background-color: #fff;
+		background-color: #fff;
 
 		.usearch {
 			padding: 0 20rpx;
@@ -381,10 +404,9 @@
 		/* 初始状态，假设是隐藏的，从上方偏移 */
 		opacity: 0;
 		transform: translateY(-10%);
-		/* 为平滑的过渡做准备 */
 		//transition: transform 0.3s ease, opacity 0.3s ease;
 		/* 应用动画 */
-		animation: fadeInFromTop 0.7s forwards;
+		animation: fadeInFromTop 0.5s forwards;
 		/* 清除过渡效果*/
 		transition: none;
 	}
