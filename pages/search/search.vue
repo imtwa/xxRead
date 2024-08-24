@@ -14,15 +14,16 @@
 		<view v-if="visLsS" class="hos-results">
 			<view class="results">
 				<view class="hos">历史记录</view>
-				<view class="h-icon" @click="goclearHistoryItems">
+				<view class="h-icon" @click="clearHistoryItems">
 					<icon type="clear"></icon>
 				</view>
 			</view>
 			<!-- 历史记录列表 -->
 			<view class="search-results">
-
-				<view class="tag" v-for="item in this.$store.state.historyItems" @click="goSearch(item)">
-					{{item}}
+				<view v-for="item in this.$store.state.historyItems" @click="goSearch(item)">
+					<view class="tag" @longpress="clearHistoryItem(item)">
+						{{ item }}
+					</view>
 				</view>
 			</view>
 
@@ -30,12 +31,9 @@
 
 		<!-- 搜索后显示 -->
 		<view v-else>
-
 			<view class="booklist">
-
 				<!-- 搜索加载 -->
 				<u-loading-icon :show="uloading"></u-loading-icon>
-
 				<view class="search-results" :v-if="!uloading" v-for="book in showBooks" @click="goBookHome(book)">
 					<BookList :imgurl="book.imgurl" :title="book.bookname" :info="'作者: ' + book.author"
 						:bookSourceName="book.bookSourceName" :tags="book.tags">
@@ -54,7 +52,14 @@
 
 		</view>
 
+
+		<!-- 确认删除弹窗 -->
+		<u-modal :show="visModaHistory" :title="clearTitle" showCancelButton closeOnClickOverlay :zoom="false"
+			@cancel="cancelmodalD" @confirm="confirmmodalD" @close="closemodalD"></u-modal>
+
+
 	</view>
+
 </template>
 
 <script>
@@ -64,33 +69,33 @@
 	export default {
 		data() {
 			return {
-				//搜索的内容
+				// 搜索的内容
 				keyword: "",
-				//搜索的书的列表，内容有imgurl，bookurl，bookname, author, origin
+				// 搜索的书的列表，内容有imgurl，bookurl，bookname, author, origin
 				books: [],
 				// 展示的列表 通过触底进行刷新
 				showBooks: [],
-				//加载等待显示
+				// 加载等待显示
 				uloading: false,
 				// 触底加载
 				ubottom: false,
-				//历史记录搜索显示
+				// 历史记录搜索显示
 				visLsS: true,
-				// 书源
-				oList: [{
-					name: '书源一'
-				}, {
-					name: '书源二'
-				}, {
-					name: '书源三'
-				}],
-				// 点击的书源
-				oId: 0,
+				// 确认删除弹窗
+				visModaHistory: false,
+				// 是否是删除历史记录单项
+				visHistoryItem: false,
+				// 要删除的历史记录单项
+				historyItem: null,
+				clearTitle: '确定要删除历史记录吗？',
 			};
 		},
 		onLoad() {
 
 		},
+		/**
+		 * 触底加载
+		 */
 		onReachBottom() {
 			// console.log('触底刷新')
 			this.ubottom = true
@@ -128,15 +133,41 @@
 			},
 
 			//点击清除历史记录的图标后触发，将历史记录清空
-			goclearHistoryItems() {
-				this.$store.commit('clearHistoryItems')
+			clearHistoryItems() {
+				this.clearTitle = "确定要删除全部的历史记录吗？";
+				// 显示弹窗
+				this.visModaHistory = true;
+				// 全部删除
+				this.visHistoryItem = false;
 			},
-
-			//点击切换书源
-			goclick(e) {
-				this.oId = e.index;
-				// 调用搜索
-				this.searchClick();
+			//长按出现删除标志
+			clearHistoryItem(item) {
+				this.clearTitle = `确定要删除记录“${item}”吗？`;
+				// 显示弹窗
+				this.visModaHistory = true;
+				// 显示删除单项
+				this.visHistoryItem = true;
+				this.historyItem = item;
+			},
+			//点击了确定删除
+			confirmmodalD() {
+				//隐藏弹窗
+				this.visModaHistory = false;
+				if(this.visHistoryItem === false){
+					this.$store.commit('clearHistoryItems')
+				}else{
+					// 只删除单项
+					this.$store.commit('clearHistoryItem',this.historyItem)
+				}
+			},
+			cancelmodalD() {
+				//点击了取消
+				//隐藏弹窗
+				this.visModaHistory = false;
+			},
+			closemodalD() {
+				//遮罩层关闭
+				this.visModaHistory = false;
 			},
 
 			//点击搜索后触发

@@ -83,8 +83,8 @@
 </template>
 
 <script>
-	import store from "@/store/index.js"
-	import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
+	// import store from "@/store/index.js"
+	// import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
 
 	export default {
 		data() {
@@ -133,13 +133,13 @@
 		},
 		//组件被销毁
 		onUnload() {
-			console.log("组件被销毁");
+			// console.log("组件被销毁");
 			// //将数据缓存
 			// this.$store.commit('setBookShelfFromStorage')
 		},
 		//组件被隐藏
 		onHide() {
-			console.log("组件被隐藏");
+			// console.log("组件被隐藏");
 			// //将数据缓存
 			// this.$store.commit('setBookShelfFromStorage')
 		},

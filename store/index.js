@@ -150,6 +150,14 @@ const store = new Vuex.Store({
 			state.historyItems.splice(0, state.historyItems.length);
 		},
 
+		// 清空历史记录的单项
+		clearHistoryItem(state,Item) {
+			let itemIndex = state.historyItems.indexOf(Item);
+			if(itemIndex > -1){
+				state.historyItems.splice(itemIndex,1);
+			}
+		},
+
 		// 添加导出记录
 		addBookTxts(state, item) {
 			console.log(item);

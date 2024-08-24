@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				// "navigationBarTitleText": "",
+				//  "navigationBarTitleText": "",
 				"navigationStyle": "custom", // 隐藏系统导航栏
 				"enablePullDownRefresh": true,
 				"app-plus": {
@@ -45,7 +45,7 @@
 			"style": {
 				"navigationStyle": "custom",
 				"navigationBarTitleText": "",
-				"enablePullDownRefresh": true
+				"enablePullDownRefresh": false
 			}
 
 		}, {

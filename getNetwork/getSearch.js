@@ -261,16 +261,16 @@ const getSearch = {
 						end: end
 					}
 				})
-				
+
 				if (page > 10) {
 					break
 				}
-				
+
 				page = page + 1;
-				
+
 				if (res.data.booklist) {
 					const search = res.data.booklist;
-					
+
 					for (let i = 0; i < search.length; i++) {
 
 						let s = search[i].bid;
@@ -286,7 +286,7 @@ const getSearch = {
 
 						let imgurl = "http://wfqqreader-1252317822.image.myqcloud.com/cover/" + n + "/" + s +
 							"/b_" + s + ".jpg";
-							
+
 						let id = 1100000000 + parseInt(search[i].bid)
 						// 加上书源 否则id可能和其它书源的url重复
 						let bookurl = origin + id;
