@@ -139,7 +139,6 @@
 			padding-bottom: 8rpx;
 			display: flex;
 			align-items: center;
-			/* 添加相对定位 */
 		}
 
 		.titleC {

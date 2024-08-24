@@ -63,7 +63,7 @@
 						success: (res) => {
 							const fileSizeMb = (res.size / (1024 * 1024)).toFixed(2);
 							item.info = `大小：${fileSizeMb} MB`;
-							console.log("计算完成");
+							// console.log("计算完成");
 						}
 					});
 				}

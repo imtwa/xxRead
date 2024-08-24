@@ -1,57 +1,75 @@
 <template>
-	<view>
-
+	<view @click="visSelect = false">
 		<!-- 顶部搜索栏 -->
 		<view class="search">
-			<!-- 最左侧返回标签 -->
-			<u-icon name="arrow-left" color="#000" @click="goBack"></u-icon>
-			<u-search class="usearch" placeholder="搜索书名或作者" v-model="keyword" @custom='searchClick' focus
-				@search='searchClick'></u-search>
-		</view>
-
-
-		<!-- 历史记录 -->
-		<view v-if="visLsS" class="hos-results">
-			<view class="results">
-				<view class="hos">历史记录</view>
-				<view class="h-icon" @click="clearHistoryItems">
-					<icon type="clear"></icon>
+			<view style="display: flex; align-items: center; width: 100%;">
+				<!-- 最左侧返回标签 -->
+				<u-icon name="arrow-left" color="#000" size="18" @click="goBack"></u-icon>
+				<u-search class="usearch" placeholder="搜索书名或作者" v-model="keyword" focus :show-action="false"
+					@search='searchClick'></u-search>
+				<view @click.stop="visSelect = !visSelect"
+					style="width: 50rpx; display: flex; justify-content: center; align-items: center;">
+					<u-icon name="more-dot-fill" color="#000" size="20" style="transform: rotate(90deg);">
+					</u-icon>
 				</view>
 			</view>
-			<!-- 历史记录列表 -->
-			<view class="search-results">
-				<view v-for="item in this.$store.state.historyItems" @click="goSearch(item)">
-					<view class="tag" @longpress="clearHistoryItem(item)">
-						{{ item }}
+		</view>
+
+		<!-- 选择搜索书名还是作者 -->
+		<view v-show="visSelect" class="search-select">
+			<view style="font-size:28rpx; color: #333; margin: 20rpx 0;">
+				<p>精确展示搜索结果</p>
+			</view>
+			<!-- 单选框 -->
+			<u-radio-group v-model="selecValue" @change="radioGroupChange" placement="column" activeColor="#000"
+				iconPlacement="right">
+				<u-radio @change="radioChange" v-for="(item, index) in selectList" :key="index" :name="item.name"
+					:disabled="item.disabled" style="height: 75rpx;">
+					{{ item.name }}
+				</u-radio>
+			</u-radio-group>
+		</view>
+		<view style="min-height: 90vh;">
+			<!-- 历史记录 -->
+			<view v-if="visLsS" class="hos-results">
+				<view class="results">
+					<view class="hos">历史记录</view>
+					<view class="h-icon" @click="clearHistoryItems">
+						<icon type="clear"></icon>
+					</view>
+				</view>
+				<!-- 历史记录列表 -->
+				<view class="search-results">
+					<view v-for="item in this.$store.state.historyItems" @click="goSearch(item)">
+						<view class="tag" @longpress="clearHistoryItem(item)">
+							{{ item }}
+						</view>
 					</view>
 				</view>
 			</view>
 
-		</view>
+			<!-- 搜索后显示 -->
+			<view v-else>
+				<view class="booklist">
+					<!-- 搜索加载 -->
+					<u-loading-icon :show="uloading"></u-loading-icon>
+					<view class="search-results" :v-if="!uloading" v-for="book in showBooks" @click="goBookHome(book)">
+						<BookList :imgurl="book.imgurl" :title="book.bookname" :info="'作者: ' + book.author"
+							:bookSourceName="book.bookSourceName" :tags="book.tags">
+						</BookList>
+					</view>
 
-		<!-- 搜索后显示 -->
-		<view v-else>
-			<view class="booklist">
-				<!-- 搜索加载 -->
-				<u-loading-icon :show="uloading"></u-loading-icon>
-				<view class="search-results" :v-if="!uloading" v-for="book in showBooks" @click="goBookHome(book)">
-					<BookList :imgurl="book.imgurl" :title="book.bookname" :info="'作者: ' + book.author"
-						:bookSourceName="book.bookSourceName" :tags="book.tags">
-					</BookList>
-				</view>
+					<!-- 触底加载 -->
+					<u-loading-icon :show="ubottom"></u-loading-icon>
 
-				<!-- 触底加载 -->
-				<u-loading-icon :show="ubottom"></u-loading-icon>
-
-				<!-- 加载时不显示 -->
-				<view v-if="!uloading">
-					<!-- 通过status设置组件的状态，加载前值为loadmore，加载中为loading，没有数据为nomore -->
-					<u-loadmore status="nomore" nomore-text="找不到更多啦" />
+					<!-- 加载时不显示 -->
+					<view v-if="!uloading">
+						<!-- 通过status设置组件的状态，加载前值为loadmore，加载中为loading，没有数据为nomore -->
+						<u-loadmore status="nomore" nomore-text="找不到更多啦" />
+					</view>
 				</view>
 			</view>
-
 		</view>
-
 
 		<!-- 确认删除弹窗 -->
 		<u-modal :show="visModaHistory" :title="clearTitle" showCancelButton closeOnClickOverlay :zoom="false"
@@ -79,6 +97,19 @@
 				uloading: false,
 				// 触底加载
 				ubottom: false,
+				// 是否显示选择框
+				visSelect: false,
+				// 选择框数据
+				selectList: [{
+						name: '搜索书名',
+						disabled: false
+					},
+					{
+						name: '搜索作者',
+						disabled: false
+					}
+				],
+				selecValue: '搜索书名',
 				// 历史记录搜索显示
 				visLsS: true,
 				// 确认删除弹窗
@@ -89,9 +120,6 @@
 				historyItem: null,
 				clearTitle: '确定要删除历史记录吗？',
 			};
-		},
-		onLoad() {
-
 		},
 		/**
 		 * 触底加载
@@ -153,11 +181,11 @@
 			confirmmodalD() {
 				//隐藏弹窗
 				this.visModaHistory = false;
-				if(this.visHistoryItem === false){
+				if (this.visHistoryItem === false) {
 					this.$store.commit('clearHistoryItems')
-				}else{
+				} else {
 					// 只删除单项
-					this.$store.commit('clearHistoryItem',this.historyItem)
+					this.$store.commit('clearHistoryItem', this.historyItem)
 				}
 			},
 			cancelmodalD() {
@@ -168,6 +196,17 @@
 			closemodalD() {
 				//遮罩层关闭
 				this.visModaHistory = false;
+			},
+
+			// 选中某个单选框时，由radio时触发
+			radioChange(e) {
+				console.log(e);
+			},
+			// 选中任一radio时，由radio-group触发
+			// 点击已选中也会重复触发
+			radioGroupChange(e) {
+				// console.log(e);
+				// console.log(this.selecValue);
 			},
 
 			//点击搜索后触发
@@ -319,10 +358,47 @@
 		left: 0;
 		right: 0;
 		z-index: 9999;
-		background-color: #fff;
+		// background-color: #fff;
 
 		.usearch {
-			padding-left: 20rpx;
+			padding: 0 20rpx;
+		}
+	}
+
+	.search-select {
+		position: fixed;
+		width: 300rpx;
+		top: 160rpx;
+		right: 8px;
+		padding: 20rpx 30rpx;
+		background-color: #fff;
+		border-radius: 8rpx;
+		border: 1px solid rgba(239, 239, 239, 0.8);
+		/* 添加左下方扩散阴影 */
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		/* 确保元素在其他内容之上 */
+		z-index: 9999;
+		/* 初始状态，假设是隐藏的，从上方偏移 */
+		opacity: 0;
+		transform: translateY(-10%);
+		/* 为平滑的过渡做准备 */
+		//transition: transform 0.3s ease, opacity 0.3s ease;
+		/* 应用动画 */
+		animation: fadeInFromTop 0.7s forwards;
+		/* 清除过渡效果*/
+		transition: none;
+	}
+
+	/* 动画关键帧 */
+	@keyframes fadeInFromTop {
+		from {
+			opacity: 0;
+			transform: translateY(-10%);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
 		}
 	}
 
