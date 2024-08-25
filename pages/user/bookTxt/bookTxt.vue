@@ -7,13 +7,31 @@
 		<view v-if="!visnobook" class="page">
 			<view class="boby">
 				<view class="ta1">共有 {{bookTxts.length}} 条导出记录</view>
-				<uni-swipe-action-item v-for="(item, index) in bookTxts" :right-options="options" :key="item.toLocalURL"
+				<u-swipe-action>
+					<u-swipe-action-item 
+						v-for="(item, index) in bookTxts" 
+						:key="item.toLocalURL"
+						:options="options"
+						@click="handleDelete(index)">
+						<view class="upper-section">
+							<view class="left-section">
+								<BookList :imgurl="item.imgurl" :title="item.bookname" :info="'作者：'+item.author"
+									:info1="item.info">
+								</BookList>
+							</view>
+							<view class="right-section-wrapper">
+								<u-button text="打开" type="error" shape="circle" size="normal" plain
+									@click="goReadTxt(item.toLocalURL)"></u-button>
+							</view>
+						</view>
+					</u-swipe-action-item>
+				</u-swipe-action>
+				<!-- <uni-swipe-action-item v-for="(item, index) in bookTxts" :right-options="options" :key="item.toLocalURL"
 					@change="swipeChange($event, index)" @click="swipeClick($event, index)">
 					<view class="upper-section">
 						<view class="left-section">
-							<BookList :imgurl="item.imgurl" :title="item.bookname" 
-							:info="'作者：'+item.author"
-							:info1="item.info">
+							<BookList :imgurl="item.imgurl" :title="item.bookname" :info="'作者：'+item.author"
+								:info1="item.info">
 							</BookList>
 						</view>
 						<view class="right-section-wrapper">
@@ -21,11 +39,11 @@
 								@click="goReadTxt(item.toLocalURL)"></u-button>
 						</view>
 					</view>
-				</uni-swipe-action-item>
+				</uni-swipe-action-item> -->
 			</view>
 		</view>
 		<!-- 确认删除弹窗 -->
-		<u-modal :show="vismodalD" title="确定要删除本书吗？" showCancelButton closeOnClickOverlay :zoom="false"
+		<u-modal :show="vismodalD" title="确定要删除这条记录吗？" showCancelButton closeOnClickOverlay :zoom="false"
 			@cancel="cancelmodalD" @confirm="confirmmodalD" @close="closemodalD"></u-modal>
 	</view>
 </template>
@@ -79,7 +97,7 @@
 		},
 		methods: {
 			getInfo(item) {
-				
+
 			},
 			goReadTxt(toLocalURL) {
 				plus.runtime.openFile(
@@ -101,23 +119,11 @@
 						})
 					});
 			},
-			swipeChange(e, index) {
-				console.log('返回：' + e);
-				console.log('当前索引：' + index);
-			},
-			swipeClick(e, index) {
-				console.log(e);
-				console.log('返回：' + e.content.text);
-				console.log('当前索引：' + index);
-				if (0 == e.index) {
-					this.spbook = this.bookTxts[index];
-					// 调用删除
-					this.handleDelete();
-				}
-			},
-			handleDelete() {
+			handleDelete(index) {
 				// 处理删除事件的逻辑
-				console.log("删除事件被触发");
+				// console.log("删除事件被触发");
+				// 即将要删除的对象
+				this.spbook = this.bookTxts[index];
 				// 弹出确定弹窗
 				this.vismodalD = true
 			},
@@ -125,20 +131,23 @@
 			confirmmodalD() {
 				//找到这本书的索引并删除
 				this.$store.dispatch('deleteBookTxts', this.spbook.toLocalURL).then(index => {
-						if (-1 === index) {
-							uni.showToast({
-								title: '删除失败,记录内没有这本书',
-								icon: 'none',
-							})
 
-						} else {
+						if (0=== index) {
 							//消息提示
 							uni.showToast({
 								title: '删除成功',
 								icon: 'none',
 							})
+							// 存入缓存中
+							this.$store.commit('setBookShelfFromStorage')
 							//刷新书架
 							// this.bookShow()
+
+						} else {
+							uni.showToast({
+								title: '删除失败,记录内没有这本书',
+								icon: 'none',
+							})
 						}
 
 					})
@@ -146,7 +155,7 @@
 						// 异常情况的处理
 						//消息提示
 						uni.showToast({
-							title: '删除失败,书架内没有这本书' + error,
+							title: '删除失败' + JSON.stringify(error),
 							icon: 'none',
 						})
 					});

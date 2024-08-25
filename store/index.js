@@ -395,27 +395,29 @@ const store = new Vuex.Store({
 		deleteBookTxts({
 			state
 		}, toLocalURL) {
-			// 查找是否在书架中
-			const index = state.bookTxts.findIndex(book => book.toLocalURL === toLocalURL);
-			// 如果在则删除
-			if (index != -1) {
-				uni.removeSavedFile({
-					filePath: toLocalURL,
-					success: function(res) {
-						console.log('删除文件成功', res);
-						state.bookTxts.splice(index, 1);
-						return 0;
-					},
-					fail: function(err) {
-						console.log('删除文件失败', err);
-						return -1;
-					}
-				});
-
-			} else {
-				console.log("删除失败，书架内没有这本书");
-				return -1;
-			}
+			return new Promise((resolve, reject)=>{
+				// 查找是否在书架中
+				const index = state.bookTxts.findIndex(book => book.toLocalURL === toLocalURL);
+				// 如果在则删除
+				if (index != -1) {
+					uni.removeSavedFile({
+						filePath: toLocalURL,
+						success: function(res) {
+							console.log('删除文件成功', res);
+							state.bookTxts.splice(index, 1);
+							resolve(0);
+						},
+						fail: function(err) {
+							console.log('删除文件失败', err);
+							reject(err);
+						}
+					});
+				
+				} else {
+					console.log("删除失败，书架内没有这本书");
+					resolve(-1);
+				}
+			})
 		},
 
 		//将书籍在浏览记录中删除，传入bookurl
