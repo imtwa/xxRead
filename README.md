@@ -6,7 +6,7 @@
 
 app原理是根据各书源网站设置正则匹配规则，过滤广告等信息，无需服务器即可使用。
 
-下载链接：[xx阅读直链下载](https://github.com/imtwa/xxRead/releases/download/xxRead/xxRead.2.1.0.apk)
+下载链接：[xx阅读直链下载](https://github.com/imtwa/xxRead/releases/download/xxRead2.1.2/xxRead.2.1.2.apk)
 
 项目使用开源组件html-parser解析html页面，使用uview-ui组件进行界面设计。
 
@@ -55,6 +55,7 @@ node install
 - 2.0.6 支持音量长按翻页，使用虚拟列表，优化主页目录加载速度，优化少量BUG
 - 2.0.8 使用触底刷新，优化搜索页内容过多卡顿问题，优化少量BUG
 - 2.1.0 新增作品分类，新增作品标签，优化书城界面，优化少量BUG
+- 2.1.2 搜索页面精确展示搜索结果，加入搜索超时取消逻辑，优化少量BUG
 
 # 软件更新方向
 
