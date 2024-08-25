@@ -322,7 +322,7 @@
 						return similarityB - similarityA;
 					}
 				});
-				// 排序后将结果展示 若展示列表为空则先展示前二十本
+				// 排序后将结果展示 先展示前二十本
 				this.showBooks = this.books.slice(0, 20)
 				// console.log(this.showBooks);
 			},

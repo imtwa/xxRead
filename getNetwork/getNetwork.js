@@ -41,12 +41,55 @@ const getNetwork = {
 	 * @returns {Array} - 搜索结果列表
 	 * @time 2023-10-27
 	 */
-	async search(index, keyword) {
+	async search(index, keyword, timeout = 5000) {
 		console.log("获取书源" + index + "的" + keyword);
 		let list = [];
-		
-		const functionString = origins[index].functionSearch
-		list = await getSearch[functionString](keyword);
+		let isCancelled = false; // 标记请求是否被取消  
+
+		// 定义一个用于超时的Promise  
+		const timeoutPromise = new Promise((resolve, reject) => {
+			setTimeout(() => {
+				if (!isCancelled) {
+					isCancelled = true;
+					reject(new Error('Request timed out')); // 超时后拒绝Promise  
+				}
+			}, timeout);
+		});
+
+		// 调用实际的搜索函数，并将其结果封装在一个Promise中  
+		const searchPromise = new Promise((resolve, reject) => {
+			const functionString = origins[index].functionSearch;
+			if (typeof getSearch[functionString] !== 'function') {
+				reject(new Error('Invalid search function'));
+				return;
+			}
+
+			// 尝试调用搜索函数，并在成功或失败时解析/拒绝Promise  
+			getSearch[functionString](keyword).then(results => {
+				if (!isCancelled) {
+					resolve(results);
+				}
+			}).catch(error => {
+				if (!isCancelled) {
+					reject(error);
+				}
+			});
+		});
+
+		// 使用Promise.race来同时等待超时和搜索完成  
+		try {
+			list = await Promise.race([searchPromise, timeoutPromise]);
+		} catch (error) {
+			if (error.message === 'Request timed out') {
+				console.error('搜索超时');
+				// 这里可以添加额外的超时处理逻辑  
+			} else {
+				console.error('搜索过程中发生错误', error);
+			}
+			// 注意：如果超时，list将不会被更新  
+		}
+		// const functionString = origins[index].functionSearch
+		// list = await getSearch[functionString](keyword);
 
 		// 添加属性
 		if (list.length > 0) {
@@ -77,7 +120,7 @@ const getNetwork = {
 		if (-1 === index) {
 			return -1
 		}
-		
+
 		const functionString = origins[index].functionHomePage
 		const getbook = await getHomePage[functionString](newbook.bookurl)
 

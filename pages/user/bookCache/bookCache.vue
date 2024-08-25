@@ -291,7 +291,7 @@
 <style lang="scss">
 	.page {
 		background-color: rgb(239, 239, 239);
-		height: 100%;
+		min-height: 100vh;
 		padding-bottom: 10px;
 	}
 

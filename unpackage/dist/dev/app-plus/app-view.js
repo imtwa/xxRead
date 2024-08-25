@@ -14694,7 +14694,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 13);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* uview-ui的主体样式 */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.page {\r\n  background-color: #efefef;\r\n  height: 100%;\r\n  padding-bottom: 10px;\n}\n.nobook {\r\n  padding-top: 100px;\r\n  margin-top: 100px;\r\n  height: 250px;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.atop {\r\n  padding-left: 10px;\n}\n.container {\r\n  display: flex;\r\n  height: 90px;\r\n  padding: 10px;\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  margin-top: 8px;\r\n  margin-bottom: 5px;\r\n  background-color: #fff;\r\n  border-radius: 10px;\r\n  box-shadow: 2px 2px 2px rgba(62, 62, 62, 0.2);\n}\n.left-section {\r\n  flex: 85%;\r\n  display: flex;\r\n  flex-direction: column;\n}\n.right-section {\r\n  flex: 15%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.right-section .iconmin {\r\n  padding-top: 15px;\n}\n.top {\r\n  height: 33.33%;\n}\n.middle {\r\n  height: 33.33%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  color: #555;\r\n  font-size: 14px;\n}\n.left {\r\n  width: 20%;\n}\n.right {\r\n  width: 20%;\n}\n.bottom {\r\n  height: 33.33%;\r\n  padding-top: 5px;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* uview-ui的主体样式 */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.page {\r\n  background-color: #efefef;\r\n  min-height: 100vh;\r\n  padding-bottom: 10px;\n}\n.nobook {\r\n  padding-top: 100px;\r\n  margin-top: 100px;\r\n  height: 250px;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.atop {\r\n  padding-left: 10px;\n}\n.container {\r\n  display: flex;\r\n  height: 90px;\r\n  padding: 10px;\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  margin-top: 8px;\r\n  margin-bottom: 5px;\r\n  background-color: #fff;\r\n  border-radius: 10px;\r\n  box-shadow: 2px 2px 2px rgba(62, 62, 62, 0.2);\n}\n.left-section {\r\n  flex: 85%;\r\n  display: flex;\r\n  flex-direction: column;\n}\n.right-section {\r\n  flex: 15%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.right-section .iconmin {\r\n  padding-top: 15px;\n}\n.top {\r\n  height: 33.33%;\n}\n.middle {\r\n  height: 33.33%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  color: #555;\r\n  font-size: 14px;\n}\n.left {\r\n  width: 20%;\n}\n.right {\r\n  width: 20%;\n}\n.bottom {\r\n  height: 33.33%;\r\n  padding-top: 5px;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -14775,6 +14775,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uIcon: __webpack_require__(/*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 5)
+      .default,
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
@@ -14797,7 +14819,7 @@ var render = function () {
                   height: "96px",
                   "border-radius": "10px",
                 },
-                attrs: { src: _vm._$g(3, "a-src"), _i: 3 },
+                attrs: { src: "/static/images/user/login.png", _i: 3 },
               }),
               _c(
                 "uni-view",
@@ -14814,40 +14836,64 @@ var render = function () {
               _c("p", { attrs: { _i: 6 } }, [
                 _vm._v("版本号: " + _vm._$g(6, "t0-0")),
               ]),
-              _c("p", { attrs: { _i: 7 } }, [_vm._v("联系方式:")]),
-              _c("p", { attrs: { _i: 8 } }, [_vm._v("qq:2830671713")]),
+              _c(
+                "uni-view",
+                { staticStyle: { display: "flex" }, attrs: { _i: 7 } },
+                [
+                  _c("u-icon", { attrs: { _i: 8 } }),
+                  _c("p", { attrs: { _i: 9 } }, [_vm._v("2830671713")]),
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                {
+                  staticStyle: { display: "flex" },
+                  attrs: { _i: 10 },
+                  on: {
+                    click: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
+                },
+                [
+                  _c("u-icon", { attrs: { _i: 11 } }),
+                  _c("p", { attrs: { _i: 12 } }, [_vm._v("imtwa/xxRead")]),
+                ],
+                1
+              ),
             ],
             1
           ),
           _c(
             "uni-view",
-            { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-            _vm._l(_vm._$g(10, "f"), function (item, index, $20, $30) {
+            { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+            _vm._l(_vm._$g(14, "f"), function (item, index, $20, $30) {
               return _c(
                 "uni-view",
                 {
                   key: item,
-                  class: _vm._$g("10-" + $30, "c"),
-                  attrs: { _i: "10-" + $30 },
+                  class: _vm._$g("14-" + $30, "c"),
+                  attrs: { _i: "14-" + $30 },
                 },
                 [
                   _c(
                     "uni-view",
                     {
-                      staticClass: _vm._$g("11-" + $30, "sc"),
-                      attrs: { _i: "11-" + $30 },
+                      staticClass: _vm._$g("15-" + $30, "sc"),
+                      attrs: { _i: "15-" + $30 },
                     },
                     [
-                      _c("v-uni-text", { attrs: { _i: "12-" + $30 } }, [
-                        _vm._v("版本：" + _vm._$g("12-" + $30, "t0-0")),
+                      _c("v-uni-text", { attrs: { _i: "16-" + $30 } }, [
+                        _vm._v("版本：" + _vm._$g("16-" + $30, "t0-0")),
                       ]),
                       _c(
                         "v-uni-text",
                         {
-                          staticClass: _vm._$g("13-" + $30, "sc"),
-                          attrs: { _i: "13-" + $30 },
+                          staticClass: _vm._$g("17-" + $30, "sc"),
+                          attrs: { _i: "17-" + $30 },
                         },
-                        [_vm._v(_vm._$g("13-" + $30, "t0-0"))]
+                        [_vm._v(_vm._$g("17-" + $30, "t0-0"))]
                       ),
                     ],
                     1
@@ -14959,7 +15005,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 13);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* uview-ui的主体样式 */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.container {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  height: 100vh;\n}\n.top {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  padding-top: 100px;\n}\n.bottom {\r\n  width: 100%;\n}\r\n/* 下部内容样式 */\r\n/* 包裹图片和两行文字 */\n.view_tupian_wenzi {\r\n  height: 100px;\r\n  display: flex;\r\n  flex-direction: row;\r\n  align-items: center;\r\n  /* 圆角 */\r\n  border-radius: 10px;\r\n  /* 边 */\r\n  box-shadow: 2px 2px 2px rgba(85, 85, 85, 0.3);\r\n  background-color: #f3f3f3;\r\n  margin: 15px;\r\n  /* padding使得文字和图片不至于贴着边框 */\r\n  padding: 15px;\n}\r\n/* 包裹两行文字 */\n.view_wenzi2 {\r\n  width: 100%;\r\n  margin-left: 12px;\r\n  display: flex;\r\n  flex-direction: column;\n}\r\n/* 小字 */\n.text_small {\r\n  font-size: 14px;\r\n  word-break: break-all;\r\n  color: #7a7878;\r\n  margin-top: 4px;\n}\r\n/* 第一个项的背景颜色 */\n.view_first {\r\n  background-color: #97ad8b;\n}\r\n/* 点击的项的背景颜色 */\n.view_active {\r\n  background-color: #00aeff;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* uview-ui的主体样式 */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.container {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-between;\n}\n.top {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-top: 100rpx;\n}\n.middle {\r\n  font-size: 14px;\r\n  padding-top: 20rpx;\n}\n.bottom {\r\n  width: 100%;\n}\r\n/* 下部内容样式 */\r\n/* 包裹图片和两行文字 */\n.view_tupian_wenzi {\r\n  min-height: 100px;\r\n  display: flex;\r\n  flex-direction: row;\r\n  align-items: center;\r\n  /* 圆角 */\r\n  border-radius: 10px;\r\n  /* 边 */\r\n  box-shadow: 2px 2px 2px rgba(85, 85, 85, 0.3);\r\n  background-color: #f3f3f3;\r\n  margin: 15px;\r\n  /* padding使得文字和图片不至于贴着边框 */\r\n  padding: 15px;\n}\r\n/* 包裹两行文字 */\n.view_wenzi2 {\r\n  width: 100%;\r\n  margin-left: 12px;\r\n  display: flex;\r\n  flex-direction: column;\n}\r\n/* 小字 */\n.text_small {\r\n  font-size: 14px;\r\n  word-break: break-all;\r\n  color: #7a7878;\r\n  margin-top: 4px;\n}\r\n/* 选中项的背景颜色 */\n.view_active {\r\n  background-color: #00aeff;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
