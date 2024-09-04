@@ -10,7 +10,7 @@
 </template>
 
 <script>
-	import classify from "@/getNetwork/classify.json"
+	import classify from "@/api/getNetwork/classify.json"
 	export default {
 		name: "BookClassify",
 		data() {

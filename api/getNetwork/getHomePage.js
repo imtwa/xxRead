@@ -1,5 +1,5 @@
 import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
-import origins from '@/getNetwork/origins.json'
+import origins from '@/api/getNetwork/origins.json'
 
 const CryptoJS = require("crypto-js");
 

@@ -26,10 +26,10 @@ function getOriginsUrl(url) {
 	}
 }
 
-import origins from '@/getNetwork/origins.json'
-import getSearch from '@/getNetwork/getSearch.js'
-import getHomePage from '@/getNetwork/getHomePage.js'
-import getRead from '@/getNetwork/getRead.js'
+import origins from '@/api/getNetwork/origins.json'
+import getSearch from '@/api/getNetwork/getSearch.js'
+import getHomePage from '@/api/getNetwork/getHomePage.js'
+import getRead from '@/api/getNetwork/getRead.js'
 
 const getNetwork = {
 

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
-import origins from "@/getNetwork/origins.json"
+import origins from "@/api/getNetwork/origins.json"
 Vue.use(Vuex)
 
 const store = new Vuex.Store({

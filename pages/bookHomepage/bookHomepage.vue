@@ -89,7 +89,7 @@
 	import bookReadVue from "../bookRead/bookRead.vue"
 	import store from "@/store/index.js"
 	import virtualList from '@/components/virtualList.vue';
-	import origins from '@/getNetwork/origins.json'
+	import origins from '@/api/getNetwork/origins.json'
 
 	export default {
 		components: {

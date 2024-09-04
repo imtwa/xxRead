@@ -1,5 +1,5 @@
 import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
-import origins from '@/getNetwork/origins.json'
+import origins from '@/api/getNetwork/origins.json'
 
 /**
  * 正则匹配 H5需要转发请求

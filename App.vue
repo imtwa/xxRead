@@ -1,7 +1,7 @@
 <script>
 	import store from "./store/index.js"
 	import iconv from 'iconv-lite';
-	import getNetwork from "@/getNetwork/getNetwork.js";
+	import getNetwork from "@/api/getNetwork/getNetwork.js";
 
 	export default {
 		onLaunch: function() {

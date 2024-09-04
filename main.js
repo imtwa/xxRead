@@ -2,7 +2,7 @@ import App from './App'
 
 import uView from '@/uni_modules/uview-ui'
 import store from '@/store/index.js'
-import getNetwork from '@/getNetwork/getNetwork.js'
+import getNetwork from '@/api/getNetwork/getNetwork.js'
 
 import FontAwesome from '@/components/Am-FontAwesome/index.vue'
 
