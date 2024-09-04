@@ -1,7 +1,7 @@
 <template>
 	<!-- 书城页面 -->
 	<view class="container">
-		<navigator url="../search/search">
+		<navigator url="../search/search" hover-stay-time="0">
 			<view class="search">
 				<u-search placeholder="搜索书名或作者" v-model="keyword" :showAction="false" disabled></u-search>
 			</view>
