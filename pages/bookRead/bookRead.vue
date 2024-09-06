@@ -343,8 +343,8 @@
 </template>
 
 <script>
-import battery from '../../components/battery.vue'
-import virtualList from '../../components/virtualList.vue'
+import battery from '@/components/battery.vue'
+import virtualList from '@/components/virtualList.vue'
 import {
 	traditionalized,
 	simplized,

@@ -12894,8 +12894,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _battery = _interopRequireDefault(__webpack_require__(/*! ../../components/battery.vue */ 310));
-var _virtualList = _interopRequireDefault(__webpack_require__(/*! ../../components/virtualList.vue */ 294));
+var _battery = _interopRequireDefault(__webpack_require__(/*! @/components/battery.vue */ 310));
+var _virtualList = _interopRequireDefault(__webpack_require__(/*! @/components/virtualList.vue */ 294));
 var _default = {
   data: function data() {
     return {
