@@ -27,6 +27,8 @@ node install
 npx prettier --write "pages/**/*.{js,jsx,ts,tsx,css,scss,less,vue}"
 
 npx prettier --write "components/**/*.{js,jsx,ts,tsx,css,scss,less,vue}" 
+
+npx prettier --write "utils/*.{js}"
 ```
 
 # 功能介绍

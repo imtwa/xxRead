@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     selectedBanner(item, index) {
-      console.log("🥒", item, index);
+      // console.log("🥒", item, index);
     },
 
     int() {

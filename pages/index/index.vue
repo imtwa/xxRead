@@ -25,22 +25,12 @@
     <view class="yesbook">
       <view v-if="visList">
         <!-- 左滑组件 -->
-        <uni-swipe-action-item
-          v-for="(item, index) in bookShelf"
-          :right-options="options"
-          :key="item.bookurl"
-          @change="swipeChange($event, index)"
-          @click="swipeClick($event, index)"
-        >
+        <uni-swipe-action-item v-for="(item, index) in bookShelf" :right-options="options" :key="item.bookurl"
+          @change="swipeChange($event, index)" @click="swipeClick($event, index)">
           <view class="bookList" @longpress="gomenu(index)">
             <view class="listleft" @click="goBookRead(index)">
-              <BookList
-                :imgurl="item.imgurl"
-                :title="item.bookname"
-                :info="getInfo(item)"
-                :info1="getInfo1(item)"
-                :isUpdated="item.isUpdated"
-              >
+              <BookList :imgurl="item.imgurl" :title="item.bookname" :info="getInfo(item)" :info1="getInfo1(item)"
+                :isUpdated="item.isUpdated">
               </BookList>
             </view>
 
@@ -55,87 +45,42 @@
         </uni-swipe-action-item>
       </view>
       <view v-else class="book-container">
-        <view
-          v-for="(item, index) in bookShelf"
-          :key="item.bookurl"
-          class="book-item"
-          @click="goBookRead(index)"
-          @longpress="gomenu(index)"
-        >
+        <view v-for="(item, index) in bookShelf" :key="item.bookurl" class="book-item" @click="goBookRead(index)"
+          @longpress="gomenu(index)">
           <view>
             <image :src="item.imgurl" class="book-cover"> </image>
           </view>
           <view class="book-name">{{ item.bookname }}</view>
-          <u-badge
-            class="cont-badge"
-            :isDot="true"
-            type="error"
-            v-if="item.isUpdated"
-          ></u-badge>
+          <u-badge class="cont-badge" :isDot="true" type="error" v-if="item.isUpdated"></u-badge>
         </view>
       </view>
     </view>
 
     <!-- 底部弹窗 -->
-    <u-popup
-      :show="vispopup"
-      :round="10"
-      mode="bottom"
-      @close="popupclose"
-      @open="popupopen"
-    >
-      <Cpupup
-        :spopupbook="spbook"
-        @delete="handleDelete"
-        @clearCache="handleClearCache"
-        @download="handleDownload"
-        @share="handleShare"
-        @txt="handleTxt"
-      >
+    <u-popup :show="vispopup" :round="10" mode="bottom" @close="popupclose" @open="popupopen">
+      <Cpupup :spopupbook="spbook" @delete="handleDelete" @clearCache="handleClearCache" @download="handleDownload"
+        @share="handleShare" @txt="handleTxt">
       </Cpupup>
     </u-popup>
 
     <!-- 确认删除弹窗 -->
-    <u-modal
-      :show="vismodalD"
-      title="确定要删除本书吗？"
-      showCancelButton
-      closeOnClickOverlay
-      :zoom="false"
-      @cancel="cancelmodalD"
-      @confirm="confirmmodalD"
-      @close="closemodalD"
-    ></u-modal>
+    <u-modal :show="vismodalD" title="确定要删除本书吗？" showCancelButton closeOnClickOverlay :zoom="false"
+      @cancel="cancelmodalD" @confirm="confirmmodalD" @close="closemodalD"></u-modal>
 
     <!-- 确认清除全部缓存弹窗 -->
-    <u-modal
-      :show="vismodalH"
-      title="确定要清除全部缓存吗？"
-      showCancelButton
-      closeOnClickOverlay
-      :zoom="false"
-      @cancel="cancelmodalH"
-      @confirm="confirmmodalH"
-      @close="closemodalH"
-    ></u-modal>
+    <u-modal :show="vismodalH" title="确定要清除全部缓存吗？" showCancelButton closeOnClickOverlay :zoom="false"
+      @cancel="cancelmodalH" @confirm="confirmmodalH" @close="closemodalH"></u-modal>
 
     <!-- 确认缓存弹窗 -->
-    <u-modal
-      :show="vismodalX"
-      :title="titlemodalX"
-      showCancelButton
-      closeOnClickOverlay
-      :zoom="false"
-      @cancel="cancelmodalX"
-      @confirm="confirmmodalX"
-      @close="closemodalX"
-    ></u-modal>
+    <u-modal :show="vismodalX" :title="titlemodalX" showCancelButton closeOnClickOverlay :zoom="false"
+      @cancel="cancelmodalX" @confirm="confirmmodalX" @close="closemodalX"></u-modal>
   </view>
 </template>
 
 <script>
-// import store from "@/store/index.js"
-// import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
+import store from "@/store/index.js"
+import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
+import { deepCopy } from "@/utils/utils.js"
 
 export default {
   data() {
@@ -418,12 +363,15 @@ export default {
         // uni.setStorageSync(key, this.spbook);
         // // 使用同步读取！！
         // bookall = uni.getStorageSync(key);
-        bookall = JSON.parse(JSON.stringify(this.spbook));
+        // bookall = JSON.parse(JSON.stringify(this.spbook));
+        bookall = deepCopy(this.spbook);
+        console.log(this.spbook);
+        console.log(bookall);
+        
         bookall.progress = 0;
       }
 
       const originF = bookall.origin;
-      const index = this.$store.state.origins.indexOf(originF);
 
       for (let i = 0; i < bookall.chapters.length; i++) {
         const chapter = bookall.chapters[i];
@@ -431,7 +379,9 @@ export default {
         if (!chapter.hasOwnProperty("text")) {
           try {
             const chapterId = chapter.chapterurl;
-            const originF = this.spbook.origin;
+            // const originF = this.spbook.origin;
+            console.log(originF,chapterId);
+            
             const text = await this.$getNetwork.read(originF, chapterId);
             if (-1 == text) {
               console.log("网络请求错误");
