@@ -91,7 +91,7 @@
 			return {
 				//书架列表
 				// bookShelf: [],
-				//列表格式？
+				//列表格式？宫格or列表
 				visList: true,
 				//书架里没有书
 				visnobook: false,
