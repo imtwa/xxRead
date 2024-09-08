@@ -22,6 +22,13 @@ node install
 
 然后在HBuilderX打开即可
 
+代码格式化命令
+```
+npx prettier --write "pages/**/*.{js,jsx,ts,tsx,css,scss,less,vue}"
+
+npx prettier --write "components/**/*.{js,jsx,ts,tsx,css,scss,less,vue}" 
+```
+
 # 功能介绍
 - 搜索功能
 - 作品分类

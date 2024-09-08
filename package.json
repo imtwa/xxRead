@@ -15,5 +15,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev": "vue-cli-service serve"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   }
 }
