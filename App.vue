@@ -64,5 +64,13 @@ export default {
 /*每个页面公共css */
 view {
   box-sizing: border-box;
+  font-family: 'FangZheng';
+}
+
+@font-face {
+  font-family: 'FangZheng';
+  src: url('static/fonts/FangZhengKaiTi-GBK-1.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 </style>
