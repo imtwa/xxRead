@@ -9,7 +9,6 @@
       @change="change"
       @confirm="confirm"
       @toggleCheck="toggleCheck"
-      @=""
     >
     </HM-dragSorts>
   </view>
@@ -17,6 +16,7 @@
 
 <script>
 import list from '@/uni_modules/uview-ui/libs/config/props/list'
+import { deepCopy } from '@/utils/utils.js'
 export default {
   data() {
     return {
@@ -26,7 +26,8 @@ export default {
   },
   onLoad() {
     // 深拷贝书源
-    this.list = JSON.parse(JSON.stringify(this.$store.state.bookOrigins))
+    // this.list = JSON.parse(JSON.stringify(this.$store.state.bookOrigins))
+    this.list = deepCopy(this.$store.state.bookOrigins)
   },
 
   methods: {

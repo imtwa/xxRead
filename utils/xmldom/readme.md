@@ -81,8 +81,8 @@ import { DOMParser } from 'xmldom'
 
 - [XMLSerializer](https://developer.mozilla.org/en-US/docs/Web/API/XMLSerializer)
   `javascript
-  serializeToString(node)
-  `
+serializeToString(node)
+`
   DOM level2 method and attribute:
 
 ---

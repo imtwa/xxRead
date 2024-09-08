@@ -530,6 +530,7 @@ import { traditionalized, simplized, dateToStr, clearExcessiveRepeats } from '@/
 //引入HTML 文本解析器
 // import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
 // import store from "@/store/index.js"
+import { deepCopy } from '@/utils/utils.js'
 
 export default {
   components: {
@@ -714,7 +715,8 @@ export default {
 
           // 将 this.book 对象转换为字符串，然后再将其解析为一个新的对象，从而实现深拷贝
           // 这样就不走缓存了
-          this.bookall = JSON.parse(JSON.stringify(this.book))
+          // this.bookall = JSON.parse(JSON.stringify(this.book))
+          this.bookall = deepCopy(this.book)
           this.bookall.progress = 0
         } else {
           // console.log("缓存数据不为空");

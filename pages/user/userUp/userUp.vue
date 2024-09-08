@@ -43,6 +43,7 @@
 <script>
 // 在组件中引入辅助函数
 import { mapState } from 'vuex'
+import { deepCopy } from '@/utils/utils.js'
 export default {
   data() {
     return {
@@ -63,7 +64,8 @@ export default {
     // this.newUserInfo = this.userInfo;
 
     // 将 this.userInfo 对象转换为字符串，然后再将其解析为一个新的对象，从而实现深拷贝
-    this.newUserInfo = JSON.parse(JSON.stringify(this.userInfo))
+    // this.newUserInfo = JSON.parse(JSON.stringify(this.userInfo))
+    this.newUserInfo = deepCopy(this.userInfo)
   },
   methods: {
     upAvatarUrl() {
