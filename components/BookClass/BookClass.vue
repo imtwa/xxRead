@@ -4,21 +4,11 @@
       <view class="title" @click="goBookClassShow()">
         <view class="title-text">{{ config.title }}</view>
         <view class="arrow-container">
-          <u-button
-            type="info"
-            shape="circle"
-            :plain="true"
-            size="mini"
-            text="更多"
-          />
+          <u-button type="info" shape="circle" :plain="true" size="mini" text="更多" />
         </view>
       </view>
       <view>
-        <view
-          v-for="(item, i) in limitedBooks"
-          :key="item.bookurl"
-          @click="goBookHome(item)"
-        >
+        <view v-for="(item, i) in limitedBooks" :key="item.bookurl" @click="goBookHome(item)">
           <BookList
             :imgurl="item.imgurl"
             :title="item.bookname"
@@ -35,54 +25,54 @@
 
 <script>
 export default {
-  name: "BookClass",
+  name: 'BookClass',
   props: {
     Ftitle: {
-      type: String,
+      type: String
     },
     config: {
-      required: true, // prop 必传
+      required: true // prop 必传
     },
     len: {
       type: Number,
-      default: 5, // 设置 len 的默认值
-    },
+      default: 5 // 设置 len 的默认值
+    }
   },
   data() {
-    return {};
+    return {}
   },
   mounted() {},
   computed: {
     limitedBooks() {
-      return this.config.list.slice(0, this.len);
-    },
+      return this.config.list.slice(0, this.len)
+    }
   },
   methods: {
     getInfo(item) {
-      return "作者：" + item.author;
+      return '作者：' + item.author
     },
     getInfo1(item) {
       if (item.intro) {
-        return item.intro;
+        return item.intro
       }
-      return "更新：" + item.createdAt;
+      return '更新：' + item.createdAt
     },
     goBookHome(book) {
       // encodeURIComponent 对字符串中的某些特殊字符进行转义，以便可以安全地包含在 URL 中 这样可以传递大对象
       // 使用decodeURIComponent转码
-      const e = encodeURIComponent(JSON.stringify(book));
+      const e = encodeURIComponent(JSON.stringify(book))
       uni.navigateTo({
-        url: `/pages/bookHomepage/bookHomepage?book=${e}`,
-      });
+        url: `/pages/bookHomepage/bookHomepage?book=${e}`
+      })
     },
     goBookClassShow() {
-      const e = encodeURIComponent(JSON.stringify(this.config));
+      const e = encodeURIComponent(JSON.stringify(this.config))
       uni.navigateTo({
-        url: `/pages/bookClassShow/bookClassShow?title=${this.Ftitle + "·" + this.config.title}&book=${e}`,
-      });
-    },
-  },
-};
+        url: `/pages/bookClassShow/bookClassShow?title=${this.Ftitle + '·' + this.config.title}&book=${e}`
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss">

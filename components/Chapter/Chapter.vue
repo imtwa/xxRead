@@ -7,12 +7,12 @@
 
 <script>
 export default {
-  name: "Chapter",
-  props: ["book", "chapter"],
+  name: 'Chapter',
+  props: ['book', 'chapter'],
   data() {
-    return {};
-  },
-};
+    return {}
+  }
+}
 </script>
 
 <style lang="scss" scoped>

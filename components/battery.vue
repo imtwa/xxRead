@@ -13,19 +13,19 @@ export default {
   props: {
     level: {
       type: Number,
-      default: 0,
+      default: 0
     },
     charging: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
-    return {};
+    return {}
   },
   mounted() {},
-  methods: {},
-};
+  methods: {}
+}
 </script>
 
 <style lang="scss" scoped>

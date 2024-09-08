@@ -17,13 +17,7 @@
 				<carousel :img-list="imgList" url-key="url" @selected="selectedBanner" />
 			</view> -->
       <view class="swiper">
-        <u-swiper
-          :list="imgList"
-          :circular="true"
-          interval="5000"
-          duration="500"
-          radius="8"
-        >
+        <u-swiper :list="imgList" :circular="true" interval="5000" duration="500" radius="8">
         </u-swiper>
       </view>
 
@@ -45,50 +39,50 @@
 </template>
 
 <script>
-import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js";
-import carousel from "@/components/vear-carousel/vear-carousel";
+import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
+import carousel from '@/components/vear-carousel/vear-carousel'
 // import listItem from "../../uni_modules/uview-ui/libs/config/props/listItem"
 
 export default {
   components: {
-    carousel,
+    carousel
   },
   data() {
     return {
-      keyword: "",
+      keyword: '',
       // 轮播图
       imgList: [
         {
-          url: "../../static/images/recommend/recommend2.jpg",
-          id: 1,
+          url: '../../static/images/recommend/recommend2.jpg',
+          id: 1
         },
         {
-          url: "../../static/images/recommend/recommend3.jpg",
-          id: 2,
+          url: '../../static/images/recommend/recommend3.jpg',
+          id: 2
         },
         {
-          url: "../../static/images/recommend/recommend1.jpg",
-          id: 3,
-        },
+          url: '../../static/images/recommend/recommend1.jpg',
+          id: 3
+        }
       ],
-      bookLists: [],
-    };
+      bookLists: []
+    }
   },
   onLoad() {},
   onShow() {
     if (this.bookLists.length < this.bookConfigs.length) {
-      this.int();
+      this.int()
     }
   },
   //监听用户下拉刷新动作
   onPullDownRefresh() {
     // 检查更新
-    this.int();
+    this.int()
   },
   computed: {
     bookConfigs() {
-      return this.$store.state.bookConfigs;
-    },
+      return this.$store.state.bookConfigs
+    }
   },
   methods: {
     selectedBanner(item, index) {
@@ -96,83 +90,80 @@ export default {
     },
 
     int() {
-      const requests = this.bookConfigs.map((config) => {
+      const requests = this.bookConfigs.map(config => {
         return new Promise((resolve, reject) => {
-          let url = config.url;
+          let url = config.url
           // #ifdef H5
-          const regex = /^http[s]?:\/\/www\.(.*?)\.(.*?)\/(.*)$/;
-          const match = url.match(regex);
+          const regex = /^http[s]?:\/\/www\.(.*?)\.(.*?)\/(.*)$/
+          const match = url.match(regex)
           if (match && match[2] && match[3]) {
-            url = "/" + match[1] + "/" + match[3];
+            url = '/' + match[1] + '/' + match[3]
           }
           // #endif
 
           uni.request({
             url: url,
-            success: (res) => {
-              const doc = new HTMLParser(res.data.toString().trim());
-              const list = this.getbook(doc);
-              resolve(list);
+            success: res => {
+              const doc = new HTMLParser(res.data.toString().trim())
+              const list = this.getbook(doc)
+              resolve(list)
             },
-            fail: reject,
-          });
-        });
-      });
+            fail: reject
+          })
+        })
+      })
 
       Promise.all(requests)
-        .then((results) => {
+        .then(results => {
           if (this.bookLists.length > 0) {
             uni.showToast({
-              title: "刷新成功",
-              icon: "none",
-            });
-            uni.stopPullDownRefresh(); //停止刷新
+              title: '刷新成功',
+              icon: 'none'
+            })
+            uni.stopPullDownRefresh() //停止刷新
           }
           for (let i = 0; i < results.length; i++) {
-            this.$set(this.bookLists, i, results[i]);
+            this.$set(this.bookLists, i, results[i])
           }
-          this.$store.commit("modifyBookLists", this.bookLists);
+          this.$store.commit('modifyBookLists', this.bookLists)
         })
-        .catch((error) => {
-          console.log("请求错误:", error);
-        });
+        .catch(error => {
+          console.log('请求错误:', error)
+        })
     },
     getbook(doc) {
-      const origin = "http://www.qiushu.info";
-      const ui = new HTMLParser(
-        doc.getElementsByClassName("toplists")[0]["innerHTML"],
-      );
-      const trList = ui.getElementsByTagName("dl");
+      const origin = 'http://www.qiushu.info'
+      const ui = new HTMLParser(doc.getElementsByClassName('toplists')[0]['innerHTML'])
+      const trList = ui.getElementsByTagName('dl')
 
-      let book = [];
+      let book = []
       // 该网站下标从1开始
       for (let i = 1; i < trList.length; i++) {
-        const trdoc = new HTMLParser(trList[i].innerHTML);
+        const trdoc = new HTMLParser(trList[i].innerHTML)
 
         // 获取链接和作者
-        const spant1 = trdoc.getElementsByTagName("a")[1];
-        const bookurl = spant1.attributes.href;
+        const spant1 = trdoc.getElementsByTagName('a')[1]
+        const bookurl = spant1.attributes.href
         const bookname = trdoc
-          .getElementsByTagName("a")[0]
-          .innerHTML.replace(/<strong>《(.*?)》<\/strong>/, "$1");
+          .getElementsByTagName('a')[0]
+          .innerHTML.replace(/<strong>《(.*?)》<\/strong>/, '$1')
 
         // 获取作者
         const author = trdoc
-          .getElementsByClassName("top_author")[0]
-          .innerHTML.replace(/<a.*?>(.*?)<\/a>/, "$1");
+          .getElementsByClassName('top_author')[0]
+          .innerHTML.replace(/<a.*?>(.*?)<\/a>/, '$1')
 
         // 获取封面
-        const number = bookurl.match(/\/(\d+)\/$/)[1];
-        const truncatedNumber = number > 999 ? number.slice(0, -3) : "0";
-        const imgurl = `http://www.qiushu.info/${truncatedNumber}/${number}/${number}s.jpg`;
+        const number = bookurl.match(/\/(\d+)\/$/)[1]
+        const truncatedNumber = number > 999 ? number.slice(0, -3) : '0'
+        const imgurl = `http://www.qiushu.info/${truncatedNumber}/${number}/${number}s.jpg`
 
-        const createdAt =
-          trdoc.getElementsByClassName("top_lastupdate")[0].innerHTML;
+        const createdAt = trdoc.getElementsByClassName('top_lastupdate')[0].innerHTML
 
-        let tags = [];
+        let tags = []
         // 连载状态 分类
-        tags.push(trdoc.getElementsByClassName("top_fullflag")[0].innerHTML);
-        tags.push(trdoc.getElementsByClassName("top_sort")[0].innerHTML);
+        tags.push(trdoc.getElementsByClassName('top_fullflag')[0].innerHTML)
+        tags.push(trdoc.getElementsByClassName('top_sort')[0].innerHTML)
 
         book.push({
           imgurl: imgurl,
@@ -181,13 +172,13 @@ export default {
           author: author,
           origin: origin,
           createdAt: createdAt,
-          tags: tags,
-        });
+          tags: tags
+        })
       }
-      return book;
-    },
-  },
-};
+      return book
+    }
+  }
+}
 </script>
 
 <style lang="scss">

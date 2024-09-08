@@ -4,13 +4,7 @@
       <view class="title" @click="goRanKing">
         <view class="title-text">{{ title }}</view>
         <view class="arrow-container">
-          <u-button
-            type="info"
-            shape="circle"
-            :plain="true"
-            size="mini"
-            text="更多"
-          />
+          <u-button type="info" shape="circle" :plain="true" size="mini" text="更多" />
           <!-- <u-icon name="arrow-right" size="16px" color="#000"></u-icon> -->
         </view>
       </view>
@@ -36,28 +30,28 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     books: {
       type: Array, // 这里指定了 books prop 的类型为 Array
-      required: true, // prop 必传
+      required: true // prop 必传
     },
     index: 0,
     len: {
       type: Number,
-      default: 8, // 设置 len 的默认值为 8
-    },
+      default: 8 // 设置 len 的默认值为 8
+    }
   },
   computed: {
     limitedBooks() {
-      return this.books.slice(0, this.len);
-    },
+      return this.books.slice(0, this.len)
+    }
   },
   methods: {
     goRanKing() {
       uni.navigateTo({
-        url: `/pages/bookRanking/bookRanking?index=${this.index}`,
-      });
+        url: `/pages/bookRanking/bookRanking?index=${this.index}`
+      })
     },
     goBookHome(book) {
       // // 同时传递书籍五个参数
@@ -67,13 +61,13 @@ export default {
       // })
       // encodeURIComponent 对字符串中的某些特殊字符进行转义，以便可以安全地包含在 URL 中 这样可以传递大对象
       // 使用decodeURIComponent转码
-      const e = encodeURIComponent(JSON.stringify(book));
+      const e = encodeURIComponent(JSON.stringify(book))
       uni.navigateTo({
-        url: `/pages/bookHomepage/bookHomepage?book=${e}`,
-      });
-    },
-  },
-};
+        url: `/pages/bookHomepage/bookHomepage?book=${e}`
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

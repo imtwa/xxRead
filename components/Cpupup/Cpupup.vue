@@ -64,28 +64,28 @@
 </template>
 
 <script>
-import store from "@/store/index.js";
+import store from '@/store/index.js'
 
 export default {
-  name: "Cpupup",
-  props: ["spopupbook"],
+  name: 'Cpupup',
+  props: ['spopupbook'],
   data() {
-    return {};
+    return {}
   },
   methods: {
     getInfo(item) {
-      const readIndex = item.readIndex + 1;
-      const readAll = item.readAll;
-      const readPercent = (readIndex * 100) / readAll;
+      const readIndex = item.readIndex + 1
+      const readAll = item.readAll
+      const readPercent = (readIndex * 100) / readAll
 
-      return `作者：${item.author}`;
+      return `作者：${item.author}`
     },
     getInfo1(item) {
-      const readIndex = item.readIndex + 1;
-      const readAll = item.readAll;
-      const readPercent = (readIndex * 100) / readAll;
+      const readIndex = item.readIndex + 1
+      const readAll = item.readAll
+      const readPercent = (readIndex * 100) / readAll
 
-      return `读到 ${readIndex} 章 共 ${readAll} 章 ${readPercent.toFixed(2)}%`;
+      return `读到 ${readIndex} 章 共 ${readAll} 章 ${readPercent.toFixed(2)}%`
     },
     //点击详情跳转到主页
     goBookHome() {
@@ -96,33 +96,33 @@ export default {
       // })
       // encodeURIComponent 对字符串中的某些特殊字符进行转义，以便可以安全地包含在 URL 中 这样可以传递大对象
       // 使用decodeURIComponent转码
-      const e = encodeURIComponent(JSON.stringify(this.spopupbook));
+      const e = encodeURIComponent(JSON.stringify(this.spopupbook))
       uni.navigateTo({
-        url: `/pages/bookHomepage/bookHomepage?book=${e}`,
-      });
+        url: `/pages/bookHomepage/bookHomepage?book=${e}`
+      })
     },
     handleDelete() {
-      this.$emit("delete");
+      this.$emit('delete')
       // 触发删除事件
     },
     handleClearCache() {
-      this.$emit("clearCache");
+      this.$emit('clearCache')
       // 触发清除缓存事件
     },
     handleDownload() {
-      this.$emit("download");
+      this.$emit('download')
       // 触发下载事件
     },
     handleShare() {
-      this.$emit("share");
+      this.$emit('share')
       // 触发打开目录
     },
     handleTxt() {
-      this.$emit("txt");
+      this.$emit('txt')
       // 触发导出本书
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

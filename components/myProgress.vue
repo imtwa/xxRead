@@ -29,12 +29,12 @@ export default {
   props: {
     total: {
       type: Number,
-      default: 1,
+      default: 1
     },
     index: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   data() {
     return {
@@ -42,47 +42,47 @@ export default {
       right: 0, //进度条最右侧位置
       isTouch: false,
       // touchTimer: null,  //用于触摸节流
-      percent: 0,
-    };
+      percent: 0
+    }
   },
   watch: {
     index() {
-      this.percent = (this.index / this.total) * 100;
-    },
+      this.percent = (this.index / this.total) * 100
+    }
   },
   mounted() {
-    this.percent = (this.index / this.total) * 100;
-    this.getLocation();
+    this.percent = (this.index / this.total) * 100
+    this.getLocation()
   },
   methods: {
     getLocation() {
-      const query = uni.createSelectorQuery().in(this);
+      const query = uni.createSelectorQuery().in(this)
       query
-        .select("#progress")
-        .boundingClientRect((data) => {
-          this.left = data.left;
-          this.right = data.right;
+        .select('#progress')
+        .boundingClientRect(data => {
+          this.left = data.left
+          this.right = data.right
         })
-        .exec();
+        .exec()
     },
 
     touchstart() {
-      this.isTouch = true;
-      this.$emit("progressStart");
+      this.isTouch = true
+      this.$emit('progressStart')
     },
 
     touchend(e) {
-      this.isTouch = false;
-      let index = this.calcIndex(e.changedTouches[0].clientX);
-      this.$emit("progressEnd", index);
-      this.percent = (index / this.total) * 100;
+      this.isTouch = false
+      let index = this.calcIndex(e.changedTouches[0].clientX)
+      this.$emit('progressEnd', index)
+      this.percent = (index / this.total) * 100
     },
 
     touchmove(e) {
       // if (!this.touchTimer) {
-      let index = this.calcIndex(e.touches[0].clientX);
-      this.$emit("indexChange", index);
-      this.percent = (index / this.total) * 100;
+      let index = this.calcIndex(e.touches[0].clientX)
+      this.$emit('indexChange', index)
+      this.percent = (index / this.total) * 100
       // this.touchTimer = setTimeout(() => {
       // 	this.touchTimer = null;
       // }, 100)
@@ -93,14 +93,14 @@ export default {
      * 输入位置计算index
      **/
     calcIndex(px) {
-      let single = (this.right - this.left) / this.total;
-      let index = Math.round((px - this.left) / single);
-      index = index < 0 ? 0 : index;
-      index = index > this.total ? this.total : index;
-      return index;
-    },
-  },
-};
+      let single = (this.right - this.left) / this.total
+      let index = Math.round((px - this.left) / single)
+      index = index < 0 ? 0 : index
+      index = index > this.total ? this.total : index
+      return index
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

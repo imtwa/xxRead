@@ -67,52 +67,52 @@
 </template>
 
 <script>
-import store from "@/store/index.js";
+import store from '@/store/index.js'
 
 export default {
   data() {
     return {
       options: [
         {
-          text: "删除",
+          text: '删除',
           style: {
-            backgroundColor: "rgb(255,58,49)",
-          },
-        },
+            backgroundColor: 'rgb(255,58,49)'
+          }
+        }
       ],
       // 删除确认弹窗
       vismodalD: false,
-      spbook: {},
-    };
+      spbook: {}
+    }
   },
   onShow() {
-    console.log(this.bookTxts);
+    console.log(this.bookTxts)
   },
   //计算属性
   computed: {
     bookTxts() {
       // return this.$store.state.bookTxts.slice().reverse();
-      const reversedBookTxts = this.$store.state.bookTxts.slice().reverse();
+      const reversedBookTxts = this.$store.state.bookTxts.slice().reverse()
       for (const item of reversedBookTxts) {
         // item.info = `作者：${item.author}\n`;
         uni.getFileInfo({
           filePath: item.toLocalURL,
-          success: (res) => {
-            const fileSizeMb = (res.size / (1024 * 1024)).toFixed(2);
-            item.info = `大小：${fileSizeMb} MB`;
+          success: res => {
+            const fileSizeMb = (res.size / (1024 * 1024)).toFixed(2)
+            item.info = `大小：${fileSizeMb} MB`
             // console.log("计算完成");
-          },
-        });
+          }
+        })
       }
-      return reversedBookTxts;
+      return reversedBookTxts
     },
     visnobook() {
       if (this.bookTxts.length === 0) {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
-    },
+    }
   },
   methods: {
     getInfo(item) {},
@@ -120,79 +120,79 @@ export default {
       plus.runtime.openFile(
         toLocalURL,
         {
-          withSystemUI: true,
+          withSystemUI: true
         },
-        (e) => {
-          console.log("打开文件成功", e);
+        e => {
+          console.log('打开文件成功', e)
           if (-4 == e.code) {
             uni.showToast({
-              title: "打开文件发生错误：" + e.message,
-              icon: "none",
-            });
+              title: '打开文件发生错误：' + e.message,
+              icon: 'none'
+            })
           }
         },
-        (err) => {
-          console.error("打开文件发生错误", err);
+        err => {
+          console.error('打开文件发生错误', err)
           uni.showToast({
-            title: "打开文件发生错误：" + err,
-            icon: "none",
-          });
-        },
-      );
+            title: '打开文件发生错误：' + err,
+            icon: 'none'
+          })
+        }
+      )
     },
     handleDelete(index) {
       // 处理删除事件的逻辑
       // console.log("删除事件被触发");
       // 即将要删除的对象
-      this.spbook = this.bookTxts[index];
+      this.spbook = this.bookTxts[index]
       // 弹出确定弹窗
-      this.vismodalD = true;
+      this.vismodalD = true
     },
     //点击了确定删除
     confirmmodalD() {
       //找到这本书的索引并删除
       this.$store
-        .dispatch("deleteBookTxts", this.spbook.toLocalURL)
-        .then((index) => {
+        .dispatch('deleteBookTxts', this.spbook.toLocalURL)
+        .then(index => {
           if (0 === index) {
             //消息提示
             uni.showToast({
-              title: "删除成功",
-              icon: "none",
-            });
+              title: '删除成功',
+              icon: 'none'
+            })
             // 存入缓存中
-            this.$store.commit("setBookShelfFromStorage");
+            this.$store.commit('setBookShelfFromStorage')
             //刷新书架
             // this.bookShow()
           } else {
             uni.showToast({
-              title: "删除失败,记录内没有这本书",
-              icon: "none",
-            });
+              title: '删除失败,记录内没有这本书',
+              icon: 'none'
+            })
           }
         })
-        .catch((error) => {
+        .catch(error => {
           // 异常情况的处理
           //消息提示
           uni.showToast({
-            title: "删除失败" + JSON.stringify(error),
-            icon: "none",
-          });
-        });
+            title: '删除失败' + JSON.stringify(error),
+            icon: 'none'
+          })
+        })
       //隐藏弹窗
-      this.vismodalD = false;
+      this.vismodalD = false
     },
     cancelmodalD() {
       //点击了取消
       //隐藏弹窗
-      this.vismodalD = false;
+      this.vismodalD = false
     },
     closemodalD() {
       //遮罩层关闭
-      this.vismodalD = false;
-    },
-  },
-};
+      this.vismodalD = false
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

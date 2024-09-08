@@ -1,10 +1,6 @@
 <template>
   <block v-if="stack && stop">
-    <view
-      class="fa-stack"
-      :style="{ fontSize: `${size}rpx` }"
-      @click.stop="onClick"
-    >
+    <view class="fa-stack" :style="{ fontSize: `${size}rpx` }" @click.stop="onClick">
       <block v-for="(iconItem, iconIndex) in stack" :key="iconIndex">
         <FontAwesome
           :stackIndex="iconItem.stackIndex"
@@ -57,7 +53,7 @@
         { 'fa-pull-left': pullLeft },
         { 'fa-pull-right': pullRight },
         stackIndex ? `fa-stack-${stackIndex}x` : '',
-        { 'fa-inverse': inverse },
+        { 'fa-inverse': inverse }
       ]"
       :style="[size ? { fontSize: `${size}rpx` } : {}, color ? { color } : {}]"
     ></view>
@@ -76,7 +72,7 @@
         { 'fa-pull-left': pullLeft },
         { 'fa-pull-right': pullRight },
         stackIndex ? `fa-stack-${stackIndex}x` : '',
-        { 'fa-inverse': inverse },
+        { 'fa-inverse': inverse }
       ]"
       :style="[size ? { fontSize: `${size}rpx` } : {}, color ? { color } : {}]"
     ></view>
@@ -105,88 +101,88 @@
 </template>
 
 <script>
-import FontAwesome from "@/components/Am-FontAwesome/index.vue";
+import FontAwesome from '@/components/Am-FontAwesome/index.vue'
 export default {
-  name: "FontAwesome",
+  name: 'FontAwesome',
   components: {
-    FontAwesome,
+    FontAwesome
   },
   props: {
     type: {
-      type: String,
+      type: String
     },
     size: {
       type: [String, Number, Boolean],
-      default: false,
+      default: false
     },
     color: {
       type: [String, Boolean],
-      default: false,
+      default: false
     },
     fw: {
       type: Boolean,
-      default: false,
+      default: false
     },
     rotate: {
       type: [String, Boolean, Number],
-      default: false,
+      default: false
     },
     flip: {
       type: [String, Boolean],
-      default: false,
+      default: false
     },
     spin: {
       type: Boolean,
-      default: false,
+      default: false
     },
     pulse: {
       type: Boolean,
-      default: false,
+      default: false
     },
     border: {
       type: Boolean,
-      default: false,
+      default: false
     },
     pullLeft: {
       type: Boolean,
-      default: false,
+      default: false
     },
     pullRight: {
       type: Boolean,
-      default: false,
+      default: false
     },
     stack: {
       type: [Array, Boolean],
-      default: false,
+      default: false
     },
     stackIndex: {
       type: [String, Boolean, Number],
-      default: false,
+      default: false
     },
     inverse: {
       type: Boolean,
-      default: false,
+      default: false
     },
     opacity: {
       type: Boolean,
-      default: false,
+      default: false
     },
     stop: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   methods: {
     onClick() {
-      this.$emit("click");
-    },
-  },
-};
+      this.$emit('click')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-@import "css/fontawesome.scss";
-@import "css/solid.scss";
-@import "css/brands.scss";
-@import "css/regular.scss";
+@import 'css/fontawesome.scss';
+@import 'css/solid.scss';
+@import 'css/brands.scss';
+@import 'css/regular.scss';
 </style>

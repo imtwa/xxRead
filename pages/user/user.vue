@@ -2,11 +2,7 @@
   <view class="page">
     <view class="profile-wrapper" @click="goUserUp">
       <view class="profile-left">
-        <image
-          class="avatar"
-          :src="userInfo.avatarUrl"
-          @click.stop="toShow"
-        ></image>
+        <image class="avatar" :src="userInfo.avatarUrl" @click.stop="toShow"></image>
       </view>
       <view class="profile-right">
         <view class="nickname">{{ userInfo.nickname }}</view>
@@ -19,48 +15,28 @@
           <image src="../../static/images/user/ll.svg"></image>
         </view>
         <view class="text">浏览记录</view>
-        <u-icon
-          name="arrow-right"
-          size="16px"
-          class="arrow"
-          color="#000"
-        ></u-icon>
+        <u-icon name="arrow-right" size="16px" class="arrow" color="#000"></u-icon>
       </view>
       <view class="list" @click="goBookCache">
         <view class="img">
           <image src="../../static/images/user/hc.svg"></image>
         </view>
         <view class="text">缓存管理</view>
-        <u-icon
-          name="arrow-right"
-          size="16px"
-          class="arrow"
-          color="#000"
-        ></u-icon>
+        <u-icon name="arrow-right" size="16px" class="arrow" color="#000"></u-icon>
       </view>
       <view class="list" @click="goBookTxt">
         <view class="img">
           <image src="../../static/images/user/dc.svg"></image>
         </view>
         <view class="text">导出管理</view>
-        <u-icon
-          name="arrow-right"
-          size="16px"
-          class="arrow"
-          color="#000"
-        ></u-icon>
+        <u-icon name="arrow-right" size="16px" class="arrow" color="#000"></u-icon>
       </view>
       <view class="list" @click="goBookOrigin">
         <view class="img">
           <image src="../../static/images/user/sy.svg"></image>
         </view>
         <view class="text">书源管理</view>
-        <u-icon
-          name="arrow-right"
-          size="16px"
-          class="arrow"
-          color="#000"
-        ></u-icon>
+        <u-icon name="arrow-right" size="16px" class="arrow" color="#000"></u-icon>
       </view>
 
       <view class="list" @click="setClipboard">
@@ -68,12 +44,7 @@
           <image src="../../static/images/user/fx.svg"></image>
         </view>
         <view class="text">分享应用</view>
-        <u-icon
-          name="arrow-right"
-          size="16px"
-          class="arrow"
-          color="#000"
-        ></u-icon>
+        <u-icon name="arrow-right" size="16px" class="arrow" color="#000"></u-icon>
       </view>
       <view class="list" @click="goAbout">
         <view class="img">
@@ -81,40 +52,25 @@
         </view>
         <view class="text">
           <text>关于我们</text>
-          <u-badge
-            class="badge"
-            :isDot="true"
-            v-if="visUp"
-            type="error"
-          ></u-badge>
+          <u-badge class="badge" :isDot="true" v-if="visUp" type="error"></u-badge>
         </view>
-        <u-icon
-          name="arrow-right"
-          size="16px"
-          class="arrow"
-          color="#000"
-        ></u-icon>
+        <u-icon name="arrow-right" size="16px" class="arrow" color="#000"></u-icon>
       </view>
       <view class="list" @click="opinion">
         <view class="img">
           <image src="../../static/images/user/yj.svg"></image>
         </view>
         <view class="text">意见反馈</view>
-        <u-icon
-          name="arrow-right"
-          size="16px"
-          class="arrow"
-          color="#000"
-        ></u-icon>
+        <u-icon name="arrow-right" size="16px" class="arrow" color="#000"></u-icon>
       </view>
     </view>
   </view>
 </template>
 <script>
 //引入HTML 文本解析器
-import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js";
+import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
 // 在组件中引入辅助函数
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
 export default {
   data() {
@@ -122,103 +78,97 @@ export default {
       // avatarUrl: "/static/images/user/userImage.png",
       // nickname: "tx1115",
       // bio: "这是一个简介~",
-      visUp: false,
-    };
+      visUp: false
+    }
   },
   onShow() {
-    this.getUp();
+    this.getUp()
   },
   computed: {
     // 使用 mapState 辅助函数将 Vuex 中的状态映射为组件的计算属性
-    ...mapState(["userInfo"]),
+    ...mapState(['userInfo'])
   },
   methods: {
     toShow() {
       uni.navigateTo({
-        url: `/pages/image/image?imgsrc=${this.userInfo.avatarUrl}`,
-      });
+        url: `/pages/image/image?imgsrc=${this.userInfo.avatarUrl}`
+      })
     },
     getUp() {
-      const accountInfo = uni.getSystemInfoSync();
-      const version = accountInfo.appWgtVersion;
+      const accountInfo = uni.getSystemInfoSync()
+      const version = accountInfo.appWgtVersion
       uni.request({
-        url: "https://blog.dotcpp.com/a/98412",
-        success: (res) => {
-          const doc = new HTMLParser(res.data.toString().trim());
+        url: 'https://blog.dotcpp.com/a/98412',
+        success: res => {
+          const doc = new HTMLParser(res.data.toString().trim())
           // 获取更新信息
-          const intro = new HTMLParser(
-            doc.getElementsByClassName("ueditor_container")[0].innerHTML,
-          );
-          const newversion = intro
-            .getElementsByTagName("p")[0]
-            .innerHTML.replace("<br/>", "");
-          const title = intro
-            .getElementsByTagName("p")[1]
-            .innerHTML.replace("<br/>", "");
+          const intro = new HTMLParser(doc.getElementsByClassName('ueditor_container')[0].innerHTML)
+          const newversion = intro.getElementsByTagName('p')[0].innerHTML.replace('<br/>', '')
+          const title = intro.getElementsByTagName('p')[1].innerHTML.replace('<br/>', '')
           // console.log(newversion);
           // console.log(title)
           if (version != newversion) {
-            console.log("更新了");
-            this.visUp = true;
+            console.log('更新了')
+            this.visUp = true
           }
-        },
-      });
+        }
+      })
     },
     goUserUp() {
       uni.navigateTo({
-        url: "/pages/user/userUp/userUp",
-      });
+        url: '/pages/user/userUp/userUp'
+      })
     },
     goBookHistory() {
       uni.navigateTo({
-        url: "/pages/user/bookHistory/bookHistory",
-      });
+        url: '/pages/user/bookHistory/bookHistory'
+      })
     },
     goBookCache() {
       uni.navigateTo({
-        url: "/pages/user/bookCache/bookCache",
-      });
+        url: '/pages/user/bookCache/bookCache'
+      })
     },
     goBookTxt() {
       uni.navigateTo({
-        url: "/pages/user/bookTxt/bookTxt",
-      });
+        url: '/pages/user/bookTxt/bookTxt'
+      })
     },
     goBookOrigin() {
       uni.navigateTo({
-        url: "/pages/user/bookOrigin/bookOrigin",
-      });
+        url: '/pages/user/bookOrigin/bookOrigin'
+      })
     },
 
     setClipboard() {
       const data =
-        "百度网盘链接：https://pan.baidu.com/s/19SJYyOaue5YBnQtcRKpG9g?pwd=data 提取码：data";
+        '百度网盘链接：https://pan.baidu.com/s/19SJYyOaue5YBnQtcRKpG9g?pwd=data 提取码：data'
       uni.setClipboardData({
         data: data,
         showToast: false,
         success: function () {
-          console.log("剪切板设置success");
+          console.log('剪切板设置success')
           uni.showToast({
-            icon: "none",
+            icon: 'none',
             duration: 3000,
-            title: "分享链接已复制到剪切板~\n" + data,
-          });
-        },
-      });
+            title: '分享链接已复制到剪切板~\n' + data
+          })
+        }
+      })
     },
     goAbout() {
       uni.navigateTo({
-        url: "/pages/user/userAbout/userAbout",
-      });
+        url: '/pages/user/userAbout/userAbout'
+      })
     },
     opinion() {
       uni.showToast({
-        icon: "none",
-        title: "请联系作者QQ\n2830671713",
-      });
-    },
-  },
-};
+        icon: 'none',
+        title: '请联系作者QQ\n2830671713'
+      })
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .page {

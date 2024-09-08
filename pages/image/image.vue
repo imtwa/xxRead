@@ -12,79 +12,79 @@
 export default {
   data() {
     return {
-      imgsrc: "",
-    };
+      imgsrc: ''
+    }
   },
   onLoad(e) {
-    this.imgsrc = e.imgsrc;
+    this.imgsrc = e.imgsrc
   },
   methods: {
     //返回上一级目录
     goBack() {
-      uni.navigateBack();
+      uni.navigateBack()
     },
     // 保存图片
     save() {
       uni.showLoading({
-        title: "正在保存……",
-      });
+        title: '正在保存……'
+      })
       uni.downloadFile({
         url: this.imgsrc,
-        success: (res) => {
+        success: res => {
           // 判断是否为手机端，如果为手机端则保存到相册，否则保存到本地存储
-          if (uni.getSystemInfoSync().platform === "android") {
+          if (uni.getSystemInfoSync().platform === 'android') {
             uni.saveImageToPhotosAlbum({
               filePath: res.tempFilePath,
               success(res) {
-                console.log(res);
+                console.log(res)
                 // 取消转圈
-                uni.hideLoading();
+                uni.hideLoading()
                 uni.showToast({
-                  icon: "none",
+                  icon: 'none',
                   duration: 3000,
-                  title: "保存成功：" + res.path,
-                });
+                  title: '保存成功：' + res.path
+                })
               },
               fail(res) {
-                console.log(res);
+                console.log(res)
                 // 取消转圈
-                uni.hideLoading();
+                uni.hideLoading()
                 uni.showToast({
-                  icon: "none",
+                  icon: 'none',
                   duration: 3000,
-                  title: "保存失败：" + res.errMsg,
-                });
-              },
-            });
+                  title: '保存失败：' + res.errMsg
+                })
+              }
+            })
           } else {
             // H5端，保存到本地存储，可以在需要的时候从本地存储获取图片URL再次下载或者显示。
             uni.saveImageToLocal({
               filePath: res.tempFilePath,
-              success: (saveRes) => {
-                console.log(saveRes);
+              success: saveRes => {
+                console.log(saveRes)
                 // 取消转圈
-                uni.hideLoading();
+                uni.hideLoading()
                 uni.showToast({
-                  icon: "none",
+                  icon: 'none',
                   duration: 3000,
-                  title: "保存成功：" + saveRes.filePath, // 这里使用本地存储的文件路径作为保存成功的路径展示给用户。
-                });
+                  title: '保存成功：' + saveRes.filePath // 这里使用本地存储的文件路径作为保存成功的路径展示给用户。
+                })
               },
               fail(err) {
-                console.log(err);
+                console.log(err)
                 // 取消转圈
-                uni.hideLoading();
+                uni.hideLoading()
                 uni.showToast({
-                  icon: "none",
+                  icon: 'none',
                   duration: 3000,
-                  title: "保存失败：" + err.errMsg, // 这里使用错误信息作为保存失败的提示给用户。
-                });
-              },
-            });
+                  title: '保存失败：' + err.errMsg // 这里使用错误信息作为保存失败的提示给用户。
+                })
+              }
+            })
           } // 判断是否为手机端结束。
-        },
-      });
-    },
+        }
+      })
+    }
     //保存图片
     // save() {
     // 	uni.showLoading({
@@ -119,8 +119,8 @@ export default {
     // 		}
     // 	});
     // }
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss">

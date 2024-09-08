@@ -4,12 +4,7 @@
     <view class="search">
       <view style="display: flex; align-items: center; width: 100%">
         <!-- 最左侧返回标签 -->
-        <u-icon
-          name="arrow-left"
-          color="#000"
-          size="18"
-          @click="goBack"
-        ></u-icon>
+        <u-icon name="arrow-left" color="#000" size="18" @click="goBack"></u-icon>
         <u-search
           class="usearch"
           placeholder="搜索书名或作者"
@@ -20,19 +15,9 @@
         ></u-search>
         <view
           @click.stop="visSelect = !visSelect"
-          style="
-            width: 50rpx;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          "
+          style="width: 50rpx; display: flex; justify-content: center; align-items: center"
         >
-          <u-icon
-            name="more-dot-fill"
-            color="#000"
-            size="20"
-            style="transform: rotate(90deg)"
-          >
+          <u-icon name="more-dot-fill" color="#000" size="20" style="transform: rotate(90deg)">
           </u-icon>
         </view>
       </view>
@@ -74,10 +59,7 @@
         </view>
         <!-- 历史记录列表 -->
         <view class="search-results">
-          <view
-            v-for="item in this.$store.state.historyItems"
-            @click="goSearch(item)"
-          >
+          <view v-for="item in this.$store.state.historyItems" @click="goSearch(item)">
             <view class="tag" @longpress="clearHistoryItem(item)">
               {{ item }}
             </view>
@@ -140,7 +122,7 @@ export default {
   data() {
     return {
       // 搜索的内容
-      keyword: "",
+      keyword: '',
       // 搜索的书的列表，内容有imgurl，bookurl，bookname, author, origin
       books: [],
       // 展示的列表 通过触底进行刷新
@@ -154,15 +136,15 @@ export default {
       // 选择框数据
       selectList: [
         {
-          name: "搜索书名",
-          disabled: false,
+          name: '搜索书名',
+          disabled: false
         },
         {
-          name: "搜索作者",
-          disabled: false,
-        },
+          name: '搜索作者',
+          disabled: false
+        }
       ],
-      selecValue: "搜索书名",
+      selecValue: '搜索书名',
       // 历史记录搜索显示
       visLsS: true,
       // 确认删除弹窗
@@ -171,31 +153,31 @@ export default {
       visHistoryItem: false,
       // 要删除的历史记录单项
       historyItem: null,
-      clearTitle: "确定要删除历史记录吗？",
-    };
+      clearTitle: '确定要删除历史记录吗？'
+    }
   },
   /**
    * 触底加载
    */
   onReachBottom() {
     // console.log('触底刷新')
-    this.ubottom = true;
+    this.ubottom = true
     if (this.showBooks.length < this.books.length) {
-      const size = this.showBooks.length;
-      this.showBooks.push(...this.books.slice(size, size + 20));
+      const size = this.showBooks.length
+      this.showBooks.push(...this.books.slice(size, size + 20))
     }
-    this.ubottom = false;
+    this.ubottom = false
   },
   methods: {
     //返回上一级目录
     goBack() {
-      uni.navigateBack();
+      uni.navigateBack()
     },
 
     //打开书籍主页
     goBookHome(book) {
       if (this.visSelect) {
-        return;
+        return
       }
       // 同时传递书籍五个参数
       // uni.navigateTo({
@@ -204,62 +186,62 @@ export default {
       // })
       // encodeURIComponent 对字符串中的某些特殊字符进行转义，以便可以安全地包含在 URL 中 这样可以传递大对象
       // 使用decodeURIComponent转码
-      const e = encodeURIComponent(JSON.stringify(book));
+      const e = encodeURIComponent(JSON.stringify(book))
       uni.navigateTo({
-        url: `/pages/bookHomepage/bookHomepage?book=${e}`,
-      });
+        url: `/pages/bookHomepage/bookHomepage?book=${e}`
+      })
     },
 
     //点击历史记录触发，需要传进搜索的字符串
     goSearch(e) {
-      this.keyword = e;
-      this.searchClick();
+      this.keyword = e
+      this.searchClick()
     },
 
     //点击清除历史记录的图标后触发，将历史记录清空
     clearHistoryItems() {
-      this.clearTitle = "确定要删除全部的历史记录吗？";
+      this.clearTitle = '确定要删除全部的历史记录吗？'
       // 显示弹窗
-      this.visModaHistory = true;
+      this.visModaHistory = true
       // 全部删除
-      this.visHistoryItem = false;
+      this.visHistoryItem = false
     },
     //长按出现删除标志
     clearHistoryItem(item) {
-      this.clearTitle = `确定要删除记录“${item}”吗？`;
+      this.clearTitle = `确定要删除记录“${item}”吗？`
       // 显示弹窗
-      this.visModaHistory = true;
+      this.visModaHistory = true
       // 显示删除单项
-      this.visHistoryItem = true;
-      this.historyItem = item;
+      this.visHistoryItem = true
+      this.historyItem = item
     },
     //点击了确定删除
     confirmmodalD() {
       //隐藏弹窗
-      this.visModaHistory = false;
+      this.visModaHistory = false
       if (this.visHistoryItem === false) {
-        this.$store.commit("clearHistoryItems");
+        this.$store.commit('clearHistoryItems')
       } else {
         // 只删除单项
-        this.$store.commit("clearHistoryItem", this.historyItem);
+        this.$store.commit('clearHistoryItem', this.historyItem)
       }
     },
     cancelmodalD() {
       //点击了取消
       //隐藏弹窗
-      this.visModaHistory = false;
+      this.visModaHistory = false
     },
     closemodalD() {
       //遮罩层关闭
-      this.visModaHistory = false;
+      this.visModaHistory = false
     },
 
     // 选中某个单选框时，由radio时触发
     radioChange(e) {
       // console.log(e);
-      this.selecValue = e;
+      this.selecValue = e
       // 触发排序
-      this.bookSort();
+      this.bookSort()
     },
     // 选中任一radio时，由radio-group触发
     // 点击已选中也会重复触发
@@ -272,69 +254,69 @@ export default {
     async searchClick() {
       // 不搜索空格或空字符串
       if (this.keyword.trim().length === 0) {
-        console.log("搜索空内容" + this.keyword);
-        return;
+        console.log('搜索空内容' + this.keyword)
+        return
       }
 
       // 只要进行搜索，就隐藏历史记录
-      this.visLsS = false;
+      this.visLsS = false
       // 开启加载等待动画
-      this.uloading = true;
+      this.uloading = true
       // 优化视觉体验
-      this.books = [];
+      this.books = []
 
       // 将搜索的值添加到历史记录里面
-      this.$store.commit("addToHistoryItems", this.keyword);
+      this.$store.commit('addToHistoryItems', this.keyword)
 
-      const bookOrigins = this.$store.state.bookOrigins;
+      const bookOrigins = this.$store.state.bookOrigins
 
       /**
        * 异步请求，加快搜索速度
        * */
-      const requests = bookOrigins.map(async (config) => {
+      const requests = bookOrigins.map(async config => {
         try {
           // 该书源是否选中
           if (config.isSelect) {
-            const id = config.id;
-            const book = await this.$getNetwork.search(id, this.keyword);
+            const id = config.id
+            const book = await this.$getNetwork.search(id, this.keyword)
 
             if (-1 === book || 0 === book.length) {
               // // 取消等待动画，显示列表
               // this.uloading = false;
             } else {
               // 添加到列表中显示
-              this.books.push(...book);
+              this.books.push(...book)
               // 排序
-              this.bookSort();
+              this.bookSort()
             }
           }
         } catch (error) {
-          console.error("Error occurred while fetching book details:", error);
-          throw error; // 在Promise链中抛出错误，以便在Promise.all的catch中捕获
+          console.error('Error occurred while fetching book details:', error)
+          throw error // 在Promise链中抛出错误，以便在Promise.all的catch中捕获
         }
-      });
+      })
 
       Promise.all(requests)
-        .then((results) => {
+        .then(results => {
           if (0 === this.books.length) {
             uni.showToast({
-              title: "搜索无结果 | 稍后重试",
-              icon: "none",
-            });
+              title: '搜索无结果 | 稍后重试',
+              icon: 'none'
+            })
           } else {
             uni.showToast({
-              title: "搜索完成，共搜索到" + this.books.length + "本",
-              icon: "none",
-            });
+              title: '搜索完成，共搜索到' + this.books.length + '本',
+              icon: 'none'
+            })
           }
           // 取消等待动画，显示列表
-          this.uloading = false;
+          this.uloading = false
         })
-        .catch((error) => {
-          console.log("请求错误:", error);
+        .catch(error => {
+          console.log('请求错误:', error)
           // 取消等待动画，显示列表
-          this.uloading = false;
-        });
+          this.uloading = false
+        })
     },
 
     /**
@@ -342,11 +324,11 @@ export default {
      * 依赖selecValue区分是搜索书名还是搜索作者
      */
     bookSort() {
-      let propertyName = "bookname";
-      if (this.selecValue === "搜索书名") {
-        propertyName = "bookname";
-      } else if (this.selecValue === "搜索作者") {
-        propertyName = "author";
+      let propertyName = 'bookname'
+      if (this.selecValue === '搜索书名') {
+        propertyName = 'bookname'
+      } else if (this.selecValue === '搜索作者') {
+        propertyName = 'author'
       }
       // console.log(this.selecValue);
       // console.log(propertyName);
@@ -354,31 +336,29 @@ export default {
       this.books.sort((a, b) => {
         if (a[propertyName].toLowerCase() === b[propertyName].toLowerCase()) {
           //如果a和b完全匹配
-          return 0;
+          return 0
         }
-        const similarityA = this.similarity(a[propertyName], this.keyword);
-        const similarityB = this.similarity(b[propertyName], this.keyword);
+        const similarityA = this.similarity(a[propertyName], this.keyword)
+        const similarityB = this.similarity(b[propertyName], this.keyword)
         if (a[propertyName].toLowerCase() === this.keyword.toLowerCase()) {
           // 如果a的书名与搜索关键词完全匹配
-          return -1;
-        } else if (
-          b[propertyName].toLowerCase() === this.keyword.toLowerCase()
-        ) {
+          return -1
+        } else if (b[propertyName].toLowerCase() === this.keyword.toLowerCase()) {
           // 如果b的书名与搜索关键词完全匹配
-          return 1;
+          return 1
         } else if (a[propertyName].startsWith(this.keyword.toLowerCase())) {
           // 如果a的书名以搜索关键词开头，则a更匹配
-          return -1;
+          return -1
         } else if (b[propertyName].startsWith(this.keyword.toLowerCase())) {
           // 如果b的书名以搜索关键词开头，则b更匹配
-          return 1;
+          return 1
         } else {
           // 如果a与b的书名开头都不是搜索关键词，则按照相似度排序
-          return similarityB - similarityA;
+          return similarityB - similarityA
         }
-      });
+      })
       // 排序后将结果展示 先展示前二十本
-      this.showBooks = this.books.slice(0, 20);
+      this.showBooks = this.books.slice(0, 20)
       // console.log(this.showBooks);
     },
 
@@ -388,43 +368,39 @@ export default {
      * 返回dp[m][n]，即bookname和keyword之间的Levenshtein距离，这个值越小，说明bookname和keyword越相似
      * */
     similarity(bookname, keyword) {
-      let m = bookname.length;
-      let n = keyword.length;
-      let cost = 0;
-      let distance = 0;
+      let m = bookname.length
+      let n = keyword.length
+      let cost = 0
+      let distance = 0
 
-      let dp = new Array(m + 1);
+      let dp = new Array(m + 1)
       for (let i = 0; i <= m; i++) {
-        dp[i] = new Array(n + 1).fill(0);
+        dp[i] = new Array(n + 1).fill(0)
       }
 
       for (let i = 0; i <= m; i++) {
-        dp[i][0] = i;
+        dp[i][0] = i
       }
       for (let j = 0; j <= n; j++) {
-        dp[0][j] = j;
+        dp[0][j] = j
       }
 
       for (let i = 1; i <= m; i++) {
         for (let j = 1; j <= n; j++) {
           if (bookname[i - 1] === keyword[j - 1]) {
-            cost = 0;
-            distance = 0;
+            cost = 0
+            distance = 0
           } else {
-            cost = 1;
-            distance = 1;
+            cost = 1
+            distance = 1
           }
-          dp[i][j] = Math.min(
-            dp[i - 1][j] + 1,
-            dp[i][j - 1] + 1,
-            dp[i - 1][j - 1] + cost,
-          );
+          dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost)
         }
       }
-      return dp[m][n];
-    },
-  },
-};
+      return dp[m][n]
+    }
+  }
+}
 </script>
 
 <style lang="scss">

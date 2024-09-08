@@ -30,35 +30,35 @@ export default {
     imgList: {
       type: Array,
       default() {
-        return [];
-      },
+        return []
+      }
     },
     urlKey: {
       type: String,
       default() {
-        return "";
-      },
-    },
+        return ''
+      }
+    }
   },
   data() {
     return {
       currentIndex: 0,
       dontFirstAnimation: true,
-      isFirstImg: true,
-    };
+      isFirstImg: true
+    }
   },
   methods: {
     swiperChange(e) {
-      this.dontFirstAnimation = false;
-      this.currentIndex = e.detail.current;
-      this.isFirstImg = this.currentIndex === 0;
+      this.dontFirstAnimation = false
+      this.currentIndex = e.detail.current
+      this.isFirstImg = this.currentIndex === 0
     },
     clickImg(item) {
-      this.$emit("selected", item, this.currentIndex);
-      this.isFirstImg = this.currentIndex === 0;
-    },
-  },
-};
+      this.$emit('selected', item, this.currentIndex)
+      this.isFirstImg = this.currentIndex === 0
+    }
+  }
+}
 </script>
 
 <style scoped>

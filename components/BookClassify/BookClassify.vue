@@ -15,38 +15,38 @@
 </template>
 
 <script>
-import classify from "@/api/getNetwork/classify.json";
+import classify from '@/api/getNetwork/classify.json'
 export default {
-  name: "BookClassify",
+  name: 'BookClassify',
   data() {
     return {
       classifys: [],
       svg: [
-        "/static/images/books/n-ph.svg",
-        "/static/images/books/n-fl.svg",
-        "/static/images/books/n-wj.svg",
-        "/static/images/books/n-lz.svg",
-        "/static/images/books/v-ph.svg",
-        "/static/images/books/v-fl.svg",
-        "/static/images/books/v-wj.svg",
-        "/static/images/books/v-lz.svg",
-      ],
-    };
+        '/static/images/books/n-ph.svg',
+        '/static/images/books/n-fl.svg',
+        '/static/images/books/n-wj.svg',
+        '/static/images/books/n-lz.svg',
+        '/static/images/books/v-ph.svg',
+        '/static/images/books/v-fl.svg',
+        '/static/images/books/v-wj.svg',
+        '/static/images/books/v-lz.svg'
+      ]
+    }
   },
   mounted() {
-    this.classifys = classify;
+    this.classifys = classify
   },
   methods: {
     goBookClass(item) {
       // encodeURIComponent 对字符串中的某些特殊字符进行转义，以便可以安全地包含在 URL 中 这样可以传递大对象
       // 使用decodeURIComponent转码
-      const e = encodeURIComponent(JSON.stringify(item));
+      const e = encodeURIComponent(JSON.stringify(item))
       uni.navigateTo({
-        url: `/pages/bookClass/bookClass?book=${e}`,
-      });
-    },
-  },
-};
+        url: `/pages/bookClass/bookClass?book=${e}`
+      })
+    }
+  }
+}
 </script>
 
 <style>

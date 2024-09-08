@@ -1,272 +1,279 @@
-[{
-		"title": "排行",
-		"url": "",
-		"class": [{
-				"title": "必读榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=1&channel=1&page={{page}}"
-			},
-			{
-				"title": "潜力榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=5&channel=1&page={{page}}"
-			},
-			{
-				"title": "完本榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=2&channel=1&page={{page}}"
-			},
-			{
-				"title": "更新榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=3&channel=1&page={{page}}"
-			},
-			{
-				"title": "搜索榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=4&channel=1&page={{page}}"
-			},
-			{
-				"title": "评论榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=6&channel=1&page={{page}}"
-			}
-		]
-	},
-	{
-		"title": "分类",
-		"url": "",
-		"class": [{
-				"title": "玄幻",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=lejRej"
-			},
-			{
-				"title": "武侠",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=nel5aK"
-			},
-			{
-				"title": "都市",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mbk5ez"
-			},
-			{
-				"title": "仙侠",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=vbmOeY"
-			},
-			{
-				"title": "军事",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=penRe7"
-			},
-			{
-				"title": "历史",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=xbojag"
-			},
-			{
-				"title": "游戏",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mep2bM"
-			},
-			{
-				"title": "科幻",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=zbq2dp"
-			},
-			{
-				"title": "轻小说",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=YerEdO"
-			}
-		]
-	},
-	{
-		"title": "完结",
-		"url": "",
-		"class": [{
-				"title": "玄幻",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=lejRej&isComplete=1"
-			},
-			{
-				"title": "武侠",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=nel5aK&isComplete=1"
-			},
-			{
-				"title": "都市",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mbk5ez&isComplete=1"
-			},
-			{
-				"title": "仙侠",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=vbmOeY&isComplete=1"
-			},
-			{
-				"title": "军事",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=penRe7&isComplete=1"
-			},
-			{
-				"title": "历史",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=xbojag&isComplete=1"
-			},
-			{
-				"title": "游戏",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mep2bM&isComplete=1"
-			},
-			{
-				"title": "科幻",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=zbq2dp&isComplete=1"
-			},
-			{
-				"title": "轻小说",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=YerEdO&isComplete=1"
-			}
-		]
-	},
-	{
-		"title": "连载",
-		"url": "",
-		"class": [{
-				"title": "玄幻",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=lejRej&isComplete=0"
-			},
-			{
-				"title": "武侠",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=nel5aK&isComplete=0"
-			},
-			{
-				"title": "都市",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mbk5ez&isComplete=0"
-			},
-			{
-				"title": "仙侠",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=vbmOeY&isComplete=0"
-			},
-			{
-				"title": "军事",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=penRe7&isComplete=0"
-			},
-			{
-				"title": "历史",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=xbojag&isComplete=0"
-			},
-			{
-				"title": "游戏",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mep2bM&isComplete=0"
-			},
-			{
-				"title": "科幻",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=zbq2dp&isComplete=0"
-			},
-			{
-				"title": "轻小说",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=YerEdO&isComplete=0"
-			}
-		]
-	},
+[
+  {
+    "title": "排行",
+    "url": "",
+    "class": [
+      {
+        "title": "必读榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=1&channel=1&page={{page}}"
+      },
+      {
+        "title": "潜力榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=5&channel=1&page={{page}}"
+      },
+      {
+        "title": "完本榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=2&channel=1&page={{page}}"
+      },
+      {
+        "title": "更新榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=3&channel=1&page={{page}}"
+      },
+      {
+        "title": "搜索榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=4&channel=1&page={{page}}"
+      },
+      {
+        "title": "评论榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=6&channel=1&page={{page}}"
+      }
+    ]
+  },
+  {
+    "title": "分类",
+    "url": "",
+    "class": [
+      {
+        "title": "玄幻",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=lejRej"
+      },
+      {
+        "title": "武侠",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=nel5aK"
+      },
+      {
+        "title": "都市",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mbk5ez"
+      },
+      {
+        "title": "仙侠",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=vbmOeY"
+      },
+      {
+        "title": "军事",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=penRe7"
+      },
+      {
+        "title": "历史",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=xbojag"
+      },
+      {
+        "title": "游戏",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mep2bM"
+      },
+      {
+        "title": "科幻",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=zbq2dp"
+      },
+      {
+        "title": "轻小说",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=YerEdO"
+      }
+    ]
+  },
+  {
+    "title": "完结",
+    "url": "",
+    "class": [
+      {
+        "title": "玄幻",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=lejRej&isComplete=1"
+      },
+      {
+        "title": "武侠",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=nel5aK&isComplete=1"
+      },
+      {
+        "title": "都市",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mbk5ez&isComplete=1"
+      },
+      {
+        "title": "仙侠",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=vbmOeY&isComplete=1"
+      },
+      {
+        "title": "军事",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=penRe7&isComplete=1"
+      },
+      {
+        "title": "历史",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=xbojag&isComplete=1"
+      },
+      {
+        "title": "游戏",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mep2bM&isComplete=1"
+      },
+      {
+        "title": "科幻",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=zbq2dp&isComplete=1"
+      },
+      {
+        "title": "轻小说",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=YerEdO&isComplete=1"
+      }
+    ]
+  },
+  {
+    "title": "连载",
+    "url": "",
+    "class": [
+      {
+        "title": "玄幻",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=lejRej&isComplete=0"
+      },
+      {
+        "title": "武侠",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=nel5aK&isComplete=0"
+      },
+      {
+        "title": "都市",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mbk5ez&isComplete=0"
+      },
+      {
+        "title": "仙侠",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=vbmOeY&isComplete=0"
+      },
+      {
+        "title": "军事",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=penRe7&isComplete=0"
+      },
+      {
+        "title": "历史",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=xbojag&isComplete=0"
+      },
+      {
+        "title": "游戏",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=mep2bM&isComplete=0"
+      },
+      {
+        "title": "科幻",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=zbq2dp&isComplete=0"
+      },
+      {
+        "title": "轻小说",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=YerEdO&isComplete=0"
+      }
+    ]
+  },
 
-	{
-		"title": "排行",
-		"url": "",
-		"class": [{
-				"title": "必读榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=1&channel=2&page={{page}}"
-			},
-			{
-				"title": "潜力榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=5&channel=2&page={{page}}"
-			},
-			{
-				"title": "完本榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=2&channel=2&page={{page}}"
-			},
-			{
-				"title": "更新榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=3&channel=2&page={{page}}"
-			},
-			{
-				"title": "搜索榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=4&channel=2&page={{page}}"
-			},
-			{
-				"title": "评论榜",
-				"url": "http://api.jxgtzxc.com/module/rank?type=6&channel=2&page={{page}}"
-			}
-		]
-	},
-	{
-		"title": "分类",
-		"url": "",
-		"class": [{
-				"title": "现代言情",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9avmeG"
-			},
-			{
-				"title": "古代言情",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=DdwRb1"
-			},
-			{
-				"title": "幻想言情",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=7ax9by"
-			},
-			{
-				"title": "青春校园",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=Pdy7aQ"
-			},
-			{
-				"title": "唯美纯爱",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=kazYeJ"
-			},
-			{
-				"title": "同人衍生",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9aAOdv"
-			}
-		]
-	},
-	{
-		"title": "完结",
-		"url": "",
-		"class":[
-			{
-				"title": "现代言情",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9avmeG&isComplete=1"
-			},
-			{
-				"title": "古代言情",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=DdwRb1&isComplete=1"
-			},
-			{
-				"title": "幻想言情",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=7ax9by&isComplete=1"
-			},
-			{
-				"title": "青春校园",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=Pdy7aQ&isComplete=1"
-			},
-			{
-				"title": "唯美纯爱",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=kazYeJ&isComplete=1"
-			},
-			{
-				"title": "同人衍生",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9aAOdv&isComplete=1"
-			}
-		]
-	},
-	{
-		"title": "连载",
-		"url": "",
-		"class":[
-			{
-				"title": "现代言情",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9avmeG&isComplete=0"
-			},
-			{
-				"title": "古代言情",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=DdwRb1&isComplete=0"
-			},
-			{
-				"title": "幻想言情",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=7ax9by&isComplete=0"
-			},
-			{
-				"title": "青春校园",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=Pdy7aQ&isComplete=0"
-			},
-			{
-				"title": "唯美纯爱",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=kazYeJ&isComplete=0"
-			},
-			{
-				"title": "同人衍生",
-				"url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9aAOdv&isComplete=0"
-			}
-		]
-	}
+  {
+    "title": "排行",
+    "url": "",
+    "class": [
+      {
+        "title": "必读榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=1&channel=2&page={{page}}"
+      },
+      {
+        "title": "潜力榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=5&channel=2&page={{page}}"
+      },
+      {
+        "title": "完本榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=2&channel=2&page={{page}}"
+      },
+      {
+        "title": "更新榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=3&channel=2&page={{page}}"
+      },
+      {
+        "title": "搜索榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=4&channel=2&page={{page}}"
+      },
+      {
+        "title": "评论榜",
+        "url": "http://api.jxgtzxc.com/module/rank?type=6&channel=2&page={{page}}"
+      }
+    ]
+  },
+  {
+    "title": "分类",
+    "url": "",
+    "class": [
+      {
+        "title": "现代言情",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9avmeG"
+      },
+      {
+        "title": "古代言情",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=DdwRb1"
+      },
+      {
+        "title": "幻想言情",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=7ax9by"
+      },
+      {
+        "title": "青春校园",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=Pdy7aQ"
+      },
+      {
+        "title": "唯美纯爱",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=kazYeJ"
+      },
+      {
+        "title": "同人衍生",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9aAOdv"
+      }
+    ]
+  },
+  {
+    "title": "完结",
+    "url": "",
+    "class": [
+      {
+        "title": "现代言情",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9avmeG&isComplete=1"
+      },
+      {
+        "title": "古代言情",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=DdwRb1&isComplete=1"
+      },
+      {
+        "title": "幻想言情",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=7ax9by&isComplete=1"
+      },
+      {
+        "title": "青春校园",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=Pdy7aQ&isComplete=1"
+      },
+      {
+        "title": "唯美纯爱",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=kazYeJ&isComplete=1"
+      },
+      {
+        "title": "同人衍生",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9aAOdv&isComplete=1"
+      }
+    ]
+  },
+  {
+    "title": "连载",
+    "url": "",
+    "class": [
+      {
+        "title": "现代言情",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9avmeG&isComplete=0"
+      },
+      {
+        "title": "古代言情",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=DdwRb1&isComplete=0"
+      },
+      {
+        "title": "幻想言情",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=7ax9by&isComplete=0"
+      },
+      {
+        "title": "青春校园",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=Pdy7aQ&isComplete=0"
+      },
+      {
+        "title": "唯美纯爱",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=kazYeJ&isComplete=0"
+      },
+      {
+        "title": "同人衍生",
+        "url": "http://api.jxgtzxc.com/novel?sort=1&page={{page}}&categoryId=9aAOdv&isComplete=0"
+      }
+    ]
+  }
 ]

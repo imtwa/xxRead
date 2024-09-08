@@ -16,33 +16,33 @@
 </template>
 
 <script>
-import list from "@/uni_modules/uview-ui/libs/config/props/list";
+import list from '@/uni_modules/uview-ui/libs/config/props/list'
 export default {
   data() {
     return {
       list: [],
-      isChecked: false,
-    };
+      isChecked: false
+    }
   },
   onLoad() {
     // 深拷贝书源
-    this.list = JSON.parse(JSON.stringify(this.$store.state.bookOrigins));
+    this.list = JSON.parse(JSON.stringify(this.$store.state.bookOrigins))
   },
 
   methods: {
     toggleCheck() {
-      this.isChecked = !this.isChecked;
+      this.isChecked = !this.isChecked
     },
 
     clear() {
       // 清空数组
-      this.$refs.dragSorts.splice(0, this.list.length);
+      this.$refs.dragSorts.splice(0, this.list.length)
     },
     push() {
       // 和数组的push使用方法一致，可以push单行，也可以push多行
-      this.list.forEach((item) => {
-        this.$refs.dragSorts.push(item);
-      });
+      this.list.forEach(item => {
+        this.$refs.dragSorts.push(item)
+      })
     },
     unshit() {
       // 和数组的unshit使用方法一致，可以unshit单行，也可以unshit多行
@@ -59,31 +59,31 @@ export default {
       // });
     },
     toggleCheck(e) {
-      console.log("改变选中");
-      console.log(e.list);
-      this.upBookOrigins(e.list);
+      console.log('改变选中')
+      console.log(e.list)
+      this.upBookOrigins(e.list)
     },
     change(e) {
-      console.log("=== change start ===");
-      console.log("被拖动行: " + JSON.stringify(e.moveRow));
-      console.log("原始下标：", e.index);
-      console.log("移动到：", e.moveTo);
-      console.log("=== change end ===");
+      console.log('=== change start ===')
+      console.log('被拖动行: ' + JSON.stringify(e.moveRow))
+      console.log('原始下标：', e.index)
+      console.log('移动到：', e.moveTo)
+      console.log('=== change end ===')
     },
     confirm(e) {
-      console.log("=== confirm start ===");
-      console.log("被拖动行: " + JSON.stringify(e.moveRow));
-      console.log("原始下标：", e.index);
-      console.log("移动到：", e.moveTo);
-      console.log("改变后列表", e.list);
-      console.log("=== confirm end ===");
-      this.upBookOrigins(e.list);
+      console.log('=== confirm start ===')
+      console.log('被拖动行: ' + JSON.stringify(e.moveRow))
+      console.log('原始下标：', e.index)
+      console.log('移动到：', e.moveTo)
+      console.log('改变后列表', e.list)
+      console.log('=== confirm end ===')
+      this.upBookOrigins(e.list)
     },
     upBookOrigins(list) {
-      this.$store.commit("modifyBookOrigins", list);
-    },
-  },
-};
+      this.$store.commit('modifyBookOrigins', list)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -116,7 +116,7 @@ export default {
 .checked:after {
   display: block;
   position: relative;
-  content: "";
+  content: '';
   // transform: translate(-50%, -50%);
   background: #fff;
   transform-origin: 0 0;

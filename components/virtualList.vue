@@ -1,8 +1,6 @@
 <template>
   <view class="virtual-list" style="position: relative">
-    <movable-area
-      style="position: absolute; right: 0; width: 30px; height: 100%"
-    >
+    <movable-area style="position: absolute; right: 0; width: 30px; height: 100%">
       <movable-view
         class="action-bar-box"
         direction="vertical"
@@ -19,7 +17,7 @@
       :style="{
         height: scrollHeight + 'px',
         position: 'relative',
-        zIndex: 1,
+        zIndex: 1
       }"
       @scroll="handleScroll"
       :scroll-top="scrollTop"
@@ -28,20 +26,16 @@
       <view
         class="scroll-bar"
         :style="{
-          height: localHeight + 'px',
+          height: localHeight + 'px'
         }"
       ></view>
       <view
         class="list"
         :style="{
-          transform: `translateY(${offset}px)`,
+          transform: `translateY(${offset}px)`
         }"
       >
-        <view
-          class="item-wrap"
-          v-for="(item, index) in visibleData"
-          :key="index"
-        >
+        <view class="item-wrap" v-for="(item, index) in visibleData" :key="index">
           <slot :item="item" :active="active"></slot>
         </view>
       </view>
@@ -51,7 +45,7 @@
 
 <script>
 export default {
-  name: "VirtualList",
+  name: 'VirtualList',
   props: {
     // 所有的items
     items: Array,
@@ -62,7 +56,7 @@ export default {
     // 当前章节
     active: Number,
     // 可使区域高度
-    scrollHeight: Number,
+    scrollHeight: Number
   },
   data() {
     return {
@@ -73,59 +67,55 @@ export default {
       // list 偏移量
       offset: 0,
       scrollTop: 0,
-      y: 0,
-    };
+      y: 0
+    }
   },
   created() {
     //当前章节滚动至顶部
-    this.scrollTop = this.size * this.active;
+    this.scrollTop = this.size * this.active
   },
   computed: {
     // 预留项
     preCount() {
-      return Math.min(this.start, this.remain);
+      return Math.min(this.start, this.remain)
     },
     nextCount() {
-      return Math.min(this.items.length - this.end, this.remain);
+      return Math.min(this.items.length - this.end, this.remain)
     },
     // 可视区域的item
     visibleData() {
-      const start = this.start - this.preCount;
-      const end = this.end + this.nextCount;
-      return this.items.slice(start, end);
+      const start = this.start - this.preCount
+      const end = this.end + this.nextCount
+      return this.items.slice(start, end)
     },
     localHeight() {
-      return this.items.length * this.size;
-    },
+      return this.items.length * this.size
+    }
   },
   methods: {
     change(e) {
-      if (e.detail.source !== "touch") {
-        return;
+      if (e.detail.source !== 'touch') {
+        return
       }
-      let y = e.detail.y;
-      let scroll =
-        (y / (this.scrollHeight - 40)) * (this.localHeight - this.scrollHeight);
-      scroll = scroll < 0 ? 0 : scroll;
-      this.scrollTop = scroll;
+      let y = e.detail.y
+      let scroll = (y / (this.scrollHeight - 40)) * (this.localHeight - this.scrollHeight)
+      scroll = scroll < 0 ? 0 : scroll
+      this.scrollTop = scroll
     },
     handleScroll(ev) {
-      const scrollTop = ev.detail.scrollTop;
-      this.y =
-        (scrollTop / (this.localHeight - this.scrollHeight)) *
-        (this.scrollHeight - 40);
+      const scrollTop = ev.detail.scrollTop
+      this.y = (scrollTop / (this.localHeight - this.scrollHeight)) * (this.scrollHeight - 40)
       // 开始位置
-      const start = Math.floor(scrollTop / this.size);
-      this.start = start < 0 ? 0 : start;
+      const start = Math.floor(scrollTop / this.size)
+      this.start = start < 0 ? 0 : start
       // 结束位置
-      this.end = this.start + this.remain;
+      this.end = this.start + this.remain
       // 计算偏移
-      const offset =
-        scrollTop - (scrollTop % this.size) - this.preCount * this.size;
-      this.offset = offset < 0 ? 0 : offset;
-    },
-  },
-};
+      const offset = scrollTop - (scrollTop % this.size) - this.preCount * this.size
+      this.offset = offset < 0 ? 0 : offset
+    }
+  }
+}
 </script>
 
 <style scoped>

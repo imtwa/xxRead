@@ -11,11 +11,7 @@
           <icon type="clear" size="16"></icon>
         </view>
       </view>
-      <view
-        v-for="(item, index) in bookHistoryList"
-        :key="index"
-        class="bookList"
-      >
+      <view v-for="(item, index) in bookHistoryList" :key="index" class="bookList">
         <view class="listleft" @click="goBookHome(item)">
           <BookList
             :imgurl="item.imgurl"
@@ -68,125 +64,125 @@ export default {
       spbook: {},
       // 删除确认弹窗
       vismodalD: false,
-      vismodalH: false,
-    };
+      vismodalH: false
+    }
   },
   computed: {
     bookHistoryList() {
-      return this.$store.state.bookHistoryList.slice().reverse();
+      return this.$store.state.bookHistoryList.slice().reverse()
     },
     visnobook() {
       if (this.$store.state.bookHistoryList.length === 0) {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
-    },
+    }
   },
   methods: {
     getInfo(item) {
-      if ("readIndex" in item && "readAll" in item) {
-        const readIndex = item.readIndex + 1;
-        const readAll = item.readAll;
-        const readPercent = (readIndex * 100) / readAll;
-        return `读到 ${readIndex} 章 共 ${readAll} 章 ${readPercent.toFixed(2)}%`;
+      if ('readIndex' in item && 'readAll' in item) {
+        const readIndex = item.readIndex + 1
+        const readAll = item.readAll
+        const readPercent = (readIndex * 100) / readAll
+        return `读到 ${readIndex} 章 共 ${readAll} 章 ${readPercent.toFixed(2)}%`
       } else {
-        return `无阅读信息`;
+        return `无阅读信息`
       }
     },
     //点击到主页
     goBookHome(book) {
       // console.log(book);
       // 同时传递书籍五个参数
-      const e = encodeURIComponent(JSON.stringify(book));
+      const e = encodeURIComponent(JSON.stringify(book))
       uni.navigateTo({
-        url: `/pages/bookHomepage/bookHomepage?book=${e}`,
-      });
+        url: `/pages/bookHomepage/bookHomepage?book=${e}`
+      })
     },
 
     //点击了删除
     gomenu(item) {
-      this.spbook = item;
+      this.spbook = item
       // 弹出确定弹窗
-      this.vismodalD = true;
+      this.vismodalD = true
     },
     //点击了确定删除
     confirmmodalD() {
       //找到这本书的索引并删除
       this.$store
-        .dispatch("deleteBookHistoryList", this.spbook.bookurl)
-        .then((index) => {
+        .dispatch('deleteBookHistoryList', this.spbook.bookurl)
+        .then(index => {
           if (-1 === index) {
             uni.showToast({
-              title: "删除失败,历史记录内没有这本书",
-              icon: "none",
-            });
+              title: '删除失败,历史记录内没有这本书',
+              icon: 'none'
+            })
           } else {
             //消息提示
             uni.showToast({
-              title: "删除成功",
-              icon: "none",
-            });
+              title: '删除成功',
+              icon: 'none'
+            })
           }
         })
-        .catch((error) => {
+        .catch(error => {
           // 异常情况的处理
           //消息提示
           uni.showToast({
-            title: "删除失败,书架内没有这本书" + error,
-            icon: "none",
-          });
-        });
+            title: '删除失败,书架内没有这本书' + error,
+            icon: 'none'
+          })
+        })
 
       //隐藏弹窗
-      this.vismodalD = false;
+      this.vismodalD = false
     },
     cancelmodalD() {
       //点击了取消
       //隐藏弹窗
-      this.vismodalD = false;
+      this.vismodalD = false
     },
     closemodalD() {
       //遮罩层关闭
-      this.vismodalD = false;
+      this.vismodalD = false
     },
     goclearHistoryItems() {
       // 弹窗
-      this.vismodalH = true;
+      this.vismodalH = true
     },
     confirmmodalH() {
       // 确认按钮点击事件处理逻辑
       //找到这本书的索引并删除
       this.$store
-        .dispatch("clearBookHistoryList")
-        .then((index) => {
+        .dispatch('clearBookHistoryList')
+        .then(index => {
           //消息提示
           uni.showToast({
-            title: "清空成功",
-            icon: "none",
-          });
+            title: '清空成功',
+            icon: 'none'
+          })
         })
-        .catch((error) => {
+        .catch(error => {
           // 异常情况的处理
           //消息提示
           uni.showToast({
-            title: "清除失败\n" + error,
-            icon: "none",
-          });
-        });
+            title: '清除失败\n' + error,
+            icon: 'none'
+          })
+        })
 
-      this.vismodalH = false;
+      this.vismodalH = false
     },
     cancelmodalH() {
       // 取消按钮点击事件处理逻辑
-      this.vismodalH = false;
+      this.vismodalH = false
     },
     closemodalH() {
       // 弹窗关闭事件处理逻辑
-      this.vismodalH = false;
-    },
-  },
-};
+      this.vismodalH = false
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

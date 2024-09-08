@@ -30,11 +30,11 @@
             :activeStyle="{
               color: '#303133',
               fontWeight: 'bold',
-              transform: 'scale(1.05)',
+              transform: 'scale(1.05)'
             }"
             :inactiveStyle="{
               color: '#606266',
-              transform: 'scale(1)',
+              transform: 'scale(1)'
             }"
             itemStyle="padding: 20rpx; height: 100rpx;width: 50%; "
             @click="goclick"
@@ -59,10 +59,7 @@
               :scrollHeight="scrollHeight"
             >
               <template v-slot="{ item }">
-                <view
-                  class="directory-listItem"
-                  @click="gochapter(item.chapterurl)"
-                >
+                <view class="directory-listItem" @click="gochapter(item.chapterurl)">
                   {{ item.chaptername }}
                 </view>
               </template>
@@ -96,15 +93,15 @@
 
 <script>
 //引入HTML 文本解析器
-import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js";
-import bookReadVue from "../bookRead/bookRead.vue";
-import store from "@/store/index.js";
-import virtualList from "@/components/virtualList.vue";
-import origins from "@/api/getNetwork/origins.json";
+import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
+import bookReadVue from '../bookRead/bookRead.vue'
+import store from '@/store/index.js'
+import virtualList from '@/components/virtualList.vue'
+import origins from '@/api/getNetwork/origins.json'
 
 export default {
   components: {
-    virtualList,
+    virtualList
   },
   data() {
     return {
@@ -123,115 +120,113 @@ export default {
       //u-tabs导航栏内容
       list4: [
         {
-          name: "简介",
+          name: '简介'
         },
         {
-          name: "目录",
-        },
+          name: '目录'
+        }
       ],
 
       // 加入书架列表
       addList: [
         {
-          name: "plus-circle-fill",
-          text: "加入书架",
+          name: 'plus-circle-fill',
+          text: '加入书架'
         },
         {
-          name: "checkmark-circle",
-          text: "已在书架",
-        },
+          name: 'checkmark-circle',
+          text: '已在书架'
+        }
       ],
       // 加入书架列表索引
       addid: 0,
       // 消息提示列表
       uToastList: [
         {
-          type: "default",
-          position: "bottom",
-          message: "已从书架中移除",
+          type: 'default',
+          position: 'bottom',
+          message: '已从书架中移除',
           // iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/error.png',
-          duration: 1500,
+          duration: 1500
         },
         {
-          type: "default",
-          position: "bottom",
-          message: "已加入书架",
+          type: 'default',
+          position: 'bottom',
+          message: '已加入书架',
           // iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/success.png',
-          duration: 1500,
-        },
+          duration: 1500
+        }
       ],
       // 这本书在书架中的索引,-1为没有
       bookShelfIndex: -1,
-      scrollHeight: 0,
-    };
+      scrollHeight: 0
+    }
   },
 
   //书籍对象由路由中传递的元素获取
   onLoad(e) {
     // this.book = e;
-    this.book = JSON.parse(e.book);
-    console.log(this.book);
+    this.book = JSON.parse(e.book)
+    console.log(this.book)
 
     // 添加书源属性
-    this.getSourceName();
+    this.getSourceName()
     // 添加进历史记录
-    this.$store.commit("addBookHistoryList", this.book);
+    this.$store.commit('addBookHistoryList', this.book)
 
-    const { windowHeight, windowWidth } = uni.getSystemInfoSync();
+    const { windowHeight, windowWidth } = uni.getSystemInfoSync()
     //获取一些必要的设备参数
     // 将rpx转成px
-    let height = (windowWidth / 750) * Number(580);
+    let height = (windowWidth / 750) * Number(580)
     // 获取章节可视化区域高度
-    this.scrollHeight = windowHeight - height;
+    this.scrollHeight = windowHeight - height
   },
   //每次展示就刷新
   onShow() {
     //得到在书架中的索引，需要传入bookurl（唯一标识）
     this.$store
-      .dispatch("findBookFromShelf", this.book.bookurl)
-      .then((index) => {
-        this.bookShelfIndex = index;
+      .dispatch('findBookFromShelf', this.book.bookurl)
+      .then(index => {
+        this.bookShelfIndex = index
         //如果在书架中，则应该显示已在书架
         if (this.bookShelfIndex != -1) {
-          this.addid = 1;
+          this.addid = 1
           // 并将该书对象赋值给页面元素，优化，如果有该信息就不用再请求了
           // const book = this.$store.state.bookShelf[index]
           // this.intro = book.intro
           // this.chapters = book.chapters
           // this.readIndex = book.readIndex
           // 取消页面加载
-          this.loading = false;
+          this.loading = false
 
           // 添加进历史记录
-          this.$store.commit("addBookHistoryList", this.book);
+          this.$store.commit('addBookHistoryList', this.book)
         } else {
-          this.addid = 0;
+          this.addid = 0
           //如果不在书架，需要获取该书信息
           //获取简介章节数据
-          this.fetchData();
+          this.fetchData()
         }
       })
-      .catch((error) => {
+      .catch(error => {
         // 异常情况的处理
-      });
+      })
   },
 
   methods: {
     // 获取书源
     getSourceName() {
-      const index = origins.findIndex(
-        (item) => item.bookSourceUrl === this.book.origin.trim(),
-      );
-      this.book.bookSourceName = origins[index].bookSourceName;
+      const index = origins.findIndex(item => item.bookSourceUrl === this.book.origin.trim())
+      this.book.bookSourceName = origins[index].bookSourceName
     },
 
     //点击切换目录和简介
     goclick(e) {
       // 如果点击的是目录，显示目录，否则显示简介
       if (e.index === 1) {
-        this.vis = false;
+        this.vis = false
       } else {
-        this.vis = true;
+        this.vis = true
       }
     },
 
@@ -239,7 +234,7 @@ export default {
     addclick() {
       // 如果索引小于1，则变成1，否则等于0
       if (this.addid < 1) {
-        this.addid++;
+        this.addid++
 
         // //创建这本书的对象，并加入到书架里面
         // let addbook = {
@@ -254,33 +249,33 @@ export default {
         // 	readAll: this.chapters.length,
         // 	chapters: this.chapters
         // }
-        this.book.readIndex = 0;
-        this.book.readAll = this.book.chapters.length;
+        this.book.readIndex = 0
+        this.book.readAll = this.book.chapters.length
 
-        this.$store.commit("addBookShelf", this.book);
+        this.$store.commit('addBookShelf', this.book)
 
         //得到在书架中的索引，需要传入bookurl（唯一标识）
         this.$store
-          .dispatch("findBookFromShelf", this.book.bookurl)
-          .then((index) => {
-            this.bookShelfIndex = index;
+          .dispatch('findBookFromShelf', this.book.bookurl)
+          .then(index => {
+            this.bookShelfIndex = index
           })
-          .catch((error) => {
+          .catch(error => {
             // 异常情况的处理
-          });
+          })
       } else {
         //如果是移除书架
-        this.addid = 0;
+        this.addid = 0
         //调用同步方法删除，需要传入bookurl
-        this.$store.commit("deleteBook", this.book.bookurl);
+        this.$store.commit('deleteBook', this.book.bookurl)
         //已经删除了 书架中没有 标识为-1
-        this.bookShelfIndex = -1;
+        this.bookShelfIndex = -1
       }
 
       //消息提示，根据索引值提示不同消息（加入书架或移除）
       this.$refs.uToast.show({
-        ...this.uToastList[this.addid],
-      });
+        ...this.uToastList[this.addid]
+      })
     },
 
     //点击开始阅读
@@ -289,8 +284,8 @@ export default {
         // 如果在书架，则不用获取索引（索引已在页面加载时获取到了）
         // 阅读页面需要两个值，在书架中的索引以及读到第几章的索引
         uni.navigateTo({
-          url: `/pages/bookRead/bookRead?bookShelfIndex=${this.bookShelfIndex}&readIndex=${this.book.readIndex}`,
-        });
+          url: `/pages/bookRead/bookRead?bookShelfIndex=${this.bookShelfIndex}&readIndex=${this.book.readIndex}`
+        })
       } else {
         //如果不在书架中
         // //创建这本书的对象，并加入到书架里面
@@ -306,37 +301,35 @@ export default {
         // 	readAll: this.chapters.length,
         // 	chapters: this.chapters
         // }
-        this.book.readIndex = 0;
-        this.book.readAll = this.book.chapters.length;
+        this.book.readIndex = 0
+        this.book.readAll = this.book.chapters.length
 
-        this.$store.commit("addBookShelf", this.book);
+        this.$store.commit('addBookShelf', this.book)
 
         // 然后得到在书架中的索引，需要传入bookurl（唯一标识）
         this.$store
-          .dispatch("findBookFromShelf", this.book.bookurl)
-          .then((index) => {
-            this.bookShelfIndex = index;
+          .dispatch('findBookFromShelf', this.book.bookurl)
+          .then(index => {
+            this.bookShelfIndex = index
             // 新加入的书架，阅读章节为0
-            this.readIndex = 0;
+            this.readIndex = 0
 
             // 阅读页面需要两个值，在书架中的索引以及读到第几章的索引
             uni.navigateTo({
-              url: `/pages/bookRead/bookRead?bookShelfIndex=${this.bookShelfIndex}&readIndex=${this.book.readIndex}`,
-            });
+              url: `/pages/bookRead/bookRead?bookShelfIndex=${this.bookShelfIndex}&readIndex=${this.book.readIndex}`
+            })
           })
-          .catch((error) => {
+          .catch(error => {
             // 异常情况的处理
-          });
+          })
       }
     },
 
     //点击章节
     gochapter(rIndex) {
-      console.log("点击了" + rIndex);
+      console.log('点击了' + rIndex)
 
-      rIndex = this.book.chapters.findIndex(
-        (item) => item.chapterurl === rIndex,
-      );
+      rIndex = this.book.chapters.findIndex(item => item.chapterurl === rIndex)
 
       // 点击的第几章
       // this.readIndex = rIndex;
@@ -353,60 +346,60 @@ export default {
       // 	readAll: this.chapters.length,
       // 	chapters: this.chapters
       // }
-      this.book.readIndex = rIndex;
-      this.book.readAll = this.book.chapters.length;
+      this.book.readIndex = rIndex
+      this.book.readAll = this.book.chapters.length
 
       if (this.bookShelfIndex !== -1) {
         // 如果在书架，更新章节
         // 阅读页面需要两个值，在书架中的索引以及点的是第几章的索引
-        this.$store.commit("modifyBook", this.book);
+        this.$store.commit('modifyBook', this.book)
 
         uni.navigateTo({
-          url: `/pages/bookRead/bookRead?bookShelfIndex=${this.bookShelfIndex}&readIndex=${this.book.readIndex}`,
-        });
+          url: `/pages/bookRead/bookRead?bookShelfIndex=${this.bookShelfIndex}&readIndex=${this.book.readIndex}`
+        })
       } else {
         //如果不在书架中
-        this.$store.commit("addBookShelf", this.book);
+        this.$store.commit('addBookShelf', this.book)
         // 然后得到在书架中的索引，需要传入bookurl（唯一标识）
         this.$store
-          .dispatch("findBookFromShelf", this.book.bookurl)
-          .then((index) => {
-            this.bookShelfIndex = index;
+          .dispatch('findBookFromShelf', this.book.bookurl)
+          .then(index => {
+            this.bookShelfIndex = index
 
             // 阅读页面需要两个值，在书架中的索引以及点击的第几章的索引
             uni.navigateTo({
-              url: `/pages/bookRead/bookRead?bookShelfIndex=${this.bookShelfIndex}&readIndex=${this.readIndex}`,
-            });
+              url: `/pages/bookRead/bookRead?bookShelfIndex=${this.bookShelfIndex}&readIndex=${this.readIndex}`
+            })
           })
-          .catch((error) => {
+          .catch(error => {
             // 异常情况的处理
-          });
+          })
       }
     },
 
     // 发送网络请求，获取页面内容
     async fetchData() {
-      const newbook = await this.$getNetwork.homePage(this.book);
+      const newbook = await this.$getNetwork.homePage(this.book)
       // console.log(newbook);
       if (newbook != -1) {
         // 复制对象 同属性会被覆盖 所以传入homePage的是this.book
-        Object.assign(this.book, newbook);
+        Object.assign(this.book, newbook)
         // this.book.intro = newbook.intro
         // if (newbook.chapters.length > 0) {
         // 	this.book.chapters = newbook.chapters
         // }
       } else {
         uni.showToast({
-          title: "加载出错",
-          icon: "none",
-        });
+          title: '加载出错',
+          icon: 'none'
+        })
       }
 
       // 取消加载
-      this.loading = false;
-    },
-  },
-};
+      this.loading = false
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

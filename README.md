@@ -23,15 +23,13 @@ node install
 然后在HBuilderX打开即可
 
 代码格式化命令
+
 ```
-npx prettier --write "pages/**/*.{js,jsx,ts,tsx,css,scss,less,vue}"
-
-npx prettier --write "components/**/*.{js,jsx,ts,tsx,css,scss,less,vue}" 
-
-npx prettier --write "utils/*.{js}"
+npm run lintfix
 ```
 
 # 功能介绍
+
 - 搜索功能
 - 作品分类
 - 翻页阅读
@@ -73,8 +71,6 @@ npx prettier --write "utils/*.{js}"
 - 实现用户自定义设置书源规则
 
 # 免责声明
+
 - 如果软件有侵权内容，请在github私信联系作者删除
 - 所有内容均来自第三方网站
-
-
-

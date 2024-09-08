@@ -16,15 +16,19 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## 0.5.0
 
 ### Fixes
+
 - Avoid misinterpretation of malicious XML input - [`GHSA-h6q6-9hqw-rwfv`](https://github.com/xmldom/xmldom/security/advisories/GHSA-h6q6-9hqw-rwfv) (CVE-2021-21366)
+
   - Improve error reporting; throw on duplicate attribute\
     BREAKING CHANGE: It is currently not clear how to consistently deal with duplicate attributes, so it's also safer for our users to fail when detecting them.
     It's possible to configure the `DOMParser.errorHandler` before parsing, to handle those errors differently.
 
     To accomplish this and also be able to verify it in tests I needed to
+
     - create a new `Error` type `ParseError` and export it
     - Throw `ParseError` from `errorHandler.fatalError` and prevent those from being caught in `XMLReader`.
     - export `DOMHandler` constructor as `__DOMHandler`
+
   - Preserve quotes in DOCTYPE declaration
     Since the only purpose of parsing the DOCTYPE is to be able to restore it when serializing, we decided that it would be best to leave the parsed `publicId` and `systemId` as is, including any quotes.
     BREAKING CHANGE: If somebody relies on the actual unquoted values of those ids, they will need to take care of either single or double quotes and the right escaping.
@@ -36,9 +40,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Fix breaking preprocessors' directives when parsing attributes [`#171`](https://github.com/xmldom/xmldom/pull/171)
 - fix(dom): Escape `]]&gt;` when serializing CharData [`#181`](https://github.com/xmldom/xmldom/pull/181)
 - Switch to (only) MIT license (drop problematic LGPL license option) [`#178`](https://github.com/xmldom/xmldom/pull/178)
-- Export DOMException; remove custom assertions; etc.  [`#174`](https://github.com/xmldom/xmldom/pull/174)
+- Export DOMException; remove custom assertions; etc. [`#174`](https://github.com/xmldom/xmldom/pull/174)
 
 ### Docs
+
 - Update MDN links in `readme.md` [`#188`](https://github.com/xmldom/xmldom/pull/188)
 
 ## 0.4.0
@@ -46,6 +51,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 [Commits](https://github.com/xmldom/xmldom/compare/0.3.0...0.4.0)
 
 ### Fixes
+
 - **BREAKING** Restore `&nbsp;` behavior from v0.1.27 [`#67`](https://github.com/xmldom/xmldom/pull/67)
 - **BREAKING** Typecheck source param before parsing [`#113`](https://github.com/xmldom/xmldom/pull/113)
 - Include documents in package files list [`#156`](https://github.com/xmldom/xmldom/pull/156)
@@ -55,6 +61,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - fix: Convert all line separators to LF [`#66`](https://github.com/xmldom/xmldom/pull/66)
 
 ### Docs
+
 - Update CHANGELOG.md through version 0.3.0 [`#63`](https://github.com/xmldom/xmldom/pull/63)
 - Update badges [`#78`](https://github.com/xmldom/xmldom/pull/78)
 - Add .editorconfig file [`#104`](https://github.com/xmldom/xmldom/pull/104)
@@ -62,6 +69,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Modernize & improve the example in readme.md [`#81`](https://github.com/xmldom/xmldom/pull/81)
 
 ### CI
+
 - Add Stryker Mutator [`#70`](https://github.com/xmldom/xmldom/pull/70)
 - Add Stryker action to update dashboard [`#77`](https://github.com/xmldom/xmldom/pull/77)
 - Add Node GitHub action workflow [`#64`](https://github.com/xmldom/xmldom/pull/64)
@@ -75,6 +83,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Updated devDependencies
 
 ### Other
+
 - Remove files that are not of any use [`#131`](https://github.com/xmldom/xmldom/pull/131), [`#65`](https://github.com/xmldom/xmldom/pull/65), [`#33`](https://github.com/xmldom/xmldom/pull/33)
 
 ## 0.3.0
@@ -117,6 +126,7 @@ The patch versions (`v0.1.29` - `v0.1.31`) that have been released on the [v0.1.
 After the last commit to the original repository <https://github.com/jindw/xmldom> on the 9th of May 2017, the first commit to <https://github.com/xmldom/xmldom> is from the 19th of December 2019. [The fork has been announced in the original repository on the 2nd of March 2020.](https://github.com/jindw/xmldom/issues/259)
 
 The versions listed below have been published to one or both of the following packages:
+
 - <https://www.npmjs.com/package/xmldom-alpha>
 - <https://www.npmjs.com/package/xmldom>
 
@@ -130,9 +140,10 @@ A timeline of all the changes that happened from that version until `0.3.0` is a
 [Commits](https://github.com/xmldom/xmldom/compare/v0.1.27...xmldom-alpha@v0.1.28)
 
 Published by @jindw on the 9th of May 2017 as
+
 - `xmldom-alpha@0.1.28`
 
-- **BREAKING** includes [regression regarding `&nbsp;` (issue #57)](https://github.com/xmldom/xmldom/issues/57) 
+- **BREAKING** includes [regression regarding `&nbsp;` (issue #57)](https://github.com/xmldom/xmldom/issues/57)
 - [Fix `license` field in `package.json`](https://github.com/jindw/xmldom/pull/178)
 - [Conditional converting of HTML entities](https://github.com/jindw/xmldom/pull/80)
 - Fix `dom.js` serialization issue for missing document element ([example that failed on `toString()` before this change](https://github.com/xmldom/xmldom/blob/a58dcf7a265522e80ce520fe3be0cddb1b976f6f/test/parse/unclosedcomment.js#L10-L11))
@@ -140,9 +151,10 @@ Published by @jindw on the 9th of May 2017 as
 
 ## 0.1.27
 
-Published by @jindw on the 28th of Nov 2016 as 
+Published by @jindw on the 28th of Nov 2016 as
+
 - `xmldom@0.1.27`
-- `xmldom-alpha@0.1.27` 
+- `xmldom-alpha@0.1.27`
 
 - Various bug fixes.
 
@@ -155,7 +167,8 @@ as `xmldom@0.1.26`
 
 ## 0.1.25
 
-Published on the 18th of Nov 2016 as 
+Published on the 18th of Nov 2016 as
+
 - `xmldom@0.1.25`
 
 - Details unknown
@@ -163,6 +176,7 @@ Published on the 18th of Nov 2016 as
 ## 0.1.24
 
 Published on the 27th of November 2016 as
+
 - `xmldom@0.1.24`
 - `xmldom-alpha@0.1.24`
 
@@ -171,6 +185,7 @@ Published on the 27th of November 2016 as
 ## 0.1.23
 
 Published on the 5th of May 2016 as
+
 - `xmldom-alpha@0.1.23`
 
 - Add namespace support for nest node serialize.
@@ -223,6 +238,6 @@ Published on the 5th of May 2016 as
 ## 0.1.8
 
 - Add: some test case from node-o3-xml(excludes xpath support)
-- Fix: remove existed attribute before setting  (bug introduced in v0.1.5)
+- Fix: remove existed attribute before setting (bug introduced in v0.1.5)
 - Fix: index direct access for childNodes and any NodeList collection(not w3c standard)
 - Fix: remove last child bug

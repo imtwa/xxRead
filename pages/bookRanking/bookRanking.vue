@@ -9,11 +9,11 @@
         :activeStyle="{
           color: '#303133',
           fontWeight: 'bold',
-          transform: 'scale(1.05)',
+          transform: 'scale(1.05)'
         }"
         :inactiveStyle="{
           color: '#606266',
-          transform: 'scale(1)',
+          transform: 'scale(1)'
         }"
         itemStyle="padding: 10px; height: 40px;width: 20%; "
         @click="goclick"
@@ -42,41 +42,41 @@ export default {
   data() {
     return {
       index: 0,
-      bookConfigs: ["更新榜", "收藏榜", "推荐榜", "排行榜", "字数榜"],
+      bookConfigs: ['更新榜', '收藏榜', '推荐榜', '排行榜', '字数榜'],
       //u-tabs导航栏内容
       list: [
         {
-          name: "更新榜",
+          name: '更新榜'
         },
         {
-          name: "收藏榜",
+          name: '收藏榜'
         },
         {
-          name: "推荐榜",
+          name: '推荐榜'
         },
         {
-          name: "排行榜",
+          name: '排行榜'
         },
         {
-          name: "字数榜",
-        },
-      ],
-    };
+          name: '字数榜'
+        }
+      ]
+    }
   },
   computed: {
     bookLists() {
-      return this.$store.state.bookLists;
-    },
+      return this.$store.state.bookLists
+    }
   },
   onLoad(e) {
-    this.index = parseInt(e.index);
+    this.index = parseInt(e.index)
   },
   methods: {
     goclick(e) {
-      this.index = e.index;
+      this.index = e.index
     },
     changeIndex(index) {
-      this.index = index;
+      this.index = index
     },
     //打开书籍主页
     goBookHome(book) {
@@ -87,13 +87,13 @@ export default {
       // })
       // encodeURIComponent 对字符串中的某些特殊字符进行转义，以便可以安全地包含在 URL 中 这样可以传递大对象
       // 使用decodeURIComponent转码
-      const e = encodeURIComponent(JSON.stringify(book));
+      const e = encodeURIComponent(JSON.stringify(book))
       uni.navigateTo({
-        url: `/pages/bookHomepage/bookHomepage?book=${e}`,
-      });
-    },
-  },
-};
+        url: `/pages/bookHomepage/bookHomepage?book=${e}`
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss">

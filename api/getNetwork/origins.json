@@ -1,139 +1,154 @@
-[{
-		"bookId": 0,
-		"bookSourceComment": "",
-		"bookSourceName": "求书网",
-		"bookSourceUrl": "http://www.qiushu.info",
-		"functionSearch": "search0",
-		"functionHomePage": "homePage0",
-		"functionRead": "read0"
-	}, {
-		"bookId": 1,
-		"bookSourceComment": "下载章节有可能封ip",
-		"bookSourceName": "泡书吧",
-		"bookSourceUrl": "http://www.paoshu8.info",
-		"functionSearch": "search1",
-		"functionHomePage": "homePage1",
-		"functionRead": "read1"
-	}, {
-		"bookId": 2,
-		"bookSourceComment": "",
-		"bookSourceName": "零点看书178",
-		"bookSourceUrl": "http://www.caz178.com",
-		"functionSearch": "search2",
-		"functionHomePage": "homePage2",
-		"functionRead": "read2"
-	}, {
-		"bookId": 3,
-		"bookSourceComment": "",
-		"bookSourceName": "笔趣阁",
-		"bookSourceUrl": "https://www.sypvm.com",
-		"functionSearch": "search3",
-		"functionHomePage": "homePage3",
-		"functionRead": "read3"
-	}, {
-		"bookId": 4,
-		"bookSourceComment": "全 api形式",
-		"bookSourceName": "QQ阅读",
-		"bookSourceUrl": "https://bookshelf.html5.qq.com",
-		"functionSearch": "search4",
-		"functionHomePage": "homePage4",
-		"functionRead": "read4"
-	},
-	{
-		"bookId": 6,
-		"bookSourceComment": "",
-		"bookSourceName": "笔趣阁66",
-		"bookSourceUrl": "https://www.biquge66.net",
-		"functionSearch": "search6",
-		"functionHomePage": "homePage6",
-		"functionRead": "read6"
-	}, {
-		"bookId": 7,
-		"bookSourceComment": "",
-		"bookSourceName": "读了小说",
-		"bookSourceUrl": "http://www.dule.cc",
-		"functionSearch": "search7",
-		"functionHomePage": "homePage7",
-		"functionRead": "read7"
-	}, {
-		"bookId": 8,
-		"bookSourceComment": "包含番茄",
-		"bookSourceName": "零点看书",
-		"bookSourceUrl": "http://www.lidapoly.com",
-		"functionSearch": "search8",
-		"functionHomePage": "homePage8",
-		"functionRead": "read8"
-	}, {
-		"bookId": 9,
-		"bookSourceComment": "包含名著",
-		"bookSourceName": "88中文",
-		"bookSourceUrl": "https://www.babazw.com",
-		"searchUrl": "https://www.babazw.com/plus/search.php?keyword=KEYword",
-		"functionSearch": "search9",
-		"functionHomePage": "homePage9",
-		"functionRead": "read9"
-	}, {
-		"bookId": 10,
-		"bookSourceComment": "",
-		"bookSourceName": "极速小说网",
-		"bookSourceUrl": "http://www.hljcxzj.com",
-		"searchUrl": "http://www.hljcxzj.com/so/keyword/",
-		"functionSearch": "search10",
-		"functionHomePage": "homePage10",
-		"functionRead": "read10"
-	}, {
-		"bookId": 11,
-		"bookSourceComment": "目录分页，主页加载较慢",
-		"bookSourceName": "毛豆中文",
-		"bookSourceUrl": "https://www.maodouzw.com",
-		"searchUrl": "https://www.maodouzw.com/search3?searchkey=keyword&searchtype=all",
-		"functionSearch": "search11",
-		"functionHomePage": "homePage11",
-		"functionRead": "read11"
-	}, {
-		"bookId": 12,
-		"bookSourceComment": "",
-		"bookSourceName": "2k小说",
-		"bookSourceUrl": "https://www.sdhear.com",
-		"searchUrl": "https://www.sdhear.com/api/search?q=KEYword",
-		"functionSearch": "search12",
-		"functionHomePage": "homePage12",
-		"functionRead": "read12"
-	}, {
-		"bookId": 13,
-		"bookSourceComment": "目录分页，主页加载较慢",
-		"bookSourceName": "丫丫小说网",
-		"bookSourceUrl": "http://www.shuyaya.net",
-		"searchUrl": "http://www.shuyaya.net/search/?searchkey=KEYword",
-		"functionSearch": "search13",
-		"functionHomePage": "homePage13",
-		"functionRead": "read13"
-	}, {
-		"bookId": 14,
-		"bookSourceComment": "搜索间隔60s，有番茄资源",
-		"bookSourceName": "琵琶小说",
-		"bookSourceUrl": "http://www.ppxs.net",
-		"searchUrl": "http://www.ppxs.net/search/?searchkey=KEYword",
-		"functionSearch": "search14",
-		"functionHomePage": "homePage14",
-		"functionRead": "read14"
-	}, {
-		"bookId": 15,
-		"bookSourceComment": "多资源网站 api形式 ldejian",
-		"bookSourceName": "wechat",
-		"bookSourceUrl": "https://wechat.idejian.com",
-		"searchUrl": "https://wechat.idejian.com/api/wechat/search/do?keyword=KEYword",
-		"functionSearch": "search15",
-		"functionHomePage": "homePage15",
-		"functionRead": "read15"
-	}, {
-		"bookId": 16,
-		"bookSourceComment": "多资源网站 api形式 猫眼",
-		"bookSourceName": "猫眼看书",
-		"bookSourceUrl": "http://download.maoyankanshu.la",
-		"searchUrl": "http://api.jxgtzxc.com/search?keyword=KEYword&page=1",
-		"functionSearch": "search16",
-		"functionHomePage": "homePage16",
-		"functionRead": "read16"
-	}
+[
+  {
+    "bookId": 0,
+    "bookSourceComment": "",
+    "bookSourceName": "求书网",
+    "bookSourceUrl": "http://www.qiushu.info",
+    "functionSearch": "search0",
+    "functionHomePage": "homePage0",
+    "functionRead": "read0"
+  },
+  {
+    "bookId": 1,
+    "bookSourceComment": "下载章节有可能封ip",
+    "bookSourceName": "泡书吧",
+    "bookSourceUrl": "http://www.paoshu8.info",
+    "functionSearch": "search1",
+    "functionHomePage": "homePage1",
+    "functionRead": "read1"
+  },
+  {
+    "bookId": 2,
+    "bookSourceComment": "",
+    "bookSourceName": "零点看书178",
+    "bookSourceUrl": "http://www.caz178.com",
+    "functionSearch": "search2",
+    "functionHomePage": "homePage2",
+    "functionRead": "read2"
+  },
+  {
+    "bookId": 3,
+    "bookSourceComment": "",
+    "bookSourceName": "笔趣阁",
+    "bookSourceUrl": "https://www.sypvm.com",
+    "functionSearch": "search3",
+    "functionHomePage": "homePage3",
+    "functionRead": "read3"
+  },
+  {
+    "bookId": 4,
+    "bookSourceComment": "全 api形式",
+    "bookSourceName": "QQ阅读",
+    "bookSourceUrl": "https://bookshelf.html5.qq.com",
+    "functionSearch": "search4",
+    "functionHomePage": "homePage4",
+    "functionRead": "read4"
+  },
+  {
+    "bookId": 6,
+    "bookSourceComment": "",
+    "bookSourceName": "笔趣阁66",
+    "bookSourceUrl": "https://www.biquge66.net",
+    "functionSearch": "search6",
+    "functionHomePage": "homePage6",
+    "functionRead": "read6"
+  },
+  {
+    "bookId": 7,
+    "bookSourceComment": "",
+    "bookSourceName": "读了小说",
+    "bookSourceUrl": "http://www.dule.cc",
+    "functionSearch": "search7",
+    "functionHomePage": "homePage7",
+    "functionRead": "read7"
+  },
+  {
+    "bookId": 8,
+    "bookSourceComment": "包含番茄",
+    "bookSourceName": "零点看书",
+    "bookSourceUrl": "http://www.lidapoly.com",
+    "functionSearch": "search8",
+    "functionHomePage": "homePage8",
+    "functionRead": "read8"
+  },
+  {
+    "bookId": 9,
+    "bookSourceComment": "包含名著",
+    "bookSourceName": "88中文",
+    "bookSourceUrl": "https://www.babazw.com",
+    "searchUrl": "https://www.babazw.com/plus/search.php?keyword=KEYword",
+    "functionSearch": "search9",
+    "functionHomePage": "homePage9",
+    "functionRead": "read9"
+  },
+  {
+    "bookId": 10,
+    "bookSourceComment": "",
+    "bookSourceName": "极速小说网",
+    "bookSourceUrl": "http://www.hljcxzj.com",
+    "searchUrl": "http://www.hljcxzj.com/so/keyword/",
+    "functionSearch": "search10",
+    "functionHomePage": "homePage10",
+    "functionRead": "read10"
+  },
+  {
+    "bookId": 11,
+    "bookSourceComment": "目录分页，主页加载较慢",
+    "bookSourceName": "毛豆中文",
+    "bookSourceUrl": "https://www.maodouzw.com",
+    "searchUrl": "https://www.maodouzw.com/search3?searchkey=keyword&searchtype=all",
+    "functionSearch": "search11",
+    "functionHomePage": "homePage11",
+    "functionRead": "read11"
+  },
+  {
+    "bookId": 12,
+    "bookSourceComment": "",
+    "bookSourceName": "2k小说",
+    "bookSourceUrl": "https://www.sdhear.com",
+    "searchUrl": "https://www.sdhear.com/api/search?q=KEYword",
+    "functionSearch": "search12",
+    "functionHomePage": "homePage12",
+    "functionRead": "read12"
+  },
+  {
+    "bookId": 13,
+    "bookSourceComment": "目录分页，主页加载较慢",
+    "bookSourceName": "丫丫小说网",
+    "bookSourceUrl": "http://www.shuyaya.net",
+    "searchUrl": "http://www.shuyaya.net/search/?searchkey=KEYword",
+    "functionSearch": "search13",
+    "functionHomePage": "homePage13",
+    "functionRead": "read13"
+  },
+  {
+    "bookId": 14,
+    "bookSourceComment": "搜索间隔60s，有番茄资源",
+    "bookSourceName": "琵琶小说",
+    "bookSourceUrl": "http://www.ppxs.net",
+    "searchUrl": "http://www.ppxs.net/search/?searchkey=KEYword",
+    "functionSearch": "search14",
+    "functionHomePage": "homePage14",
+    "functionRead": "read14"
+  },
+  {
+    "bookId": 15,
+    "bookSourceComment": "多资源网站 api形式 ldejian",
+    "bookSourceName": "wechat",
+    "bookSourceUrl": "https://wechat.idejian.com",
+    "searchUrl": "https://wechat.idejian.com/api/wechat/search/do?keyword=KEYword",
+    "functionSearch": "search15",
+    "functionHomePage": "homePage15",
+    "functionRead": "read15"
+  },
+  {
+    "bookId": 16,
+    "bookSourceComment": "多资源网站 api形式 猫眼",
+    "bookSourceName": "猫眼看书",
+    "bookSourceUrl": "http://download.maoyankanshu.la",
+    "searchUrl": "http://api.jxgtzxc.com/search?keyword=KEYword&page=1",
+    "functionSearch": "search16",
+    "functionHomePage": "homePage16",
+    "functionRead": "read16"
+  }
 ]

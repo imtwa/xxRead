@@ -25,12 +25,22 @@
     <view class="yesbook">
       <view v-if="visList">
         <!-- 左滑组件 -->
-        <uni-swipe-action-item v-for="(item, index) in bookShelf" :right-options="options" :key="item.bookurl"
-          @change="swipeChange($event, index)" @click="swipeClick($event, index)">
+        <uni-swipe-action-item
+          v-for="(item, index) in bookShelf"
+          :right-options="options"
+          :key="item.bookurl"
+          @change="swipeChange($event, index)"
+          @click="swipeClick($event, index)"
+        >
           <view class="bookList" @longpress="gomenu(index)">
             <view class="listleft" @click="goBookRead(index)">
-              <BookList :imgurl="item.imgurl" :title="item.bookname" :info="getInfo(item)" :info1="getInfo1(item)"
-                :isUpdated="item.isUpdated">
+              <BookList
+                :imgurl="item.imgurl"
+                :title="item.bookname"
+                :info="getInfo(item)"
+                :info1="getInfo1(item)"
+                :isUpdated="item.isUpdated"
+              >
               </BookList>
             </view>
 
@@ -45,8 +55,13 @@
         </uni-swipe-action-item>
       </view>
       <view v-else class="book-container">
-        <view v-for="(item, index) in bookShelf" :key="item.bookurl" class="book-item" @click="goBookRead(index)"
-          @longpress="gomenu(index)">
+        <view
+          v-for="(item, index) in bookShelf"
+          :key="item.bookurl"
+          class="book-item"
+          @click="goBookRead(index)"
+          @longpress="gomenu(index)"
+        >
           <view>
             <image :src="item.imgurl" class="book-cover"> </image>
           </view>
@@ -58,29 +73,59 @@
 
     <!-- 底部弹窗 -->
     <u-popup :show="vispopup" :round="10" mode="bottom" @close="popupclose" @open="popupopen">
-      <Cpupup :spopupbook="spbook" @delete="handleDelete" @clearCache="handleClearCache" @download="handleDownload"
-        @share="handleShare" @txt="handleTxt">
+      <Cpupup
+        :spopupbook="spbook"
+        @delete="handleDelete"
+        @clearCache="handleClearCache"
+        @download="handleDownload"
+        @share="handleShare"
+        @txt="handleTxt"
+      >
       </Cpupup>
     </u-popup>
 
     <!-- 确认删除弹窗 -->
-    <u-modal :show="vismodalD" title="确定要删除本书吗？" showCancelButton closeOnClickOverlay :zoom="false"
-      @cancel="cancelmodalD" @confirm="confirmmodalD" @close="closemodalD"></u-modal>
+    <u-modal
+      :show="vismodalD"
+      title="确定要删除本书吗？"
+      showCancelButton
+      closeOnClickOverlay
+      :zoom="false"
+      @cancel="cancelmodalD"
+      @confirm="confirmmodalD"
+      @close="closemodalD"
+    ></u-modal>
 
     <!-- 确认清除全部缓存弹窗 -->
-    <u-modal :show="vismodalH" title="确定要清除全部缓存吗？" showCancelButton closeOnClickOverlay :zoom="false"
-      @cancel="cancelmodalH" @confirm="confirmmodalH" @close="closemodalH"></u-modal>
+    <u-modal
+      :show="vismodalH"
+      title="确定要清除全部缓存吗？"
+      showCancelButton
+      closeOnClickOverlay
+      :zoom="false"
+      @cancel="cancelmodalH"
+      @confirm="confirmmodalH"
+      @close="closemodalH"
+    ></u-modal>
 
     <!-- 确认缓存弹窗 -->
-    <u-modal :show="vismodalX" :title="titlemodalX" showCancelButton closeOnClickOverlay :zoom="false"
-      @cancel="cancelmodalX" @confirm="confirmmodalX" @close="closemodalX"></u-modal>
+    <u-modal
+      :show="vismodalX"
+      :title="titlemodalX"
+      showCancelButton
+      closeOnClickOverlay
+      :zoom="false"
+      @cancel="cancelmodalX"
+      @confirm="confirmmodalX"
+      @close="closemodalX"
+    ></u-modal>
   </view>
 </template>
 
 <script>
-import store from "@/store/index.js"
-import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
-import { deepCopy } from "@/utils/utils.js"
+import store from '@/store/index.js'
+import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
+import { deepCopy } from '@/utils/utils.js'
 
 export default {
   data() {
@@ -101,16 +146,16 @@ export default {
       vismodalD: false,
       vismodalH: false,
       vismodalX: false,
-      titlemodalX: "确定要缓存全部章节吗？",
+      titlemodalX: '确定要缓存全部章节吗？',
       options: [
         {
-          text: "删除",
+          text: '删除',
           style: {
-            backgroundColor: "rgb(255,58,49)",
-          },
-        },
-      ],
-    };
+            backgroundColor: 'rgb(255,58,49)'
+          }
+        }
+      ]
+    }
   },
   // onLoad()  {
   // 	console.log("页面加载");
@@ -121,7 +166,7 @@ export default {
 
   onReady() {
     // 检查更新
-    this.updateBookshelf();
+    this.updateBookshelf()
   },
   onShow() {
     // //页面显示时就刷新值
@@ -143,51 +188,51 @@ export default {
   },
   // 退出页面时的操作
   onBackPress(options) {
-    console.log("我退出啦");
+    console.log('我退出啦')
     //将数据缓存
     // this.$store.commit('setBookShelfFromStorage')
   },
   //监听用户下拉刷新动作
   onPullDownRefresh() {
     // 检查更新
-    this.updateBookshelf();
+    this.updateBookshelf()
   },
 
   //计算属性
   computed: {
     bookShelf() {
-      return this.$store.state.bookShelf.slice().reverse();
-    },
+      return this.$store.state.bookShelf.slice().reverse()
+    }
   },
 
   methods: {
     // 切换列表宫格格式
     toVisList() {
-      this.visList = !this.visList;
+      this.visList = !this.visList
     },
 
     /**
      * 检查更新
      * */
     updateBookshelf() {
-      this.$store.commit("updateBookshelf", this.$getNetwork);
+      this.$store.commit('updateBookshelf', this.$getNetwork)
     },
 
     swipeChange(e, index) {
-      console.log("返回：" + e);
-      console.log("当前索引：" + index);
+      console.log('返回：' + e)
+      console.log('当前索引：' + index)
     },
     swipeClick(e, index) {
-      console.log(e);
-      console.log("返回：" + e.content.text);
-      console.log("当前索引：" + index);
+      console.log(e)
+      console.log('返回：' + e.content.text)
+      console.log('当前索引：' + index)
       if (0 == e.index) {
         //传过来的是倒序的索引，需要转变成在vuex中的索引
-        this.spindex = this.bookShelf.length - 1 - index;
+        this.spindex = this.bookShelf.length - 1 - index
         //选中了哪本书
-        this.spbook = this.bookShelf[index];
+        this.spbook = this.bookShelf[index]
         // 调用删除
-        this.handleDelete();
+        this.handleDelete()
       }
     },
     bookShow() {
@@ -195,9 +240,9 @@ export default {
       //得到的是倒序
       // this.bookShelf = this.$store.state.bookShelf.slice().reverse();
       if (this.bookShelf.length === 0) {
-        this.visnobook = true;
+        this.visnobook = true
       } else {
-        this.visnobook = false;
+        this.visnobook = false
       }
     },
     getInfo(item) {
@@ -206,185 +251,185 @@ export default {
       // 	const readPercent = (readIndex * 100) / readAll;
 
       // 	return `作者：${item.author}\n读到 ${readIndex} 章 共 ${readAll} 章 ${readPercent.toFixed(2)}%`;
-      return `最新章节：${item.chapters[item.chapters.length - 1].chaptername}`;
+      return `最新章节：${item.chapters[item.chapters.length - 1].chaptername}`
     },
     getInfo1(item) {
-      const readIndex = item.readIndex + 1;
-      const readAll = item.readAll;
-      const readPercent = (readIndex * 100) / readAll;
+      const readIndex = item.readIndex + 1
+      const readAll = item.readAll
+      const readPercent = (readIndex * 100) / readAll
 
-      return `读到 ${readIndex} 章 共 ${readAll} 章 ${readPercent.toFixed(2)}%`;
+      return `读到 ${readIndex} 章 共 ${readAll} 章 ${readPercent.toFixed(2)}%`
     },
     //点击了三个点
     gomenu(index) {
       //传过来的是倒序的索引，需要转变成在vuex中的索引
-      this.spindex = this.bookShelf.length - 1 - index;
+      this.spindex = this.bookShelf.length - 1 - index
       //选中了哪本书
-      this.spbook = this.bookShelf[index];
+      this.spbook = this.bookShelf[index]
       // 打开菜单弹窗
-      this.vispopup = true;
+      this.vispopup = true
     },
     handleDelete() {
       // 处理删除事件的逻辑
-      console.log("删除事件被触发");
+      console.log('删除事件被触发')
       // 弹出确定弹窗
-      this.vismodalD = true;
+      this.vismodalD = true
     },
     //点击了确定删除
     confirmmodalD() {
       //找到这本书的索引并删除
       this.$store
-        .dispatch("deleteBook", this.spbook.bookurl)
-        .then((index) => {
+        .dispatch('deleteBook', this.spbook.bookurl)
+        .then(index => {
           if (-1 === index) {
             uni.showToast({
-              title: "删除失败,书架内没有这本书",
-              icon: "none",
-            });
+              title: '删除失败,书架内没有这本书',
+              icon: 'none'
+            })
           } else {
             //消息提示
             uni.showToast({
-              title: "删除成功",
-              icon: "none",
-            });
+              title: '删除成功',
+              icon: 'none'
+            })
             //刷新书架
-            this.bookShow();
+            this.bookShow()
           }
         })
-        .catch((error) => {
+        .catch(error => {
           // 异常情况的处理
           //消息提示
           uni.showToast({
-            title: "删除失败,书架内没有这本书" + error,
-            icon: "none",
-          });
-        });
+            title: '删除失败,书架内没有这本书' + error,
+            icon: 'none'
+          })
+        })
 
       //隐藏弹窗
-      this.vismodalD = false;
+      this.vismodalD = false
       //隐藏菜单
-      this.vispopup = false;
+      this.vispopup = false
     },
     cancelmodalD() {
       //点击了取消
       //隐藏弹窗
-      this.vismodalD = false;
+      this.vismodalD = false
     },
     closemodalD() {
       //遮罩层关闭
-      this.vismodalD = false;
+      this.vismodalD = false
     },
 
     handleClearCache() {
       // 处理清除缓存事件的逻辑
-      console.log("清除缓存事件被触发");
+      console.log('清除缓存事件被触发')
       // 弹窗
-      this.vismodalH = true;
+      this.vismodalH = true
     },
 
     confirmmodalH() {
       // 确认按钮点击事件处理逻辑
       // 在这里进行清除缓存的操作
-      const key = "bookall" + this.spbook.bookurl;
+      const key = 'bookall' + this.spbook.bookurl
       // 同时清空缓存
       uni.removeStorage({
         key: key,
-        success: (res) => {
+        success: res => {
           uni.showToast({
-            title: "缓存清除成功",
-            icon: "none",
-          });
+            title: '缓存清除成功',
+            icon: 'none'
+          })
           // 全取消
-          this.spbook.chapters.forEach((chapter) => {
-            chapter.visD = false;
-          });
+          this.spbook.chapters.forEach(chapter => {
+            chapter.visD = false
+          })
           // 更新
-          this.$store.commit("modifyBook", this.spbook);
+          this.$store.commit('modifyBook', this.spbook)
         },
-        fail: (res) => {
+        fail: res => {
           uni.showToast({
-            title: "这本书已经没有缓存啦",
-            icon: "none",
-          });
+            title: '这本书已经没有缓存啦',
+            icon: 'none'
+          })
           // 全取消
-          this.spbook.chapters.forEach((chapter) => {
-            chapter.visD = false;
-          });
+          this.spbook.chapters.forEach(chapter => {
+            chapter.visD = false
+          })
           // 更新
-          this.$store.commit("modifyBook", this.spbook);
-        },
-      });
-      this.vismodalH = false;
+          this.$store.commit('modifyBook', this.spbook)
+        }
+      })
+      this.vismodalH = false
       //隐藏菜单
-      this.vispopup = false;
+      this.vispopup = false
     },
     cancelmodalH() {
       // 取消按钮点击事件处理逻辑
-      this.vismodalH = false;
+      this.vismodalH = false
     },
     closemodalH() {
       // 弹窗关闭事件处理逻辑
-      this.vismodalH = false;
+      this.vismodalH = false
     },
 
     handleDownload() {
-      console.log("下载事件被触发");
+      console.log('下载事件被触发')
       // 计算有多少章没有下载
-      let count = 0;
+      let count = 0
       //查找具有visD属性且值为true的元素数量
       this.spbook.chapters
-        .filter((chapter) => chapter.visD === true)
-        .forEach((chapter) => {
-          count++;
-        });
-      console.log(count);
-      let time = `${((this.spbook.chapters.length - count) * 0.5).toFixed(2)}`;
-      this.titlemodalX = "确定要缓存全部章节吗？\n预计需要 " + time + " s";
+        .filter(chapter => chapter.visD === true)
+        .forEach(chapter => {
+          count++
+        })
+      console.log(count)
+      let time = `${((this.spbook.chapters.length - count) * 0.5).toFixed(2)}`
+      this.titlemodalX = '确定要缓存全部章节吗？\n预计需要 ' + time + ' s'
       // 弹窗
-      this.vismodalX = true;
+      this.vismodalX = true
     },
 
     async confirmmodalX() {
-      this.vismodalX = false;
+      this.vismodalX = false
 
       // 确认按钮点击事件处理逻辑
       // 在这里进行下载的操作
       uni.showToast({
-        title: "开始下载啦",
-        icon: "none",
-      });
+        title: '开始下载啦',
+        icon: 'none'
+      })
 
-      const key = "bookall" + this.spbook.bookurl;
-      let bookall = uni.getStorageSync(key);
+      const key = 'bookall' + this.spbook.bookurl
+      let bookall = uni.getStorageSync(key)
 
       if (!bookall) {
-        console.log("缓存数据为空");
+        console.log('缓存数据为空')
         // // 走缓存中转一下，否则引用的是同一个对象
         // uni.setStorageSync(key, this.spbook);
         // // 使用同步读取！！
         // bookall = uni.getStorageSync(key);
         // bookall = JSON.parse(JSON.stringify(this.spbook));
-        bookall = deepCopy(this.spbook);
-        console.log(this.spbook);
-        console.log(bookall);
-        
-        bookall.progress = 0;
+        bookall = deepCopy(this.spbook)
+        console.log(this.spbook)
+        console.log(bookall)
+
+        bookall.progress = 0
       }
 
-      const originF = bookall.origin;
+      const originF = bookall.origin
 
       for (let i = 0; i < bookall.chapters.length; i++) {
-        const chapter = bookall.chapters[i];
+        const chapter = bookall.chapters[i]
 
-        if (!chapter.hasOwnProperty("text")) {
+        if (!chapter.hasOwnProperty('text')) {
           try {
-            const chapterId = chapter.chapterurl;
+            const chapterId = chapter.chapterurl
             // const originF = this.spbook.origin;
-            console.log(originF,chapterId);
-            
-            const text = await this.$getNetwork.read(originF, chapterId);
+            console.log(originF, chapterId)
+
+            const text = await this.$getNetwork.read(originF, chapterId)
             if (-1 == text) {
-              console.log("网络请求错误");
+              console.log('网络请求错误')
             }
             // uni.showToast({
             // 	title: '正在下载第 ' + (i + 1) + ' 章',
@@ -392,95 +437,95 @@ export default {
             // });
 
             //添加数据
-            bookall.chapters[i]["text"] = text;
+            bookall.chapters[i]['text'] = text
             //标记为已经下载
-            this.spbook.chapters[i]["visD"] = true;
+            this.spbook.chapters[i]['visD'] = true
 
             if ((i + 1) % 10 === 0) {
               // 每10次执行一次逻辑
               // 缓存
-              uni.setStorageSync(key, bookall);
+              uni.setStorageSync(key, bookall)
               // 更新
-              this.$store.commit("modifyBook", this.spbook);
+              this.$store.commit('modifyBook', this.spbook)
             }
 
             if (bookall.chapters.length - 1 === i) {
               // 缓存
-              uni.setStorageSync(key, bookall);
+              uni.setStorageSync(key, bookall)
               // 更新
-              this.$store.commit("modifyBook", this.spbook);
+              this.$store.commit('modifyBook', this.spbook)
               uni.showToast({
-                title: "全部下载完成",
-                icon: "none",
-              });
+                title: '全部下载完成',
+                icon: 'none'
+              })
             }
-            console.log(i);
+            console.log(i)
           } catch (e) {
-            console.log(e);
+            console.log(e)
             uni.showToast({
-              title: "错误" + e.message,
-              icon: "none",
-            });
+              title: '错误' + e.message,
+              icon: 'none'
+            })
             // 缓存
-            uni.setStorageSync(key, bookall);
+            uni.setStorageSync(key, bookall)
             // 更新
-            this.$store.commit("modifyBook", this.spbook);
+            this.$store.commit('modifyBook', this.spbook)
           }
         }
       }
     },
     cancelmodalX() {
       // 取消按钮点击事件处理逻辑
-      this.vismodalX = false;
+      this.vismodalX = false
     },
     closemodalX() {
       // 弹窗关闭事件处理逻辑
-      this.vismodalX = false;
+      this.vismodalX = false
     },
 
     handleShare() {
       // 处理打开目录的逻辑
-      console.log("打开目录被触发");
+      console.log('打开目录被触发')
 
       uni.navigateTo({
-        url: `/pages/bookChapter/bookChapter?index=${this.spindex}`,
-      });
+        url: `/pages/bookChapter/bookChapter?index=${this.spindex}`
+      })
     },
     async handleTxt() {
-      let then = this;
+      let then = this
       try {
-        console.log(this.spbook);
-        const fileName = this.spbook.bookname.trim() + ".txt";
-        console.log(fileName);
-        const key = "bookall" + this.spbook.bookurl;
+        console.log(this.spbook)
+        const fileName = this.spbook.bookname.trim() + '.txt'
+        console.log(fileName)
+        const key = 'bookall' + this.spbook.bookurl
         // 使用同步读取
-        const bookTxt = uni.getStorageSync(key);
-        const jsonString = JSON.stringify(bookTxt);
+        const bookTxt = uni.getStorageSync(key)
+        const jsonString = JSON.stringify(bookTxt)
 
         plus.io.requestFileSystem(
           plus.io.PUBLIC_DOWNLOADS,
-          (fs) => {
+          fs => {
             fs.root.getFile(
               fileName,
               {
-                create: true,
+                create: true
               },
-              (fileEntry) => {
+              fileEntry => {
                 fileEntry.createWriter(
-                  (writer) => {
-                    writer.write(jsonString);
+                  writer => {
+                    writer.write(jsonString)
                     writer.onwriteend = () => {
-                      console.log("写入文件成功", fileEntry.fullPath);
-                      console.log(fileEntry.toLocalURL());
+                      console.log('写入文件成功', fileEntry.fullPath)
+                      console.log(fileEntry.toLocalURL())
 
                       const bookTxt = {
                         imgurl: this.spbook.imgurl,
                         bookname: this.spbook.bookname,
                         author: this.spbook.author,
-                        toLocalURL: fileEntry.toLocalURL(),
-                      };
+                        toLocalURL: fileEntry.toLocalURL()
+                      }
 
-                      this.$store.commit("addBookTxts", bookTxt);
+                      this.$store.commit('addBookTxts', bookTxt)
 
                       // fileEntry.file((file) => {
                       // 	const fileReader = new plus.io
@@ -496,84 +541,78 @@ export default {
 
                       // 弹窗提示文件保存成功
                       plus.nativeUI.confirm(
-                        "文件保存成功！",
-                        (e) => {
-                          const openIndex = e.index;
+                        '文件保存成功！',
+                        e => {
+                          const openIndex = e.index
                           if (openIndex === 1) {
                             // 点击打开按钮
                             plus.runtime.openFile(
                               fileEntry.toLocalURL(),
                               {
-                                withSystemUI: true,
+                                withSystemUI: true
                               },
-                              (e) => {
-                                console.log("打开文件成功", e);
+                              e => {
+                                console.log('打开文件成功', e)
                               },
-                              (err) => {
-                                console.error("打开文件发生错误", err);
-                              },
-                            );
+                              err => {
+                                console.error('打开文件发生错误', err)
+                              }
+                            )
                           }
                         },
-                        "提示",
-                        ["确定", "打开"],
-                      );
-                    };
+                        '提示',
+                        ['确定', '打开']
+                      )
+                    }
 
-                    writer.onerror = (err) => {
-                      console.error("写入文件发生错误", err);
-                      plus.nativeUI.alert(
-                        "写入文件发生错误：" + JSON.stringify(err),
-                      );
-                    };
+                    writer.onerror = err => {
+                      console.error('写入文件发生错误', err)
+                      plus.nativeUI.alert('写入文件发生错误：' + JSON.stringify(err))
+                    }
                   },
-                  (err) => {
-                    console.error("创建文件写入器发生错误", err);
-                    plus.nativeUI.alert(
-                      "创建文件写入器发生错误：" + JSON.stringify(err),
-                    );
-                  },
-                );
+                  err => {
+                    console.error('创建文件写入器发生错误', err)
+                    plus.nativeUI.alert('创建文件写入器发生错误：' + JSON.stringify(err))
+                  }
+                )
               },
-              (err) => {
-                console.error("获取文件条目发生错误", err);
-                plus.nativeUI.alert(
-                  "获取文件条目发生错误：" + JSON.stringify(err),
-                );
-              },
-            );
+              err => {
+                console.error('获取文件条目发生错误', err)
+                plus.nativeUI.alert('获取文件条目发生错误：' + JSON.stringify(err))
+              }
+            )
           },
-          (err) => {
-            console.error("请求文件系统发生错误", err);
-            plus.nativeUI.alert("请求文件系统发生错误：" + JSON.stringify(err));
-          },
-        );
+          err => {
+            console.error('请求文件系统发生错误', err)
+            plus.nativeUI.alert('请求文件系统发生错误：' + JSON.stringify(err))
+          }
+        )
       } catch (err) {
-        console.error("操作文件发生错误", err);
-        plus.nativeUI.alert("操作文件发生错误：" + JSON.stringify(err));
+        console.error('操作文件发生错误', err)
+        plus.nativeUI.alert('操作文件发生错误：' + JSON.stringify(err))
       }
     },
     //关闭菜单弹窗
     popupclose() {
-      this.vispopup = false;
-      console.log("菜单弹窗关闭啦");
+      this.vispopup = false
+      console.log('菜单弹窗关闭啦')
     },
     //打开了菜单弹窗
     popupopen() {
-      console.log("菜单弹窗打开啦");
+      console.log('菜单弹窗打开啦')
     },
     //点击了跳转阅读页
     goBookRead(index) {
       //传过来的是倒序的索引，需要转变成在vuex中的索引
-      const bookShelfIndex = this.bookShelf.length - 1 - index;
-      const readIndex = this.bookShelf[index].readIndex;
+      const bookShelfIndex = this.bookShelf.length - 1 - index
+      const readIndex = this.bookShelf[index].readIndex
       // 阅读页面需要两个值，在书架中的索引以及点的是第几章的索引
       uni.navigateTo({
-        url: `/pages/bookRead/bookRead?bookShelfIndex=${bookShelfIndex}&readIndex=${readIndex}`,
-      });
-    },
-  },
-};
+        url: `/pages/bookRead/bookRead?bookShelfIndex=${bookShelfIndex}&readIndex=${readIndex}`
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

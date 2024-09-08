@@ -14,11 +14,7 @@
         <view class="text">昵称</view>
         <view class="right-area">
           <view class="lf">
-            <input
-              maxlength="10"
-              :placeholder="userInfo.nickname"
-              v-model="newUserInfo.nickname"
-            />
+            <input maxlength="10" :placeholder="userInfo.nickname" v-model="newUserInfo.nickname" />
           </view>
           <u-icon name="arrow-right" size="16px" color="#333"></u-icon>
         </view>
@@ -39,32 +35,27 @@
       </view>
     </view>
     <view class="bot">
-      <u-button
-        type="success"
-        text="保存"
-        color="#07c160"
-        @click="up"
-      ></u-button>
+      <u-button type="success" text="保存" color="#07c160" @click="up"></u-button>
     </view>
   </view>
 </template>
 
 <script>
 // 在组件中引入辅助函数
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
       newUserInfo: {
-        avatarUrl: "",
-        nickname: "",
-        bio: "",
-      },
-    };
+        avatarUrl: '',
+        nickname: '',
+        bio: ''
+      }
+    }
   },
   computed: {
     // 使用 mapState 辅助函数将 Vuex 中的状态映射为组件的计算属性
-    ...mapState(["userInfo"]),
+    ...mapState(['userInfo'])
   },
   created() {
     // 在组件创建时，将 userInfo 的值赋给 newUserInfo
@@ -72,36 +63,36 @@ export default {
     // this.newUserInfo = this.userInfo;
 
     // 将 this.userInfo 对象转换为字符串，然后再将其解析为一个新的对象，从而实现深拷贝
-    this.newUserInfo = JSON.parse(JSON.stringify(this.userInfo));
+    this.newUserInfo = JSON.parse(JSON.stringify(this.userInfo))
   },
   methods: {
     upAvatarUrl() {
       uni.chooseImage({
         count: 1, // 最多选择的图片数量
-        sizeType: ["compressed"], // 图片压缩类型，可以是原图(original)或压缩图(compressed)
-        sourceType: ["album"], // 图片选择来源，可以是相册(album)或相机(camera)
-        success: (res) => {
-          const tempFilePaths = res.tempFilePaths[0];
+        sizeType: ['compressed'], // 图片压缩类型，可以是原图(original)或压缩图(compressed)
+        sourceType: ['album'], // 图片选择来源，可以是相册(album)或相机(camera)
+        success: res => {
+          const tempFilePaths = res.tempFilePaths[0]
           // console.log(tempFilePaths);
-          this.newUserInfo.avatarUrl = tempFilePaths;
+          this.newUserInfo.avatarUrl = tempFilePaths
 
           // // 将选择的图片路径更新到 Vuex 的 avatarUrl 状态中
           // this.$store.commit('modifyUserInfo', this.newUserInfo)
-        },
-      });
+        }
+      })
     },
     up() {
-      this.$store.commit("modifyUserInfo", this.newUserInfo);
+      this.$store.commit('modifyUserInfo', this.newUserInfo)
       //返回上一级界面
-      uni.navigateBack();
+      uni.navigateBack()
       uni.showToast({
-        icon: "none",
+        icon: 'none',
         duration: 1500,
-        title: "保存成功~",
-      });
-    },
-  },
-};
+        title: '保存成功~'
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

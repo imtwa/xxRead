@@ -8,19 +8,12 @@
       <view class="text">
         <view class="title">
           <view class="titleC">{{ title }}</view>
-          <u-badge
-            class="badge"
-            :isDot="true"
-            v-if="isUpdated"
-            type="error"
-          ></u-badge>
+          <u-badge class="badge" :isDot="true" v-if="isUpdated" type="error"></u-badge>
         </view>
         <text class="info" decode space="true">{{ info }}</text>
         <text class="info" decode space="true">{{ info1 }}</text>
         <view style="font-size: 24rpx; margin-top: 4rpx">
-          <span v-if="bookSourceName" class="origin-color">{{
-            bookSourceName
-          }}</span>
+          <span v-if="bookSourceName" class="origin-color">{{ bookSourceName }}</span>
           <span v-for="tag in tags" class="origin-color">{{ tag }}</span>
         </view>
       </view>
@@ -31,49 +24,49 @@
 
 <script>
 export default {
-  name: "BookList",
+  name: 'BookList',
   props: {
     // 使用对象形式组织props]
     imgurl: {
       type: String,
       required: true, // 如果这个prop是必须的，则添加required
-      default: "", // 设置默认值
+      default: '' // 设置默认值
     },
     title: {
       type: String,
-      default: "",
+      default: ''
     },
     info: {
       type: String,
-      default: "",
+      default: ''
     },
     info1: {
       type: String,
-      default: "",
+      default: ''
     },
     isUpdated: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isClick: {
       type: Boolean,
-      default: false,
+      default: false
     },
     bookSourceName: {
       type: String,
-      default: "",
+      default: ''
     },
     tags: {
       type: Array,
       default: function () {
-        return []; // 或者 return {}; 对于对象类型
-      },
-    },
+        return [] // 或者 return {}; 对于对象类型
+      }
+    }
   },
   data() {
     return {
-      show: false,
-    };
+      show: false
+    }
   },
   computed: {
     // titleC() {
@@ -93,12 +86,12 @@ export default {
     toShow() {
       if (this.isClick) {
         uni.navigateTo({
-          url: `/pages/image/image?imgsrc=${this.imgurl}`,
-        });
+          url: `/pages/image/image?imgsrc=${this.imgurl}`
+        })
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .content {

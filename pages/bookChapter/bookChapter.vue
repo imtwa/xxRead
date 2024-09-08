@@ -32,77 +32,77 @@
 </template>
 
 <script>
-import battery from "../../components/battery.vue";
-import virtualList from "../../components/virtualList.vue";
-import { traditionalized, simplized, dateToStr } from "../../utils/utils.js";
+import battery from '../../components/battery.vue'
+import virtualList from '../../components/virtualList.vue'
+import { traditionalized, simplized, dateToStr } from '../../utils/utils.js'
 export default {
   components: {
     battery,
-    virtualList,
+    virtualList
   },
 
   data() {
     return {
       book: {},
-      directoryList: [], //目录列表
-    };
+      directoryList: [] //目录列表
+    }
   },
   onReady() {
     // 动态设置标题
     uni.setNavigationBarTitle({
-      title: this.book.bookname,
-    });
+      title: this.book.bookname
+    })
   },
   onLoad(e) {
-    console.log(e);
-    this.book = this.$store.state.bookShelf[e.index];
+    console.log(e)
+    this.book = this.$store.state.bookShelf[e.index]
     //将章节赋值给章节列表
-    const chapters = this.book.chapters;
+    const chapters = this.book.chapters
 
     for (let i = 0; i < chapters.length; i++) {
       this.directoryList.push({
         index: i,
         chapterId: chapters[i].chapterurl, //注意：这个chapterId用于获取章节内容而不是index
-        name: chapters[i].chaptername,
-      });
+        name: chapters[i].chaptername
+      })
     }
   },
   computed: {
     //判断是否缓存过
     directoryListItemColor() {
-      return (index) => {
+      return index => {
         if (true === this.book.chapters[index].visD) {
-          return ""; // 否则返回默认颜色
+          return '' // 否则返回默认颜色
         } else {
-          return "gray"; // 如果index为-1，则返回灰色
+          return 'gray' // 如果index为-1，则返回灰色
         }
-      };
-    },
+      }
+    }
   },
   methods: {
     goBack() {
-      uni.navigateBack();
+      uni.navigateBack()
     },
     goToChapter(index) {
-      this.book.readIndex = index;
+      this.book.readIndex = index
       // 更新章节
-      this.$store.commit("modifyBook", this.book.readIndex);
+      this.$store.commit('modifyBook', this.book.readIndex)
 
       // 然后得到在书架中的索引，需要传入bookurl（唯一标识）
       this.$store
-        .dispatch("findBookFromShelf", this.book.bookurl)
-        .then((index) => {
+        .dispatch('findBookFromShelf', this.book.bookurl)
+        .then(index => {
           // 阅读页面需要两个值，在书架中的索引以及点击的第几章的索引
           uni.navigateTo({
-            url: `/pages/bookRead/bookRead?bookShelfIndex=${index}&readIndex=${this.book.readIndex}`,
-          });
+            url: `/pages/bookRead/bookRead?bookShelfIndex=${index}&readIndex=${this.book.readIndex}`
+          })
         })
-        .catch((error) => {
+        .catch(error => {
           // 异常情况的处理
-        });
-    },
-  },
-};
+        })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
