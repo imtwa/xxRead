@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'FangZhengKaiTi-GBK-1';
+  src: url('@/static/fonts/FangZhengKaiTi-GBK-1.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: '仓耳今楷05-W05';
+  src: url('@/static/fonts/仓耳今楷05-W05.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: '仓耳今楷04-W03';
+  src: url('@/static/fonts/仓耳今楷04-W03.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fontFamily0 {
+  font-family: sans-serif;
+}
+
+.fontFamily1 {
+  font-family: 'FangZhengKaiTi-GBK-1', sans-serif;
+}
+
+.fontFamily2 {
+  font-family: '仓耳今楷04-W03', sans-serif;
+}
+
+.fontFamily3 {
+  font-family: '仓耳今楷05-W05', sans-serif;
+}

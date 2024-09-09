@@ -29,30 +29,6 @@ export default {
     // console.log('App Hide')
   },
   methods: {
-    /**
-     * 检查更新
-     * */
-    async updateBookshelf() {
-      for (let i = 0; i < this.$store.state.bookShelf.length; i++) {
-        let book = this.$store.state.bookShelf[i]
-        const newbook = await this.$getNetwork.homePage(book)
-
-        // 新获取的目录更多了===更新了
-        if (newbook.chapters.length > book.chapters.length) {
-          // 要用一个变量中转一下，否则报错没有book.chapters.push这个函数
-          let chapter = book.chapters
-          for (let k = book.chapters.length; k < newbook.chapters.length; k++) {
-            chapter.push(newbook.chapters[k])
-          }
-          book.chapters = chapter
-          // 标记为已经更新
-          book.isUpdated = true
-          book.readAll = newbook.chapters.length
-
-          this.$store.commit('modifyBook', book)
-        }
-      }
-    }
   }
 }
 </script>
@@ -60,17 +36,11 @@ export default {
 <style lang="scss">
 /* 注意要写在第一行，同时给style标签加入lang="scss"属性 */
 @import '@/uni_modules/uview-ui/index.scss';
+@import 'static/fonts/fontFace.css';
 
-/*每个页面公共css */
+/* 每个页面公共css */
 view {
   box-sizing: border-box;
-  font-family: 'FangZheng';
 }
 
-@font-face {
-  font-family: 'FangZheng';
-  src: url('static/fonts/FangZhengKaiTi-GBK-1.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
 </style>
