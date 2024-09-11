@@ -121,6 +121,11 @@ export default {
           title: '2.1.2',
           time: '2024-8-25',
           description: '搜索页面精确展示搜索结果，加入搜索超时取消逻辑，优化少量BUG'
+        },
+        {
+          title: '2.1.4',
+          time: '2024-9-11',
+          description: '阅读界面增加多个字体选择，加入背景颜色调色盘，优化少量BUG'
         }
       ]
     }
