@@ -96,42 +96,28 @@ function isObject(value) {
  * @returns {any} - 返回一个新的对象，它是 `originValue` 的深拷贝。
  */
 export function deepCopy(originValue, map = new WeakMap()) {
-  // 一、进行类型判断和特殊处理
-  // 判断是否是一个Set类型
   if (originValue instanceof Set) {
     return new Set([...originValue])
   }
-
-  // 判断是否是一个Map类型
   if (originValue instanceof Map) {
     return new Map([...originValue])
   }
-
-  // 判断如果是Symbol的value, 那么创建一个新的Symbol
   if (typeof originValue === 'symbol') {
     return Symbol(originValue.description)
   }
-
-  // 判断如果是函数类型, 那么直接使用同一个函数
   if (typeof originValue === 'function') {
     return originValue
   }
-
-  // 判断传入的originValue是否是一个对象类型
   if (!isObject(originValue)) {
     return originValue
   }
-
   // 解决循环引用
   if (map.has(originValue)) {
     return map.get(originValue)
   }
-
-  // 判断传入的对象是数组, 还是对象
   const newObject = Array.isArray(originValue) ? [] : {}
   map.set(originValue, newObject) // 解决循环引用
 
-  // 二、值处理
   for (const key in originValue) {
     newObject[key] = deepCopy(originValue[key], map)
   }
@@ -142,6 +128,76 @@ export function deepCopy(originValue, map = new WeakMap()) {
     newObject[sKey] = deepCopy(originValue[sKey], map)
   }
 
-  // 三、返回新对象
+  // 返回新对象
   return newObject
+}
+
+/**
+ * @description 深度克隆
+ * @param {object} obj 需要深度克隆的对象
+ * @param cache 缓存
+ * @returns {*} 克隆后的对象或者原值（不是对象）
+ */
+export function deepClone(obj, cache = new WeakMap()) {
+  if (obj === null || typeof obj !== 'object') return obj
+  if (cache.has(obj)) return cache.get(obj)
+  let clone
+  if (obj instanceof Date) {
+    clone = new Date(obj.getTime())
+  } else if (obj instanceof RegExp) {
+    clone = new RegExp(obj)
+  } else if (obj instanceof Map) {
+    clone = new Map(Array.from(obj, ([key, value]) => [key, deepClone(value, cache)]))
+  } else if (obj instanceof Set) {
+    clone = new Set(Array.from(obj, value => deepClone(value, cache)))
+  } else if (Array.isArray(obj)) {
+    clone = obj.map(value => deepClone(value, cache))
+  } else if (Object.prototype.toString.call(obj) === '[object Object]') {
+    clone = Object.create(Object.getPrototypeOf(obj))
+    cache.set(obj, clone)
+    for (const [key, value] of Object.entries(obj)) {
+      clone[key] = deepClone(value, cache)
+    }
+  } else {
+    clone = Object.assign({}, obj)
+  }
+  cache.set(obj, clone)
+  return clone
+}
+
+/**
+ * @description JS对象深度合并
+ * @param {object} target 需要拷贝的对象
+ * @param {object} source 拷贝的来源对象
+ * @returns {object|boolean} 深度合并后的对象或者false（入参有不是对象）
+ */
+export function deepMerge(target = {}, source = {}) {
+  target = deepClone(target)
+  if (
+    typeof target !== 'object' ||
+    target === null ||
+    typeof source !== 'object' ||
+    source === null
+  )
+    return target
+  const merged = Array.isArray(target) ? target.slice() : Object.assign({}, target)
+  for (const prop in source) {
+    if (!source.hasOwnProperty(prop)) continue
+    const sourceValue = source[prop]
+    const targetValue = merged[prop]
+    if (sourceValue instanceof Date) {
+      merged[prop] = new Date(sourceValue)
+    } else if (sourceValue instanceof RegExp) {
+      merged[prop] = new RegExp(sourceValue)
+    } else if (sourceValue instanceof Map) {
+      merged[prop] = new Map(sourceValue)
+    } else if (sourceValue instanceof Set) {
+      merged[prop] = new Set(sourceValue)
+    } else if (typeof sourceValue === 'object' && sourceValue !== null) {
+      merged[prop] = deepMerge(targetValue, sourceValue)
+    } else {
+      merged[prop] = sourceValue
+    }
+  }
+  return merged
 }

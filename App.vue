@@ -28,8 +28,7 @@ export default {
     this.$store.commit('setBookShelfFromStorage')
     // console.log('App Hide')
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
 
@@ -42,5 +41,4 @@ export default {
 view {
   box-sizing: border-box;
 }
-
 </style>
