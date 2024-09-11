@@ -481,21 +481,23 @@
             :class="{ active: turnType === 0 }"
             style="padding: 5px 8px"
             @click="changeTurnType(0)"
-            >覆盖</view
-          >
+            >覆盖
+          </view>
           <view
             class="icon"
             :class="{ active: turnType === 1 }"
             style="padding: 5px 8px"
             @click="changeTurnType(1)"
-            >左右平移</view
+          >
+            左右平移</view
           >
           <view
             class="icon"
             :class="{ active: turnType === 2 }"
             style="padding: 5px 8px"
             @click="changeTurnType(2)"
-            >上下平移</view
+          >
+            上下平移</view
           >
         </view>
         <view class="item">
@@ -515,7 +517,7 @@
           <view
             class="icon"
             :class="{ container2: true, active: background === 3 }"
-            @click="changeBackground(3)"
+            @click="openBackgroundColor"
           >
           </view>
         </view>
@@ -559,12 +561,19 @@
         </virtual-list>
       </view>
     </view>
+    <!-- 调色盘 -->
+    <t-color-picker
+      ref="backgroundColorPicker"
+      :color="backgroundColor"
+      @confirm="confirmBackgroundColor"
+    ></t-color-picker>
   </view>
 </template>
 
 <script>
 import battery from '@/components/battery.vue'
 import virtualList from '@/components/virtualList.vue'
+import tColorPicker from '@/components/t-color-picker/t-color-picker.vue'
 import { traditionalized, simplized, dateToStr, clearExcessiveRepeats } from '@/utils/utils.js'
 //引入HTML 文本解析器
 // import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
@@ -574,7 +583,8 @@ import { deepCopy } from '@/utils/utils.js'
 export default {
   components: {
     battery,
-    virtualList
+    virtualList,
+    tColorPicker
   },
 
   data() {
@@ -715,6 +725,12 @@ export default {
       simplified: '', //是否简体
       lineHeight: '', //行高，注意是fontSize的倍数
       background: '', //背景
+      backgroundColor: {
+        r: 255,
+        g: 0,
+        b: 0,
+        a: 0.6
+      }, //背景颜色
       colorList: ['#000', '#ccc', '#000'], //与背景对应的字体颜色
 
       chapterProgress: 0, //‘章节进度条’的参数
@@ -745,17 +761,7 @@ export default {
       success: res => {
         this.bookall = res.data
         if (!this.bookall) {
-          // 如果 this.bookall 是空的
-          // console.log("缓存数据为空");
-
-          // // 走缓存中转一下，否则引用的是同一个对象
-          // uni.setStorageSync(key, this.book);
-          // // 使用同步读取！！
-          // this.bookall = uni.getStorageSync(key);
-
-          // 将 this.book 对象转换为字符串，然后再将其解析为一个新的对象，从而实现深拷贝
-          // 这样就不走缓存了
-          // this.bookall = JSON.parse(JSON.stringify(this.book))
+          // 深拷贝 否则引用的是同一个对象
           this.bookall = deepCopy(this.book)
           this.bookall.progress = 0
         } else {
@@ -778,13 +784,8 @@ export default {
       fail: err => {
         // 缓存读取失败的处理逻辑
         console.error(err)
-        // // 走缓存中转一下，否则引用的是同一个对象
-        // uni.setStorageSync(key, this.book);
-        // // 使用同步读取！！
-        // this.bookall = uni.getStorageSync(key);
-
-        // 这样就不走缓存了
-        this.bookall = JSON.parse(JSON.stringify(this.book))
+        // 深拷贝
+        this.bookall = deepCopy(this.book)
         this.bookall.progress = 0
       },
       complete: res => {
@@ -867,6 +868,25 @@ export default {
     }
   },
   methods: {
+    /***
+     * 打开背景取色盘
+     */
+    openBackgroundColor() {
+      // 打开背景颜色选择器
+      this.$refs.backgroundColorPicker.open()
+    },
+
+    /***
+     * 背景取色盘返回值
+     */
+    confirmBackgroundColor(e) {
+      console.log('背景颜色选择器返回值：')
+      console.log(e)
+    },
+
+    /***
+     * 上下音量键翻页
+     */
     handleKeyDown(e) {
       // console.log(e);
       //监控音量键并且不弹出音量加减动画
@@ -887,6 +907,9 @@ export default {
       this.pre = false
     },
 
+    /***
+     * 长按上下音量键翻页
+     */
     handleLongpressed(e) {
       // console.log("长按了键：" + JSON.stringify(e));
       // console.log("长按了键：" + e.keyCode);
