@@ -12873,6 +12873,7 @@ var render = function () {
                       _c("uni-view", {
                         staticClass: _vm._$g(122, "sc"),
                         class: _vm._$g(122, "c"),
+                        style: _vm._$g(122, "s"),
                         attrs: { _i: 122 },
                         on: {
                           click: function ($event) {
@@ -20462,34 +20463,6 @@ var render = function () {
               ),
             ],
             2
-          ),
-          _c(
-            "uni-view",
-            { staticClass: _vm._$g(41, "sc"), attrs: { _i: 41 } },
-            _vm._l(_vm._$g(42, "f"), function (item, index, $20, $30) {
-              return _c(
-                "uni-view",
-                {
-                  key: item,
-                  staticClass: _vm._$g("42-" + $30, "sc"),
-                  attrs: { _i: "42-" + $30 },
-                },
-                [
-                  _c("uni-view", {
-                    staticClass: _vm._$g("43-" + $30, "sc"),
-                    style: _vm._$g("43-" + $30, "s"),
-                    attrs: { _i: "43-" + $30 },
-                    on: {
-                      click: function ($event) {
-                        return _vm.$handleViewEvent($event)
-                      },
-                    },
-                  }),
-                ],
-                1
-              )
-            }),
-            1
           ),
         ],
         1

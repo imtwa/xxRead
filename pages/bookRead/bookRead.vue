@@ -74,14 +74,17 @@
       class="cover container"
       :class="{
         container0: background === 1,
-        container1: background === 2,
-        container2: background === 3
+        container1: background === 2
       }"
       :style="{
         zIndex: 201,
         transform: `translate${cover.pageTranslate[turnType]}`,
         transition: `transform ${showAnimation ? turnPageTime : 0}s`,
-        boxShadow: showShadow && turnType === 0 ? '0 0 10px 0 rgba(0,0,0,.4)' : ''
+        boxShadow: showShadow && turnType === 0 ? '0 0 10px 0 rgba(0,0,0,.4)' : '',
+        background:
+          background === 3
+            ? `rgba(${backgroundColor.rgba.r},${backgroundColor.rgba.g},${backgroundColor.rgba.b},${backgroundColor.rgba.a})`
+            : ''
       }"
       @touchstart="coverTouchStart"
       @touchend="coverTouchEnd"
@@ -106,14 +109,17 @@
       class="container"
       :class="{
         container0: background === 1,
-        container1: background === 2,
-        container2: background === 3
+        container1: background === 2
       }"
       :style="{
         zIndex: 102,
         transform: `translate${prePage.pageTranslate[turnType]}`,
         transition: `transform ${showAnimation ? turnPageTime : 0}s`,
-        boxShadow: showShadow && turnType === 0 ? '0 0 10px 0 rgba(0,0,0,.4)' : ''
+        boxShadow: showShadow && turnType === 0 ? '0 0 10px 0 rgba(0,0,0,.4)' : '',
+        background:
+          background === 3
+            ? `rgba(${backgroundColor.rgba.r},${backgroundColor.rgba.g},${backgroundColor.rgba.b},${backgroundColor.rgba.a})`
+            : ''
       }"
     >
       <!-- 章节名 -->
@@ -171,14 +177,17 @@
       class="container"
       :class="{
         container0: background === 1,
-        container1: background === 2,
-        container2: background === 3
+        container1: background === 2
       }"
       :style="{
         zIndex: 101,
         transform: `translate${curPage.pageTranslate[turnType]}`,
         transition: `transform ${showAnimation ? turnPageTime : 0}s`,
-        boxShadow: showShadow && turnType === 0 ? '0 0 10px 0 rgba(0,0,0,.4)' : ''
+        boxShadow: showShadow && turnType === 0 ? '0 0 10px 0 rgba(0,0,0,.4)' : '',
+        background:
+          background === 3
+            ? `rgba(${backgroundColor.rgba.r},${backgroundColor.rgba.g},${backgroundColor.rgba.b},${backgroundColor.rgba.a})`
+            : ''
       }"
       @touchstart="touchStart"
       @touchend="touchEnd"
@@ -242,14 +251,17 @@
       class="container"
       :class="{
         container0: background === 1,
-        container1: background === 2,
-        container2: background === 3
+        container1: background === 2
       }"
       :style="{
         zIndex: 100,
         transform: `translate${nextPage.pageTranslate[turnType]}`,
         transition: `transform ${showAnimation ? turnPageTime : 0}s`,
-        boxShadow: showShadow && turnType === 0 ? '0 0 10px 0 rgba(0,0,0,.4)' : ''
+        boxShadow: showShadow && turnType === 0 ? '0 0 10px 0 rgba(0,0,0,.4)' : '',
+        background:
+          background === 3
+            ? `rgba(${backgroundColor.rgba.r},${backgroundColor.rgba.g},${backgroundColor.rgba.b},${backgroundColor.rgba.a})`
+            : ''
       }"
     >
       <!-- 章节名 -->
@@ -516,7 +528,19 @@
           ></view>
           <view
             class="icon"
-            :class="{ container2: true, active: background === 3 }"
+            :class="{ active: background === 3 }"
+            :style="{
+              background:
+                'rgba(' +
+                backgroundColor.rgba.r +
+                ',' +
+                backgroundColor.rgba.g +
+                ',' +
+                backgroundColor.rgba.b +
+                ',' +
+                backgroundColor.rgba.a +
+                ')'
+            }"
             @click="openBackgroundColor"
           >
           </view>
@@ -528,14 +552,17 @@
         class="directory"
         :class="{
           container0: background === 1,
-          container1: background === 2,
-          container2: background === 3
+          container1: background === 2
         }"
         v-if="directoryShowBefore"
         :style="{
           left: directoryShow ? 0 : '-100%',
           color: `${colorList[background - 1]}`,
-          boxShadow: '0 0 10px 0 rgba(0,0,0,.4)'
+          boxShadow: '0 0 10px 0 rgba(0,0,0,.4)',
+          background:
+            background === 3
+              ? `rgba(${backgroundColor.rgba.r},${backgroundColor.rgba.g},${backgroundColor.rgba.b},${backgroundColor.rgba.a})`
+              : ''
         }"
         @touchend.stop
       >
@@ -564,7 +591,7 @@
     <!-- 调色盘 -->
     <t-color-picker
       ref="backgroundColorPicker"
-      :color="backgroundColor"
+      :color="backgroundColor.rgba"
       @confirm="confirmBackgroundColor"
     ></t-color-picker>
   </view>
@@ -726,10 +753,13 @@ export default {
       lineHeight: '', //行高，注意是fontSize的倍数
       background: '', //背景
       backgroundColor: {
-        r: 255,
-        g: 0,
-        b: 0,
-        a: 0.6
+        rgba: {
+          r: 255,
+          g: 255,
+          b: 255,
+          a: 255
+        },
+        hex: '#FFFFFF'
       }, //背景颜色
       colorList: ['#000', '#ccc', '#000'], //与背景对应的字体颜色
 
@@ -874,6 +904,8 @@ export default {
     openBackgroundColor() {
       // 打开背景颜色选择器
       this.$refs.backgroundColorPicker.open()
+      // 切换到第三种模式
+      this.changeBackground(3)
     },
 
     /***
@@ -882,6 +914,8 @@ export default {
     confirmBackgroundColor(e) {
       console.log('背景颜色选择器返回值：')
       console.log(e)
+      this.backgroundColor = e
+      uni.setStorageSync('backgroundColor', JSON.stringify(this.backgroundColor))
     },
 
     /***
@@ -1074,6 +1108,21 @@ export default {
       this.currentFontFamily = uni.getStorageSync('currentFontFamily')
       if (typeof this.currentFontFamily !== 'string' || this.currentFontFamily.length === 0) {
         this.currentFontFamily = 'fontFamily0'
+      }
+      this.backgroundColor = uni.getStorageSync('backgroundColor')
+      if (typeof this.backgroundColor !== 'string' || this.backgroundColor.length === 0) {
+        this.backgroundColor = {
+          rgba: {
+            r: 255,
+            g: 255,
+            b: 255,
+            a: 255
+          },
+          hex: '#FFFFFF'
+        }
+      } else {
+        // 字符串转换成对象
+        this.backgroundColor = JSON.parse(this.backgroundColor)
       }
 
       // let history = uni.getStorageSync('history')

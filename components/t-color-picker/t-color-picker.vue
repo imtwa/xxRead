@@ -86,7 +86,7 @@
           </view>
         </view>
       </view>
-      <view class="t-alternative">
+      <!-- <view class="t-alternative">
         <view class="t-alternative__item" v-for="(item, index) in colorList" :key="index">
           <view
             class="t-alternative__item-content"
@@ -97,7 +97,7 @@
           >
           </view>
         </view>
-      </view>
+      </view> -->
     </view>
   </view>
 </template>
@@ -112,7 +112,7 @@ export default {
           r: 0,
           g: 0,
           b: 0,
-          a: 0
+          a: 1
         }
       }
     },
