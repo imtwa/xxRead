@@ -605,7 +605,7 @@ import { traditionalized, simplized, dateToStr, clearExcessiveRepeats } from '@/
 //引入HTML 文本解析器
 // import HTMLParser from "@/uni_modules/html-parser/js_sdk/index.js"
 // import store from "@/store/index.js"
-import { deepCopy } from '@/utils/utils.js'
+import { deepCopy, getComplementaryColor } from '@/utils/utils.js'
 
 export default {
   components: {
@@ -912,10 +912,32 @@ export default {
      * 背景取色盘返回值
      */
     confirmBackgroundColor(e) {
-      console.log('背景颜色选择器返回值：')
-      console.log(e)
+      // console.log('背景颜色选择器返回值：')
+      // console.log(e)
       this.backgroundColor = e
+
+      // 设置相应的文字颜色
+      // 提取颜色通道
+      const [r, g, b] = e.hex
+        .replace('#', '')
+        .match(/.{2}/g)
+        .map(c => parseInt(c, 16))
+
+      // 检查颜色是否太黑（小于 #333）
+      // 权重 红色0.299，绿色0.587，蓝色0.114
+      const isTooDark = r * 0.334 + g * 0.334 + b * 0.334 < 65
+      // 如果颜色太黑，则计算互补色
+      if (isTooDark) {
+        // this.colorList[2] = getComplementaryColor(e.hex)
+        // 直接给白色
+        this.colorList[2] = '#cccccc'
+      } else {
+        this.colorList[2] = '#000000'
+      }
+
+      // 加入缓存
       uni.setStorageSync('backgroundColor', JSON.stringify(this.backgroundColor))
+      uni.setStorageSync('colorList', JSON.stringify(this.colorList))
     },
 
     /***
@@ -1109,6 +1131,7 @@ export default {
       if (typeof this.currentFontFamily !== 'string' || this.currentFontFamily.length === 0) {
         this.currentFontFamily = 'fontFamily0'
       }
+
       this.backgroundColor = uni.getStorageSync('backgroundColor')
       if (typeof this.backgroundColor !== 'string' || this.backgroundColor.length === 0) {
         this.backgroundColor = {
@@ -1123,6 +1146,14 @@ export default {
       } else {
         // 字符串转换成对象
         this.backgroundColor = JSON.parse(this.backgroundColor)
+      }
+
+      this.colorList = uni.getStorageSync('colorList')
+      if (typeof this.colorList !== 'string' || this.colorList.length === 0) {
+        this.colorList = ['#000', '#ccc', '#000']
+      } else {
+        // 字符串转换成对象
+        this.colorList = JSON.parse(this.colorList)
       }
 
       // let history = uni.getStorageSync('history')

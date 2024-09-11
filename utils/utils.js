@@ -76,6 +76,41 @@ export function clearExcessiveRepeats(text, maxRepeat) {
 }
 
 /**
+ * 获取十六进制颜色的互补色。
+ *
+ * @param {string} hexColor - 十六进制颜色字符串，格式为 '#RRGGBB' 或 '#RGB'。
+ * @returns {string} - 互补色的十六进制字符串。
+ */
+export function getComplementaryColor(hexColor) {
+  // 检查输入是否为有效的十六进制颜色
+  if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hexColor)) {
+    return '#000000'
+  }
+
+  // 提取颜色通道
+  const [r, g, b] = hexColor
+    .replace('#', '')
+    .match(/.{2}/g)
+    .map(c => parseInt(c, 16))
+
+  // 计算互补色
+  const complementary = {
+    r: 255 - r,
+    g: 255 - g,
+    b: 255 - b
+  }
+
+  // 转换回十六进制字符串
+  const complementaryHex =
+    '#' +
+    complementary.r.toString(16).padStart(2, '0') +
+    complementary.g.toString(16).padStart(2, '0') +
+    complementary.b.toString(16).padStart(2, '0')
+
+  return complementaryHex
+}
+
+/**
  * 判断是否是对象类型
  * @param {*} value
  * @returns

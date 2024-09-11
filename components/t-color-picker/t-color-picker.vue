@@ -564,6 +564,8 @@ export default {
   background: #fff;
   transition: all 0.3s;
   transform: translateY(100%);
+  border-top-left-radius: 8px; /* 上方左圆角 */
+  border-top-right-radius: 8px; /* 上方右圆角 */
 }
 
 .t-box.active {
@@ -576,8 +578,10 @@ export default {
   width: 100%;
   height: 100upx;
   border-bottom: 1px #eee solid;
-  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.1);
   background: #fff;
+  border-top-left-radius: 8px; /* 上方左圆角 */
+  border-top-right-radius: 8px; /* 上方右圆角 */
 }
 
 .t-header-button {
@@ -620,6 +624,7 @@ export default {
   margin: 0 20upx;
   margin-top: 20upx;
   box-sizing: border-box;
+  border-radius: 16px;
 }
 
 .t-background {
@@ -640,6 +645,7 @@ export default {
   width: 100%;
   height: 400upx;
   background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+  border-radius: 16px;
 }
 
 .t-pointer {
