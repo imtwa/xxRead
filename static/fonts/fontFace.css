@@ -7,14 +7,14 @@
 
 @font-face {
   font-family: '仓耳今楷05-W05';
-  src: url('@/static/fonts/仓耳今楷05-W05.ttf');
+  src: url('@/static/fonts/CangErJinKai-05-W05.ttf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: '仓耳今楷04-W04';
-  src: url('@/static/fonts/仓耳今楷04-W04.ttf');
+  src: url('@/static/fonts/CangErJinKai-04-W04.ttf');
   font-weight: normal;
   font-style: normal;
 }
