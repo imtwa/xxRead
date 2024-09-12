@@ -624,7 +624,7 @@ export default {
   margin: 0 20upx;
   margin-top: 20upx;
   box-sizing: border-box;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 .t-background {
@@ -645,7 +645,7 @@ export default {
   width: 100%;
   height: 400upx;
   background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 .t-pointer {

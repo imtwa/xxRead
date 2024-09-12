@@ -541,8 +541,17 @@
                 backgroundColor.rgba.a +
                 ')'
             }"
+            @click="changeBackground(3)"
+          >
+          </view>
+          <view
+            style="font-size: 15px; height: 32px; width: 32px; text-align: center"
             @click="openBackgroundColor"
           >
+            <image
+              style="width: 32px; height: 100%"
+              src="@/static/images/bookRead/palette.svg"
+            ></image>
           </view>
         </view>
       </view>
