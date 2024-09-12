@@ -435,7 +435,7 @@
                 class="font-face fontFamily2"
                 @click="FontFamily('fontFamily2')"
                 :class="{ active: currentFontFamily === 'fontFamily2' }"
-                >仓耳今楷04-W04</view
+                >汉仪楷体</view
               >
 
               <view

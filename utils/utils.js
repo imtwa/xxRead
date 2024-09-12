@@ -16,15 +16,9 @@ export function dateToStr(date) {
   }
   return hh + ':' + mm
 }
-function simpPYStr() {
-  return '啊啊啊'
-}
-function ftPYStr() {
-  return '啊啊啊'
-}
-function qqPYStr() {
-  return '啊啊啊'
-}
+
+import { ftPYStr, simpPYStr, qqPYStr } from './pyStr'
+
 export function traditionalized(cc) {
   var str = ''
   if (cc) {

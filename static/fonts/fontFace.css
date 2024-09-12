@@ -13,8 +13,8 @@
 }
 
 @font-face {
-  font-family: '仓耳今楷04-W04';
-  src: url('@/static/fonts/CangErJinKai-04-W04.ttf');
+  font-family: '汉仪楷体';
+  src: url('@/static/fonts/HanYiKaiTiJian-1.ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -28,7 +28,7 @@
 }
 
 .fontFamily2 {
-  font-family: '仓耳今楷04-W04', sans-serif;
+  font-family: '汉仪楷体', sans-serif;
 }
 
 .fontFamily3 {
