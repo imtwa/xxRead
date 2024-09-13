@@ -79,7 +79,7 @@
         @clearCache="handleClearCache"
         @download="handleDownload"
         @share="handleShare"
-        @txt="handleTxt"
+        @txt="handleTxt(spbook)"
       >
       </Cpupup>
     </u-popup>
@@ -126,6 +126,7 @@
 import store from '@/store/index.js'
 import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
 import { deepCopy } from '@/utils/utils.js'
+import { outputTxT } from '@/utils/fileSystem.js'
 
 export default {
   data() {
@@ -491,16 +492,22 @@ export default {
         url: `/pages/bookChapter/bookChapter?index=${this.spindex}`
       })
     },
-    async handleTxt() {
-      let then = this
+    /**
+     * 导出文件
+     */
+    async handleTxt(spbook) {
+      // 保存成文件
       try {
-        console.log(this.spbook)
-        const fileName = this.spbook.bookname.trim() + '.txt'
+        // console.log(spbook)
+        const fileName = spbook.bookname.trim() + '.txt'
         console.log(fileName)
-        const key = 'bookall' + this.spbook.bookurl
+        const key = 'bookall' + spbook.bookurl
         // 使用同步读取
         const bookTxt = uni.getStorageSync(key)
-        const jsonString = JSON.stringify(bookTxt)
+        const jsonString = outputTxT(bookTxt)
+        // console.log(jsonString);
+
+        // return
 
         plus.io.requestFileSystem(
           plus.io.PUBLIC_DOWNLOADS,
@@ -519,9 +526,9 @@ export default {
                       console.log(fileEntry.toLocalURL())
 
                       const bookTxt = {
-                        imgurl: this.spbook.imgurl,
-                        bookname: this.spbook.bookname,
-                        author: this.spbook.author,
+                        imgurl: spbook.imgurl,
+                        bookname: spbook.bookname,
+                        author: spbook.author,
                         toLocalURL: fileEntry.toLocalURL()
                       }
 

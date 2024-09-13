@@ -45,6 +45,7 @@ export function simplized(cc) {
   }
   return str
 }
+
 function qqlized(cc) {
   var str = ''
   for (var i = 0; i < cc.length; i++) {
@@ -67,6 +68,25 @@ function qqlized(cc) {
  */
 export function clearExcessiveRepeats(text, maxRepeat) {
   return text.replace(new RegExp(`(.)\\1{${maxRepeat},}`, 'g'), '$1'.repeat(maxRepeat))
+}
+
+/**
+ * 去除<p></p>，改为更易观看的纯文本形式 \n换行
+ *
+ * @param {string} text - 需要处理的文本字符串。
+ * @returns {string} 处理后的文本字符串
+ *
+ */
+export function stripPTags(text) {
+  if (typeof text === 'string') {
+    text = text.replace(/<p>|<\/p>/g, match => {
+      if (match === '<p>') {
+        return ''
+      }
+      return '\n'
+    })
+  }
+  return text
 }
 
 /**

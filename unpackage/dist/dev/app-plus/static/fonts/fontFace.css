@@ -7,14 +7,14 @@
 
 @font-face {
   font-family: '仓耳今楷05-W05';
-  src: url('@/static/fonts/仓耳今楷05-W05.ttf');
+  src: url('@/static/fonts/CangErJinKai-05-W05.ttf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: '仓耳今楷04-W03';
-  src: url('@/static/fonts/仓耳今楷04-W03.ttf');
+  font-family: '汉仪楷体';
+  src: url('@/static/fonts/HanYiKaiTiJian-1.ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -28,7 +28,7 @@
 }
 
 .fontFamily2 {
-  font-family: '仓耳今楷04-W03', sans-serif;
+  font-family: '汉仪楷体', sans-serif;
 }
 
 .fontFamily3 {

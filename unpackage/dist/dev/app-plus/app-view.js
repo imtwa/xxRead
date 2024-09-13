@@ -12677,7 +12677,7 @@ var render = function () {
                                     },
                                   },
                                 },
-                                [_vm._v("仓耳今楷04-W03")]
+                                [_vm._v("汉仪楷体")]
                               ),
                               _c(
                                 "uni-view",
@@ -12881,20 +12881,47 @@ var render = function () {
                           },
                         },
                       }),
+                      _c(
+                        "uni-view",
+                        {
+                          staticStyle: {
+                            "font-size": "15px",
+                            height: "32px",
+                            width: "32px",
+                            "text-align": "center",
+                          },
+                          attrs: { _i: 123 },
+                          on: {
+                            click: function ($event) {
+                              return _vm.$handleViewEvent($event)
+                            },
+                          },
+                        },
+                        [
+                          _c("v-uni-image", {
+                            staticStyle: { width: "32px", height: "100%" },
+                            attrs: {
+                              src: "/static/images/bookRead/palette.svg",
+                              _i: 124,
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                     ],
                     1
                   ),
                 ],
                 1
               ),
-              _vm._$g(123, "i")
+              _vm._$g(125, "i")
                 ? _c(
                     "uni-view",
                     {
-                      staticClass: _vm._$g(123, "sc"),
-                      class: _vm._$g(123, "c"),
-                      style: _vm._$g(123, "s"),
-                      attrs: { _i: 123 },
+                      staticClass: _vm._$g(125, "sc"),
+                      class: _vm._$g(125, "c"),
+                      style: _vm._$g(125, "s"),
+                      attrs: { _i: 125 },
                       on: {
                         touchend: function ($event) {
                           return _vm.$handleViewEvent($event, { stop: true })
@@ -12904,11 +12931,11 @@ var render = function () {
                     [
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(124, "sc"), attrs: { _i: 124 } },
-                        [_vm._v(_vm._$g(124, "t0-0"))]
+                        { staticClass: _vm._$g(126, "sc"), attrs: { _i: 126 } },
+                        [_vm._v(_vm._$g(126, "t0-0"))]
                       ),
                       _c("virtual-list", {
-                        attrs: { _i: 125 },
+                        attrs: { _i: 127 },
                         scopedSlots: _vm._u(
                           [
                             {
@@ -12920,17 +12947,17 @@ var render = function () {
                                   _c(
                                     "uni-view",
                                     {
-                                      staticClass: _svm._$g("127-" + _si, "sc"),
-                                      class: _svm._$g("127-" + _si, "c"),
-                                      style: _svm._$g("127-" + _si, "s"),
-                                      attrs: { _i: "127-" + _si },
+                                      staticClass: _svm._$g("129-" + _si, "sc"),
+                                      class: _svm._$g("129-" + _si, "c"),
+                                      style: _svm._$g("129-" + _si, "s"),
+                                      attrs: { _i: "129-" + _si },
                                       on: {
                                         click: function ($event) {
                                           return _vm.$handleViewEvent($event)
                                         },
                                       },
                                     },
-                                    [_vm._v(_svm._$g("127-" + _si, "t0-0"))]
+                                    [_vm._v(_svm._$g("129-" + _si, "t0-0"))]
                                   ),
                                 ]
                               },
@@ -12938,7 +12965,7 @@ var render = function () {
                           ],
                           null,
                           false,
-                          1973980694
+                          3370752024
                         ),
                       }),
                     ],
@@ -12951,7 +12978,7 @@ var render = function () {
         : _vm._e(),
       _c("t-color-picker", {
         ref: "backgroundColorPicker",
-        attrs: { _i: 128 },
+        attrs: { _i: 130 },
         on: {
           confirm: function ($event) {
             return _vm.$handleViewEvent($event)
@@ -13814,7 +13841,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 13);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.t-wrapper[data-v-35600724] {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  box-sizing: border-box;\n  z-index: 9999;\n}\n.t-box[data-v-35600724] {\n  width: 100%;\n  position: absolute;\n  bottom: 0;\n  padding: 30upx 0;\n  padding-top: 0;\n  background: #fff;\n  transition: all 0.3s;\n  -webkit-transform: translateY(100%);\n          transform: translateY(100%);\n  border-top-left-radius: 8px; /* 上方左圆角 */\n  border-top-right-radius: 8px; /* 上方右圆角 */\n}\n.t-box.active[data-v-35600724] {\n  -webkit-transform: translateY(0%);\n          transform: translateY(0%);\n}\n.t-header[data-v-35600724] {\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n  height: 100upx;\n  border-bottom: 1px #eee solid;\n  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.1);\n  background: #fff;\n  border-top-left-radius: 8px; /* 上方左圆角 */\n  border-top-right-radius: 8px; /* 上方右圆角 */\n}\n.t-header-button[data-v-35600724] {\n  display: flex;\n  align-items: center;\n  width: 150upx;\n  height: 100upx;\n  font-size: 30upx;\n  color: #666;\n  padding-left: 20upx;\n}\n.t-header-button[data-v-35600724]:last-child {\n  justify-content: flex-end;\n  padding-right: 20upx;\n}\n.t-mask[data-v-35600724] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.6);\n  z-index: -1;\n  transition: all 0.3s;\n  opacity: 0;\n}\n.t-mask.active[data-v-35600724] {\n  opacity: 1;\n}\n.t-color__box[data-v-35600724] {\n  position: relative;\n  height: 400upx;\n  background: rgb(255, 0, 0);\n  overflow: hidden;\n  box-sizing: border-box;\n  margin: 0 20upx;\n  margin-top: 20upx;\n  box-sizing: border-box;\n  border-radius: 16px;\n}\n.t-background[data-v-35600724] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));\n}\n.t-color-mask[data-v-35600724] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  width: 100%;\n  height: 400upx;\n  background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));\n  border-radius: 16px;\n}\n.t-pointer[data-v-35600724] {\n  position: absolute;\n  bottom: -8px;\n  left: -8px;\n  z-index: 2;\n  width: 15px;\n  height: 15px;\n  border: 1px #fff solid;\n  border-radius: 50%;\n}\n.t-show-color[data-v-35600724] {\n  width: 100upx;\n  height: 50upx;\n}\n.t-control__box[data-v-35600724] {\n  margin-top: 50upx;\n  width: 100%;\n  display: flex;\n  padding-left: 20upx;\n  box-sizing: border-box;\n}\n.t-control__color[data-v-35600724] {\n  flex-shrink: 0;\n  width: 100upx;\n  height: 100upx;\n  border-radius: 50%;\n  background-color: #fff;\n  background-image: linear-gradient(\n      45deg,\n      #eee 25%,\n      transparent 25%,\n      transparent 75%,\n      #eee 75%,\n      #eee\n    ),\n    linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);\n  background-size: 36upx 36upx;\n  background-position:\n    0 0,\n    18upx 18upx;\n  border: 1px #eee solid;\n  overflow: hidden;\n}\n.t-control__color-content[data-v-35600724] {\n  width: 100%;\n  height: 100%;\n}\n.t-control-box__item[data-v-35600724] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0 30upx;\n}\n.t-controller[data-v-35600724] {\n  position: relative;\n  width: 100%;\n  height: 16px;\n  background-color: #fff;\n  background-image: linear-gradient(\n      45deg,\n      #eee 25%,\n      transparent 25%,\n      transparent 75%,\n      #eee 75%,\n      #eee\n    ),\n    linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);\n  background-size: 32upx 32upx;\n  background-position:\n    0 0,\n    16upx 16upx;\n}\n.t-hue[data-v-35600724] {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    to right,\n    #f00 0%,\n    #ff0 17%,\n    #0f0 33%,\n    #0ff 50%,\n    #00f 67%,\n    #f0f 83%,\n    #f00 100%\n  );\n}\n.t-transparency[data-v-35600724] {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0));\n}\n.t-circle[data-v-35600724] {\n  position: absolute;\n  /* right: -10px; */\n  top: -2px;\n  width: 20px;\n  height: 20px;\n  box-sizing: border-box;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);\n}\n.t-result__box[data-v-35600724] {\n  margin-top: 20upx;\n  padding: 10upx;\n  width: 100%;\n  display: flex;\n  box-sizing: border-box;\n}\n.t-result__item[data-v-35600724] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 10upx;\n  width: 100%;\n  box-sizing: border-box;\n}\n.t-result__box-input[data-v-35600724] {\n  padding: 10upx 0;\n  width: 100%;\n  font-size: 28upx;\n  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);\n  color: #999;\n  text-align: center;\n  background: #fff;\n}\n.t-result__box-text[data-v-35600724] {\n  margin-top: 10upx;\n  font-size: 28upx;\n  line-height: 2;\n}\n.t-select[data-v-35600724] {\n  flex-shrink: 0;\n  width: 150upx;\n  padding: 0 30upx;\n}\n.t-select .t-result__box-input[data-v-35600724] {\n  border-radius: 10upx;\n  border: none;\n  color: #999;\n  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.1);\n  background: #fff;\n}\n.t-select .t-result__box-input[data-v-35600724]:active {\n  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1);\n}\n.t-alternative[data-v-35600724] {\n  display: flex;\n  flex-wrap: wrap;\n  /* justify-content: space-between; */\n  width: 100%;\n  padding-right: 10upx;\n  box-sizing: border-box;\n}\n.t-alternative__item[data-v-35600724] {\n  margin-left: 12upx;\n  margin-top: 10upx;\n  width: 50upx;\n  height: 50upx;\n  border-radius: 10upx;\n  background-color: #fff;\n  background-image: linear-gradient(\n      45deg,\n      #eee 25%,\n      transparent 25%,\n      transparent 75%,\n      #eee 75%,\n      #eee\n    ),\n    linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);\n  background-size: 36upx 36upx;\n  background-position:\n    0 0,\n    18upx 18upx;\n  border: 1px #eee solid;\n  overflow: hidden;\n}\n.t-alternative__item-content[data-v-35600724] {\n  width: 50upx;\n  height: 50upx;\n  background: rgba(255, 0, 0, 0.5);\n}\n.t-alternative__item[data-v-35600724]:active {\n  transition: all 0.3s;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n", ""]);
+exports.push([module.i, "\n.t-wrapper[data-v-35600724] {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  box-sizing: border-box;\n  z-index: 9999;\n}\n.t-box[data-v-35600724] {\n  width: 100%;\n  position: absolute;\n  bottom: 0;\n  padding: 30upx 0;\n  padding-top: 0;\n  background: #fff;\n  transition: all 0.3s;\n  -webkit-transform: translateY(100%);\n          transform: translateY(100%);\n  border-top-left-radius: 8px; /* 上方左圆角 */\n  border-top-right-radius: 8px; /* 上方右圆角 */\n}\n.t-box.active[data-v-35600724] {\n  -webkit-transform: translateY(0%);\n          transform: translateY(0%);\n}\n.t-header[data-v-35600724] {\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n  height: 100upx;\n  border-bottom: 1px #eee solid;\n  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.1);\n  background: #fff;\n  border-top-left-radius: 8px; /* 上方左圆角 */\n  border-top-right-radius: 8px; /* 上方右圆角 */\n}\n.t-header-button[data-v-35600724] {\n  display: flex;\n  align-items: center;\n  width: 150upx;\n  height: 100upx;\n  font-size: 30upx;\n  color: #666;\n  padding-left: 20upx;\n}\n.t-header-button[data-v-35600724]:last-child {\n  justify-content: flex-end;\n  padding-right: 20upx;\n}\n.t-mask[data-v-35600724] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.6);\n  z-index: -1;\n  transition: all 0.3s;\n  opacity: 0;\n}\n.t-mask.active[data-v-35600724] {\n  opacity: 1;\n}\n.t-color__box[data-v-35600724] {\n  position: relative;\n  height: 400upx;\n  background: rgb(255, 0, 0);\n  overflow: hidden;\n  box-sizing: border-box;\n  margin: 0 20upx;\n  margin-top: 20upx;\n  box-sizing: border-box;\n  border-radius: 8px;\n}\n.t-background[data-v-35600724] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));\n}\n.t-color-mask[data-v-35600724] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  width: 100%;\n  height: 400upx;\n  background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));\n  border-radius: 8px;\n}\n.t-pointer[data-v-35600724] {\n  position: absolute;\n  bottom: -8px;\n  left: -8px;\n  z-index: 2;\n  width: 15px;\n  height: 15px;\n  border: 1px #fff solid;\n  border-radius: 50%;\n}\n.t-show-color[data-v-35600724] {\n  width: 100upx;\n  height: 50upx;\n}\n.t-control__box[data-v-35600724] {\n  margin-top: 50upx;\n  width: 100%;\n  display: flex;\n  padding-left: 20upx;\n  box-sizing: border-box;\n}\n.t-control__color[data-v-35600724] {\n  flex-shrink: 0;\n  width: 100upx;\n  height: 100upx;\n  border-radius: 50%;\n  background-color: #fff;\n  background-image: linear-gradient(\n      45deg,\n      #eee 25%,\n      transparent 25%,\n      transparent 75%,\n      #eee 75%,\n      #eee\n    ),\n    linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);\n  background-size: 36upx 36upx;\n  background-position:\n    0 0,\n    18upx 18upx;\n  border: 1px #eee solid;\n  overflow: hidden;\n}\n.t-control__color-content[data-v-35600724] {\n  width: 100%;\n  height: 100%;\n}\n.t-control-box__item[data-v-35600724] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0 30upx;\n}\n.t-controller[data-v-35600724] {\n  position: relative;\n  width: 100%;\n  height: 16px;\n  background-color: #fff;\n  background-image: linear-gradient(\n      45deg,\n      #eee 25%,\n      transparent 25%,\n      transparent 75%,\n      #eee 75%,\n      #eee\n    ),\n    linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);\n  background-size: 32upx 32upx;\n  background-position:\n    0 0,\n    16upx 16upx;\n}\n.t-hue[data-v-35600724] {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    to right,\n    #f00 0%,\n    #ff0 17%,\n    #0f0 33%,\n    #0ff 50%,\n    #00f 67%,\n    #f0f 83%,\n    #f00 100%\n  );\n}\n.t-transparency[data-v-35600724] {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0));\n}\n.t-circle[data-v-35600724] {\n  position: absolute;\n  /* right: -10px; */\n  top: -2px;\n  width: 20px;\n  height: 20px;\n  box-sizing: border-box;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);\n}\n.t-result__box[data-v-35600724] {\n  margin-top: 20upx;\n  padding: 10upx;\n  width: 100%;\n  display: flex;\n  box-sizing: border-box;\n}\n.t-result__item[data-v-35600724] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 10upx;\n  width: 100%;\n  box-sizing: border-box;\n}\n.t-result__box-input[data-v-35600724] {\n  padding: 10upx 0;\n  width: 100%;\n  font-size: 28upx;\n  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);\n  color: #999;\n  text-align: center;\n  background: #fff;\n}\n.t-result__box-text[data-v-35600724] {\n  margin-top: 10upx;\n  font-size: 28upx;\n  line-height: 2;\n}\n.t-select[data-v-35600724] {\n  flex-shrink: 0;\n  width: 150upx;\n  padding: 0 30upx;\n}\n.t-select .t-result__box-input[data-v-35600724] {\n  border-radius: 10upx;\n  border: none;\n  color: #999;\n  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.1);\n  background: #fff;\n}\n.t-select .t-result__box-input[data-v-35600724]:active {\n  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1);\n}\n.t-alternative[data-v-35600724] {\n  display: flex;\n  flex-wrap: wrap;\n  /* justify-content: space-between; */\n  width: 100%;\n  padding-right: 10upx;\n  box-sizing: border-box;\n}\n.t-alternative__item[data-v-35600724] {\n  margin-left: 12upx;\n  margin-top: 10upx;\n  width: 50upx;\n  height: 50upx;\n  border-radius: 10upx;\n  background-color: #fff;\n  background-image: linear-gradient(\n      45deg,\n      #eee 25%,\n      transparent 25%,\n      transparent 75%,\n      #eee 75%,\n      #eee\n    ),\n    linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);\n  background-size: 36upx 36upx;\n  background-position:\n    0 0,\n    18upx 18upx;\n  border: 1px #eee solid;\n  overflow: hidden;\n}\n.t-alternative__item-content[data-v-35600724] {\n  width: 50upx;\n  height: 50upx;\n  background: rgba(255, 0, 0, 0.5);\n}\n.t-alternative__item[data-v-35600724]:active {\n  transition: all 0.3s;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -20264,14 +20291,14 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 13);
 var ___CSS_LOADER_GET_URL_IMPORT___ = __webpack_require__(/*! ../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/lib/app-plus/getUrl.js */ 339);
 var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! @/static/fonts/FangZhengKaiTi-GBK-1.ttf */ 488);
-var ___CSS_LOADER_URL_IMPORT_1___ = __webpack_require__(/*! @/static/fonts/仓耳今楷05-W05.ttf */ 489);
-var ___CSS_LOADER_URL_IMPORT_2___ = __webpack_require__(/*! @/static/fonts/仓耳今楷04-W03.ttf */ 490);
+var ___CSS_LOADER_URL_IMPORT_1___ = __webpack_require__(/*! @/static/fonts/CangErJinKai-05-W05.ttf */ 489);
+var ___CSS_LOADER_URL_IMPORT_2___ = __webpack_require__(/*! @/static/fonts/HanYiKaiTiJian-1.ttf */ 490);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_1___);
 var ___CSS_LOADER_URL_REPLACEMENT_2___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_2___);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* uview-ui的主体样式 */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\r\n/* 注意要写在第一行，同时给style标签加入lang=\"scss\"属性 */\n@font-face {\r\n  font-family: 'FangZhengKaiTi-GBK-1';\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  font-weight: normal;\r\n  font-style: normal;\n}\n@font-face {\r\n  font-family: '仓耳今楷05-W05';\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\r\n  font-weight: normal;\r\n  font-style: normal;\n}\n@font-face {\r\n  font-family: '仓耳今楷04-W03';\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\r\n  font-weight: normal;\r\n  font-style: normal;\n}\n.fontFamily0 {\r\n  font-family: sans-serif;\n}\n.fontFamily1 {\r\n  font-family: 'FangZhengKaiTi-GBK-1', sans-serif;\n}\n.fontFamily2 {\r\n  font-family: '仓耳今楷04-W03', sans-serif;\n}\n.fontFamily3 {\r\n  font-family: '仓耳今楷05-W05', sans-serif;\n}\n.u-line-1 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 1;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-line-2 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 2;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-line-3 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 3;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-line-4 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 4;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-line-5 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 5;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-border {\r\n  border-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-style: solid;\n}\n.u-border-top {\r\n  border-top-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-top-style: solid;\n}\n.u-border-left {\r\n  border-left-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-left-style: solid;\n}\n.u-border-right {\r\n  border-right-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-right-style: solid;\n}\n.u-border-bottom {\r\n  border-bottom-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-bottom-style: solid;\n}\n.u-border-top-bottom {\r\n  border-top-width: 0.5px !important;\r\n  border-bottom-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-top-style: solid;\r\n  border-bottom-style: solid;\n}\n.u-reset-button {\r\n  padding: 0;\r\n  background-color: transparent;\n}\n.u-reset-button::after {\r\n  border: none;\n}\n.u-hover-class {\r\n  opacity: 0.7;\n}\n.u-primary-light {\r\n  color: #ecf5ff;\n}\n.u-warning-light {\r\n  color: #fdf6ec;\n}\n.u-success-light {\r\n  color: #f5fff0;\n}\n.u-error-light {\r\n  color: #fef0f0;\n}\n.u-info-light {\r\n  color: #f4f4f5;\n}\n.u-primary-light-bg {\r\n  background-color: #ecf5ff;\n}\n.u-warning-light-bg {\r\n  background-color: #fdf6ec;\n}\n.u-success-light-bg {\r\n  background-color: #f5fff0;\n}\n.u-error-light-bg {\r\n  background-color: #fef0f0;\n}\n.u-info-light-bg {\r\n  background-color: #f4f4f5;\n}\n.u-primary-dark {\r\n  color: #398ade;\n}\n.u-warning-dark {\r\n  color: #f1a532;\n}\n.u-success-dark {\r\n  color: #53c21d;\n}\n.u-error-dark {\r\n  color: #e45656;\n}\n.u-info-dark {\r\n  color: #767a82;\n}\n.u-primary-dark-bg {\r\n  background-color: #398ade;\n}\n.u-warning-dark-bg {\r\n  background-color: #f1a532;\n}\n.u-success-dark-bg {\r\n  background-color: #53c21d;\n}\n.u-error-dark-bg {\r\n  background-color: #e45656;\n}\n.u-info-dark-bg {\r\n  background-color: #767a82;\n}\n.u-primary-disabled {\r\n  color: #9acafc;\n}\n.u-warning-disabled {\r\n  color: #f9d39b;\n}\n.u-success-disabled {\r\n  color: #a9e08f;\n}\n.u-error-disabled {\r\n  color: #f7b2b2;\n}\n.u-info-disabled {\r\n  color: #c4c6c9;\n}\n.u-primary {\r\n  color: #3c9cff;\n}\n.u-warning {\r\n  color: #f9ae3d;\n}\n.u-success {\r\n  color: #5ac725;\n}\n.u-error {\r\n  color: #f56c6c;\n}\n.u-info {\r\n  color: #909399;\n}\n.u-primary-bg {\r\n  background-color: #3c9cff;\n}\n.u-warning-bg {\r\n  background-color: #f9ae3d;\n}\n.u-success-bg {\r\n  background-color: #5ac725;\n}\n.u-error-bg {\r\n  background-color: #f56c6c;\n}\n.u-info-bg {\r\n  background-color: #909399;\n}\n.u-main-color {\r\n  color: #303133;\n}\n.u-content-color {\r\n  color: #606266;\n}\n.u-tips-color {\r\n  color: #909193;\n}\n.u-light-color {\r\n  color: #c0c4cc;\n}\n.u-safe-area-inset-top {\r\n  padding-top: 0;\r\n  padding-top: constant(safe-area-inset-top);\r\n  padding-top: env(safe-area-inset-top);\n}\n.u-safe-area-inset-right {\r\n  padding-right: 0;\r\n  padding-right: constant(safe-area-inset-right);\r\n  padding-right: env(safe-area-inset-right);\n}\n.u-safe-area-inset-bottom {\r\n  padding-bottom: 0;\r\n  padding-bottom: constant(safe-area-inset-bottom);\r\n  padding-bottom: env(safe-area-inset-bottom);\n}\n.u-safe-area-inset-left {\r\n  padding-left: 0;\r\n  padding-left: constant(safe-area-inset-left);\r\n  padding-left: env(safe-area-inset-left);\n}\n::-webkit-scrollbar {\r\n  display: none;\r\n  width: 0 !important;\r\n  height: 0 !important;\r\n  -webkit-appearance: none;\r\n  background: transparent;\n}\r\n/* 每个页面公共css */\nuni-view {\r\n  box-sizing: border-box;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* uview-ui的主体样式 */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\r\n/* 注意要写在第一行，同时给style标签加入lang=\"scss\"属性 */\n@font-face {\r\n  font-family: 'FangZhengKaiTi-GBK-1';\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  font-weight: normal;\r\n  font-style: normal;\n}\n@font-face {\r\n  font-family: '仓耳今楷05-W05';\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\r\n  font-weight: normal;\r\n  font-style: normal;\n}\n@font-face {\r\n  font-family: '汉仪楷体';\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\r\n  font-weight: normal;\r\n  font-style: normal;\n}\n.fontFamily0 {\r\n  font-family: sans-serif;\n}\n.fontFamily1 {\r\n  font-family: 'FangZhengKaiTi-GBK-1', sans-serif;\n}\n.fontFamily2 {\r\n  font-family: '汉仪楷体', sans-serif;\n}\n.fontFamily3 {\r\n  font-family: '仓耳今楷05-W05', sans-serif;\n}\n.u-line-1 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 1;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-line-2 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 2;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-line-3 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 3;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-line-4 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 4;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-line-5 {\r\n  display: -webkit-box !important;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  word-break: break-all;\r\n  -webkit-line-clamp: 5;\r\n  -webkit-box-orient: vertical !important;\n}\n.u-border {\r\n  border-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-style: solid;\n}\n.u-border-top {\r\n  border-top-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-top-style: solid;\n}\n.u-border-left {\r\n  border-left-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-left-style: solid;\n}\n.u-border-right {\r\n  border-right-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-right-style: solid;\n}\n.u-border-bottom {\r\n  border-bottom-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-bottom-style: solid;\n}\n.u-border-top-bottom {\r\n  border-top-width: 0.5px !important;\r\n  border-bottom-width: 0.5px !important;\r\n  border-color: #dadbde !important;\r\n  border-top-style: solid;\r\n  border-bottom-style: solid;\n}\n.u-reset-button {\r\n  padding: 0;\r\n  background-color: transparent;\n}\n.u-reset-button::after {\r\n  border: none;\n}\n.u-hover-class {\r\n  opacity: 0.7;\n}\n.u-primary-light {\r\n  color: #ecf5ff;\n}\n.u-warning-light {\r\n  color: #fdf6ec;\n}\n.u-success-light {\r\n  color: #f5fff0;\n}\n.u-error-light {\r\n  color: #fef0f0;\n}\n.u-info-light {\r\n  color: #f4f4f5;\n}\n.u-primary-light-bg {\r\n  background-color: #ecf5ff;\n}\n.u-warning-light-bg {\r\n  background-color: #fdf6ec;\n}\n.u-success-light-bg {\r\n  background-color: #f5fff0;\n}\n.u-error-light-bg {\r\n  background-color: #fef0f0;\n}\n.u-info-light-bg {\r\n  background-color: #f4f4f5;\n}\n.u-primary-dark {\r\n  color: #398ade;\n}\n.u-warning-dark {\r\n  color: #f1a532;\n}\n.u-success-dark {\r\n  color: #53c21d;\n}\n.u-error-dark {\r\n  color: #e45656;\n}\n.u-info-dark {\r\n  color: #767a82;\n}\n.u-primary-dark-bg {\r\n  background-color: #398ade;\n}\n.u-warning-dark-bg {\r\n  background-color: #f1a532;\n}\n.u-success-dark-bg {\r\n  background-color: #53c21d;\n}\n.u-error-dark-bg {\r\n  background-color: #e45656;\n}\n.u-info-dark-bg {\r\n  background-color: #767a82;\n}\n.u-primary-disabled {\r\n  color: #9acafc;\n}\n.u-warning-disabled {\r\n  color: #f9d39b;\n}\n.u-success-disabled {\r\n  color: #a9e08f;\n}\n.u-error-disabled {\r\n  color: #f7b2b2;\n}\n.u-info-disabled {\r\n  color: #c4c6c9;\n}\n.u-primary {\r\n  color: #3c9cff;\n}\n.u-warning {\r\n  color: #f9ae3d;\n}\n.u-success {\r\n  color: #5ac725;\n}\n.u-error {\r\n  color: #f56c6c;\n}\n.u-info {\r\n  color: #909399;\n}\n.u-primary-bg {\r\n  background-color: #3c9cff;\n}\n.u-warning-bg {\r\n  background-color: #f9ae3d;\n}\n.u-success-bg {\r\n  background-color: #5ac725;\n}\n.u-error-bg {\r\n  background-color: #f56c6c;\n}\n.u-info-bg {\r\n  background-color: #909399;\n}\n.u-main-color {\r\n  color: #303133;\n}\n.u-content-color {\r\n  color: #606266;\n}\n.u-tips-color {\r\n  color: #909193;\n}\n.u-light-color {\r\n  color: #c0c4cc;\n}\n.u-safe-area-inset-top {\r\n  padding-top: 0;\r\n  padding-top: constant(safe-area-inset-top);\r\n  padding-top: env(safe-area-inset-top);\n}\n.u-safe-area-inset-right {\r\n  padding-right: 0;\r\n  padding-right: constant(safe-area-inset-right);\r\n  padding-right: env(safe-area-inset-right);\n}\n.u-safe-area-inset-bottom {\r\n  padding-bottom: 0;\r\n  padding-bottom: constant(safe-area-inset-bottom);\r\n  padding-bottom: env(safe-area-inset-bottom);\n}\n.u-safe-area-inset-left {\r\n  padding-left: 0;\r\n  padding-left: constant(safe-area-inset-left);\r\n  padding-left: env(safe-area-inset-left);\n}\n::-webkit-scrollbar {\r\n  display: none;\r\n  width: 0 !important;\r\n  height: 0 !important;\r\n  -webkit-appearance: none;\r\n  background: transparent;\n}\r\n/* 每个页面公共css */\nuni-view {\r\n  box-sizing: border-box;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -20288,23 +20315,23 @@ module.exports = __webpack_require__.p + "static/fonts/FangZhengKaiTi-GBK-1.ttf"
 
 /***/ }),
 /* 489 */
-/*!**********************************************************************!*\
-  !*** D:/HBuilderX.3.8.7.20230703/xxRead/static/fonts/仓耳今楷05-W05.ttf ***!
-  \**********************************************************************/
+/*!*******************************************************************************!*\
+  !*** D:/HBuilderX.3.8.7.20230703/xxRead/static/fonts/CangErJinKai-05-W05.ttf ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "static/fonts/仓耳今楷05-W05.ttf";
+module.exports = __webpack_require__.p + "static/fonts/CangErJinKai-05-W05.ttf";
 
 /***/ }),
 /* 490 */
-/*!**********************************************************************!*\
-  !*** D:/HBuilderX.3.8.7.20230703/xxRead/static/fonts/仓耳今楷04-W03.ttf ***!
-  \**********************************************************************/
+/*!****************************************************************************!*\
+  !*** D:/HBuilderX.3.8.7.20230703/xxRead/static/fonts/HanYiKaiTiJian-1.ttf ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "static/fonts/仓耳今楷04-W03.ttf";
+module.exports = __webpack_require__.p + "static/fonts/HanYiKaiTiJian-1.ttf";
 
 /***/ }),
 /* 491 */
