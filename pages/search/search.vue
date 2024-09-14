@@ -425,7 +425,7 @@ export default {
 .search-select {
   position: fixed;
   width: 300rpx;
-  top: 160rpx;
+  top: 80px;
   right: 8px;
   padding: 20rpx 30rpx;
   background-color: #fff;
@@ -440,7 +440,7 @@ export default {
   transform: translateY(-10%);
   //transition: transform 0.3s ease, opacity 0.3s ease;
   /* 应用动画 */
-  animation: fadeInFromTop 0.5s forwards;
+  animation: fadeInFromTop 0.3s forwards;
   /* 清除过渡效果*/
   transition: none;
 }

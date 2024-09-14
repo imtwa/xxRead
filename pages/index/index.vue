@@ -3,9 +3,11 @@
     <!-- 导航栏 -->
     <view class="bar">
       <view class="uni-bar">
-        <view @click="toVisList" style="padding-top: 4px">
-          <u-icon name="list-dot" size="28px" v-if="visList"></u-icon>
-          <u-icon name="grid-fill" size="28px" v-if="!visList"></u-icon>
+        <view class="flex">
+          <view @click="toVisList" style="padding-top: 4px">
+            <u-icon name="list-dot" size="28px" v-if="visList"></u-icon>
+            <u-icon name="grid-fill" size="28px" v-if="!visList"></u-icon>
+          </view>
         </view>
 
         <view class="uni-title">
@@ -13,9 +15,39 @@
           <spen style="font-size: 14px">（共 {{ bookShelf.length }} 本）</spen>
         </view>
 
-        <navigator url="../search/search" hover-stay-time="0">
-          <icon type="search" color="#2f2f2f"></icon>
-        </navigator>
+        <view class="icon">
+          <navigator url="../search/search" hover-stay-time="0">
+            <icon type="search" color="#2f2f2f"></icon>
+          </navigator>
+          <view
+            style="
+              width: 50rpx;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-left: 25rpx;
+              margin-top: 5px;
+            "
+          >
+            <u-icon name="more-dot-fill" color="#000" size="23" style="transform: rotate(90deg)">
+            </u-icon>
+          </view>
+        </view>
+      </view>
+
+      <view class="index-menu" v-show="!visMenu">
+        <view class="item">
+          <view class="item-left">
+            <u-icon name="reload" bold size="18"></u-icon>
+          </view>
+          <view class="item-right">刷新目录</view>
+        </view>
+        <view class="item">
+          <view class="item-left">
+            <u-icon name="plus-circle" bold size="16"></u-icon>
+          </view>
+          <view class="item-right">本地导入</view>
+        </view>
       </view>
     </view>
 
@@ -23,7 +55,7 @@
       <u-empty mode="data" text="暂无书籍"> </u-empty>
     </view>
     <view class="yesbook">
-      <view v-if="visList">
+      <view v-show="visList">
         <!-- 左滑组件 -->
         <uni-swipe-action-item
           v-for="(item, index) in bookShelf"
@@ -54,7 +86,7 @@
           </view>
         </uni-swipe-action-item>
       </view>
-      <view v-else class="book-container">
+      <view v-show="!visList" class="book-container">
         <view
           v-for="(item, index) in bookShelf"
           :key="item.bookurl"
@@ -139,6 +171,8 @@ export default {
       visnobook: false,
       //是否显示底部弹窗
       vispopup: false,
+      //是否显示菜单
+      visMenu:false,
       //在哪本书打开的弹窗
       spbook: {},
       //在书架中的索引
@@ -500,7 +534,7 @@ export default {
       try {
         // console.log(spbook)
         const fileName = spbook.bookname.trim() + '.txt'
-        console.log(fileName)
+        // console.log(fileName)
         const key = 'bookall' + spbook.bookurl
         // 使用同步读取
         const bookTxt = uni.getStorageSync(key)
@@ -650,6 +684,62 @@ export default {
       color: #2f2f2f;
       // font-weight: bold;
     }
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.index-menu {
+  position: fixed;
+  width: 300rpx;
+  top: 80px;
+  right: 8px;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  border: 1px solid rgba(239, 239, 239, 0.8);
+  /* 添加左下方扩散阴影 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 确保元素在其他内容之上 */
+  z-index: 9999;
+  /* 初始状态，假设是隐藏的，从上方偏移 */
+  opacity: 0;
+  transform: translateY(-10%);
+  //transition: transform 0.3s ease, opacity 0.3s ease;
+  /* 应用动画 */
+  animation: fadeInFromTop 0.3s forwards;
+  /* 清除过渡效果*/
+  transition: none;
+  .item {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    height: 48px;
+    .item-left {
+      // width: 10%;
+      margin-right: 8px;
+      margin-top: 2px;
+    }
+    .item-right {
+      font-size: 16px;
+      color: #333;
+    }
+  }
+}
+
+/* 动画关键帧 */
+@keyframes fadeInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
