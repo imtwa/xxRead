@@ -98,6 +98,12 @@
     "title": "h5",
     "devServer": {
       "proxy": {
+        "/imtwa": {
+          "target": "http://blog.imtwa.top",
+          "pathRewrite": {
+            "^/imtwa": ""
+          }
+        },
         "/paoshu8": {
           "target": "http://www.paoshu8.info",
           "pathRewrite": {

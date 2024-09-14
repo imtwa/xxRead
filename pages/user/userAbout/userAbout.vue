@@ -25,7 +25,7 @@
       <view class="bottom">
         <!-- 下部内容 -->
         <view
-          v-for="(item, index) in items.slice().reverse()"
+          v-for="(item, index) in getItems"
           :key="index"
           :class="['view_tupian_wenzi', { view_active: item.title === version }]"
         >
@@ -43,12 +43,14 @@
 <script>
 //引入HTML 文本解析器
 import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
+import update from '@/api/update.js'
 
 export default {
   data() {
     return {
       name: 'xx阅读',
       version: '1.0.0',
+      getItems: [],
       items: [
         {
           title: '1.0.0',
@@ -135,7 +137,8 @@ export default {
     // console.log(accountInfo);
     this.name = accountInfo.appName
     this.version = accountInfo.appWgtVersion
-
+    this.getItems.splice(0)
+    this.getItems.push(...this.items.reverse())
     this.getUp()
   },
   methods: {
@@ -145,40 +148,36 @@ export default {
       plus.runtime.openURL(url)
       // #endif
     },
-    getUp() {
-      uni.request({
-        url: 'https://blog.dotcpp.com/a/98412',
-        success: res => {
-          const doc = new HTMLParser(res.data.toString().trim())
-          // 获取更新信息
-          const intro = new HTMLParser(doc.getElementsByClassName('ueditor_container')[0].innerHTML)
-          const newversion = intro.getElementsByTagName('p')[0].innerHTML.replace('<br/>', '')
-          const title = intro.getElementsByTagName('p')[1].innerHTML.replace('<br/>', '')
-          // console.log(newversion);
-          // console.log(title)
-          if (this.version != newversion) {
-            const data =
-              '百度网盘链接：https://pan.baidu.com/s/19SJYyOaue5YBnQtcRKpG9g?pwd=data 提取码：data'
-            uni.setClipboardData({
-              data: data,
-              showToast: false,
-              success: function () {
-                console.log('剪切板设置success')
-                uni.showToast({
-                  icon: 'none',
-                  duration: 3500,
-                  title:
-                    '发现新版本' +
-                    newversion +
-                    '~\n下载链接已复制到剪切板，快去更新吧~\n' +
-                    '新版本更新：' +
-                    title
-                })
-              }
-            })
-          }
+    async getUp() {
+      const res = await update.getUpdate()
+      if (res !== '') {
+        this.getItems.splice(0) // 清空数组
+        this.getItems.push(...res)
+        if (this.version != res[0].newversion) {
+          const data =
+            '百度网盘链接：https://pan.baidu.com/s/19SJYyOaue5YBnQtcRKpG9g?pwd=data 提取码：data'
+          uni.setClipboardData({
+            data: data,
+            showToast: false,
+            success: function () {
+              console.log('剪切板设置success')
+              uni.showToast({
+                icon: 'none',
+                duration: 3500,
+                title:
+                  '发现新版本' +
+                  newversion +
+                  '~\n下载链接已复制到剪切板，快去更新吧~\n' +
+                  '新版本更新：' +
+                  title
+              })
+            }
+          })
         }
-      })
+      } else {
+        this.getItems.splice(0)
+        this.getItems.push(...this.items.reverse())
+      }
     }
   }
 }

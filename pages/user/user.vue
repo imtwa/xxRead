@@ -71,6 +71,7 @@
 import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
 // 在组件中引入辅助函数
 import { mapState } from 'vuex'
+import update from '@/api/update.js'
 
 export default {
   data() {
@@ -94,25 +95,17 @@ export default {
         url: `/pages/image/image?imgsrc=${this.userInfo.avatarUrl}`
       })
     },
-    getUp() {
+    async getUp() {
       const accountInfo = uni.getSystemInfoSync()
       const version = accountInfo.appWgtVersion
-      uni.request({
-        url: 'https://blog.dotcpp.com/a/98412',
-        success: res => {
-          const doc = new HTMLParser(res.data.toString().trim())
-          // 获取更新信息
-          const intro = new HTMLParser(doc.getElementsByClassName('ueditor_container')[0].innerHTML)
-          const newversion = intro.getElementsByTagName('p')[0].innerHTML.replace('<br/>', '')
-          const title = intro.getElementsByTagName('p')[1].innerHTML.replace('<br/>', '')
-          // console.log(newversion);
-          // console.log(title)
-          if (version != newversion) {
-            console.log('更新了')
-            this.visUp = true
-          }
+      const res = await update.getUpdate()
+      if (res !== '') {
+        // console.log(res);
+        if (version !== res[0].newversion) {
+          console.log('更新了')
+          this.visUp = true
         }
-      })
+      }
     },
     goUserUp() {
       uni.navigateTo({

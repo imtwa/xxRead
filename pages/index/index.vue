@@ -35,7 +35,7 @@
         </view>
       </view>
 
-      <view class="index-menu" v-show="!visMenu">
+      <view class="index-menu" v-show="visMenu">
         <view class="item">
           <view class="item-left">
             <u-icon name="reload" bold size="18"></u-icon>
@@ -172,7 +172,7 @@ export default {
       //是否显示底部弹窗
       vispopup: false,
       //是否显示菜单
-      visMenu:false,
+      visMenu: false,
       //在哪本书打开的弹窗
       spbook: {},
       //在书架中的索引
