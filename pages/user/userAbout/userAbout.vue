@@ -37,19 +37,28 @@
         </view>
       </view>
     </view>
+    <!-- 更新弹窗 -->
+    <u-popup :show="vispopup" :round="10" mode="center" @close="popupclose" @open="popupopen">
+      <UserUpdate></UserUpdate>
+    </u-popup>
   </view>
 </template>
 
 <script>
 //引入HTML 文本解析器
 import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
+import UserUpdate from './components/userUpdate.vue'
 import update from '@/api/update.js'
 
 export default {
+  components: {
+    UserUpdate
+  },
   data() {
     return {
       name: 'xx阅读',
       version: '1.0.0',
+      vispopup: true,
       getItems: [],
       items: [
         {
@@ -147,6 +156,15 @@ export default {
       //跳转到浏览器
       plus.runtime.openURL(url)
       // #endif
+    },
+    //关闭菜单弹窗
+    popupclose() {
+      this.vispopup = false
+      console.log('菜单弹窗关闭啦')
+    },
+    //打开了菜单弹窗
+    popupopen() {
+      console.log('菜单弹窗打开啦')
     },
     async getUp() {
       const res = await update.getUpdate()
