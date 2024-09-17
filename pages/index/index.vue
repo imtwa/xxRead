@@ -29,7 +29,13 @@
               margin-top: 5px;
             "
           >
-            <u-icon name="more-dot-fill" color="#000" size="23" style="transform: rotate(90deg)">
+            <u-icon
+              name="more-dot-fill"
+              color="#000"
+              size="23"
+              style="transform: rotate(90deg)"
+              @click="visMenu = !visMenu"
+            >
             </u-icon>
           </view>
         </view>
@@ -42,7 +48,7 @@
           </view>
           <view class="item-right">刷新目录</view>
         </view>
-        <view class="item">
+        <view class="item" @click="openFile">
           <view class="item-left">
             <u-icon name="plus-circle" bold size="16"></u-icon>
           </view>
@@ -241,6 +247,221 @@ export default {
   },
 
   methods: {
+    resultPath(e) {
+      console.log(e)
+
+      // 使用plus.io模块的resolveLocalFileSystemURL方法来获取文件系统中的文件
+      plus.io.resolveLocalFileSystemURL(
+        e,
+        function (entry) {
+          // 成功获取文件入口对象后，读取文件
+          entry.file(
+            function (file) {
+              var fileReader = new plus.io.FileReader()
+
+              fileReader.onload = function (e) {
+                // 读取文件成功，e.target.result就是文件内容
+                var text = e.target.result
+                console.log(text)
+                // 这里可以对文本进行处理，比如显示在页面上
+              }
+
+              fileReader.onerror = function (e) {
+                // 读取文件失败
+                console.error('Failed to read file:', e)
+              }
+
+              // 以文本方式读取文件
+              fileReader.readAsText(file, 'utf-8')
+            },
+            function (e) {
+              // 获取文件失败
+              console.error('Failed to get file:', e)
+            }
+          )
+        },
+        function (e) {
+          // 解析文件路径失败
+          console.error('Failed to resolve file URL:', e)
+        }
+      )
+    },
+
+    /**
+     * 打开文件选择器，允许用户选择文件。
+     * 该方法仅在Android平台上有效。
+     *
+     * @description
+     * 1. 检查当前平台是否为Android，如果不是则提示用户并返回。
+     * 2. 使用Android原生API启动一个Intent，允许用户选择特定类型的文件。
+     * 3. 通过Intent回调获取用户选择的文件Uri。
+     * 4. 根据Android版本解析Uri以获取文件的绝对路径。
+     * 5. 将获取到的文件路径通过回调传递出去。
+     *
+     * @param {none}
+     *
+     * @returns {Boolean} 如果平台不是Android，则返回false；否则无返回值。
+     */
+    openFile() {
+      // #ifdef APP-PLUS
+      if (plus.os.name.toLowerCase() != 'android') {
+        uni.showModal({
+          title: '提示',
+          content: '仅支持Android平台',
+          success: function (res) {}
+        })
+        return false
+      }
+      let that = this
+      // java 代码来自 http://www.cnblogs.com/panhouye/archive/2017/04/23/6751710.html
+      let main = plus.android.runtimeMainActivity()
+      let Intent = plus.android.importClass('android.content.Intent')
+
+      //
+      let fileIntent = new Intent(Intent.ACTION_GET_CONTENT)
+      //fileIntent.setType(“image/*”);//选择图片
+      //fileIntent.setType(“audio/*”); //选择音频
+      //fileIntent.setType(“video/*”); //选择视频 （mp4 3gp 是android支持的视频格式）
+      //fileIntent.setType(“video/*;image/*”);//同时选择视频和图片
+      // fileIntent.setType("*/*"); //无类型限制
+      fileIntent.setType('txt/*') //txt类型
+      fileIntent.addCategory(Intent.CATEGORY_OPENABLE)
+      main.startActivityForResult(fileIntent, 1)
+      // 获取回调
+      main.onActivityResult = function (requestCode, resultCode, data) {
+        let Activity = plus.android.importClass('android.app.Activity')
+        let ContentUris = plus.android.importClass('android.content.ContentUris')
+        let Cursor = plus.android.importClass('android.database.Cursor')
+        let Uri = plus.android.importClass('android.net.Uri')
+        let Build = plus.android.importClass('android.os.Build')
+        let Environment = plus.android.importClass('android.os.Environment')
+        let DocumentsContract = plus.android.importClass('android.provider.DocumentsContract')
+        let MediaStore = plus.android.importClass('android.provider.MediaStore')
+        // 给系统导入 contentResolver
+        let contentResolver = main.getContentResolver()
+        plus.android.importClass(contentResolver)
+        // 返回路径
+        let path = ''
+        if (resultCode == Activity.RESULT_OK) {
+          let uri = data.getData()
+          if ('file' == uri.getScheme().toLowerCase()) {
+            //使用第三方应用打开
+            path = uri.getPath()
+            return
+          }
+          if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            //4.4以后
+            path = getPath(this, uri)
+          } else {
+            //4.4以下下系统调用方法
+            path = getRealPathFromURI(uri)
+          }
+          // 回调
+          that.resultPath(path)
+          return path
+          // that.$emit('result', path)
+        }
+        // 4.4 以上 从Uri 获取文件绝对路径
+        function getPath(context, uri) {
+          let isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
+          let scheme = uri.getScheme().toLowerCase()
+          if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            // ExternalStorageProvider
+            if (isExternalStorageDocument(uri)) {
+              let docId = DocumentsContract.getDocumentId(uri)
+              let split = docId.split(':')
+              let type = split[0]
+              // 如果是手机内部存储
+              if ('primary' == type.toLowerCase()) {
+                return Environment.getExternalStorageDirectory() + '/' + split[1]
+              } else {
+                return '/storage/' + type + '/' + split[1]
+              }
+            }
+            // DownloadsProvider
+            else if (isDownloadsDocument(uri)) {
+              let id = DocumentsContract.getDocumentId(uri)
+              let split = id.split(':')
+              return split[1]
+              // console.log(id)
+              // let contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), id);
+              // return getDataColumn(context, contentUri, null, null);
+            }
+            // MediaProvider
+            else if (isMediaDocument(uri)) {
+              let docId = DocumentsContract.getDocumentId(uri)
+              let split = docId.split(':')
+              let type = split[0]
+              let contentUri = null
+              if ('image' == type.toLowerCase()) {
+                contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+              } else if ('video' == type.toLowerCase()) {
+                contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+              } else if ('audio' == type.toLowerCase()) {
+                contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+              }
+              let selection = '_id=?'
+              let selectionArgs = [split[1]]
+              return getDataColumn(context, contentUri, selection, selectionArgs)
+            }
+          }
+          // MediaStore (and general)
+          else if ('content' == scheme) {
+            return getDataColumn(context, uri, null, null)
+          }
+          // File
+          else if ('file' == scheme) {
+            return uri.getPath()
+          }
+        }
+        // 4.4 以下 获取 绝对路径
+        function getRealPathFromURI(uri) {
+          let res = null
+          let proj = [MediaStore.Images.Media.DATA]
+          let cursor = contentResolver.query(uri, proj, null, null, null)
+          if (null != cursor && cursor.moveToFirst()) {
+            let column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+            res = cursor.getString(column_index)
+            cursor.close()
+          }
+          return res
+        }
+        // 通过uri 查找出绝对路径
+        function getDataColumn(context, uri, selection, selectionArgs) {
+          let cursor = null
+          let column = '_data'
+          let projection = [column]
+          // let contentResolver = context.getContentResolver()
+          // plus.android.importClass(contentResolver);
+          cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)
+          if (cursor != null && cursor.moveToFirst()) {
+            let column_index = cursor.getColumnIndexOrThrow(column)
+            return cursor.getString(column_index)
+          }
+        }
+
+        function isExternalStorageDocument(uri) {
+          return 'com.android.externalstorage.documents' == uri.getAuthority() ? true : false
+        }
+
+        function isDownloadsDocument(uri) {
+          return 'com.android.providers.downloads.documents' == uri.getAuthority() ? true : false
+        }
+
+        function isMediaDocument(uri) {
+          return 'com.android.providers.media.documents' == uri.getAuthority() ? true : false
+        }
+      }
+      // #endif
+      // #ifndef APP-PLUS
+      uni.showModal({
+        title: '提示',
+        content: '仅支持Android平台',
+        success: function (res) {}
+      })
+      // #endif
+    },
+
     // 切换列表宫格格式
     toVisList() {
       this.visList = !this.visList
@@ -687,6 +908,7 @@ export default {
       color: #2f2f2f;
       // font-weight: bold;
     }
+
     .icon {
       display: flex;
       align-items: center;
@@ -716,16 +938,19 @@ export default {
   animation: fadeInFromTop 0.3s forwards;
   /* 清除过渡效果*/
   transition: none;
+
   .item {
     display: flex;
     justify-items: center;
     align-items: center;
     height: 48px;
+
     .item-left {
       // width: 10%;
       margin-right: 8px;
       margin-top: 2px;
     }
+
     .item-right {
       font-size: 16px;
       color: #333;

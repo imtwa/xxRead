@@ -420,6 +420,11 @@ var render = function () {
                       _c("u-icon", {
                         staticStyle: { transform: "rotate(90deg)" },
                         attrs: { _i: 13 },
+                        on: {
+                          click: function ($event) {
+                            return _vm.$handleViewEvent($event)
+                          },
+                        },
                       }),
                     ],
                     1
@@ -465,7 +470,15 @@ var render = function () {
               ),
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
+                {
+                  staticClass: _vm._$g(19, "sc"),
+                  attrs: { _i: 19 },
+                  on: {
+                    click: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
+                },
                 [
                   _c(
                     "uni-view",
