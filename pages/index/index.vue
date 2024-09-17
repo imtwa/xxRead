@@ -286,7 +286,10 @@ export default {
       // 	const readPercent = (readIndex * 100) / readAll;
 
       // 	return `作者：${item.author}\n读到 ${readIndex} 章 共 ${readAll} 章 ${readPercent.toFixed(2)}%`;
-      return `最新章节：${item.chapters[item.chapters.length - 1].chaptername}`
+      if (item?.chapters[item.chapters.length - 1]?.chaptername) {
+        return `最新章节：${item?.chapters[item.chapters.length - 1]?.chaptername}`
+      }
+      return `此书无内容，请删除此书`
     },
     getInfo1(item) {
       const readIndex = item.readIndex + 1

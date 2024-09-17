@@ -40,7 +40,7 @@ const getNetwork = {
    * @returns {Array} - 搜索结果列表
    * @time 2023-10-27
    */
-  async search(index, keyword, timeout = 5000) {
+  async search(index, keyword, timeout = 10000) {
     console.log('获取书源' + index + '的' + keyword)
     let list = []
     let isCancelled = false // 标记请求是否被取消

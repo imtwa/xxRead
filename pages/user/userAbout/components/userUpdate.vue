@@ -19,7 +19,7 @@
             <view v-else>
               <view class="btn upgrade force">{{
                 isDownloadFinish ? '立即安装' : '等待下载ing...'
-                }}</view>
+              }}</view>
             </view>
           </view>
         </view>
@@ -93,8 +93,8 @@ export default {
           //下载进度监听
           this.hasProgress = true
           this.currentPercent = current
-          this.downloadedSize = (downloadedSize/(1024*1024)).toFixed(2)
-          this.totalSize = (totalSize/(1024*1024)).toFixed(2)
+          this.downloadedSize = (downloadedSize / (1024 * 1024)).toFixed(2)
+          this.totalSize = (totalSize / (1024 * 1024)).toFixed(2)
         })
           .then(fileName => {
             //下载完成

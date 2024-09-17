@@ -250,7 +250,9 @@ export default {
         // 	chapters: this.chapters
         // }
         this.book.readIndex = 0
-        this.book.readAll = this.book.chapters.length
+        this.book.readAll = this.book?.chapters.length || 1
+
+        console.log(this.book)
 
         this.$store.commit('addBookShelf', this.book)
 
