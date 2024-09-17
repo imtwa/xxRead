@@ -38,7 +38,7 @@
       </view>
     </view>
     <!-- 更新弹窗 -->
-    <u-popup :show="vispopup" :round="10" mode="center" @close="popupclose" @open="popupopen">
+    <u-popup :show="vispopup" :round="10" mode="center" :closeOnClickOverlay="false" @close="popupclose" @open="popupopen">
       <UserUpdate :item="getItems[0]" @close="popupclose"></UserUpdate>
     </u-popup>
   </view>

@@ -18,8 +18,8 @@
             </view>
             <view v-else>
               <view class="btn upgrade force">{{
-                isDownloadFinish ? '立即安装' : '下载中...'
-              }}</view>
+                isDownloadFinish ? '立即安装' : '等待下载ing...'
+                }}</view>
             </view>
           </view>
         </view>
@@ -54,7 +54,9 @@ export default {
       hasProgress: false, //是否能显示进度条
       currentPercent: 0, //当前下载百分比
       isStartDownload: false, //是否开始下载
-      fileName: '' //下载后app本地路径名称
+      fileName: '', //下载后app本地路径名称
+      downloadedSize: 0, //已下载大小
+      totalSize: 0 //文件总大小
     }
   },
   computed: {
@@ -68,7 +70,7 @@ export default {
     percentText() {
       let percent = this.currentPercent
       if (typeof percent !== 'number' || isNaN(percent)) return '下载中...'
-      if (percent < 100) return `下载中${percent}%`
+      if (percent < 100) return `下载中 ${this.downloadedSize}MB/${this.totalSize}MB ${percent}%`
       return '立即安装'
     }
   },
@@ -87,10 +89,12 @@ export default {
       if (this.item.downloadUrl) {
         this.isStartDownload = true
         //开始下载App
-        downloadApp(this.item.downloadUrl, current => {
+        downloadApp(this.item.downloadUrl, (current, downloadedSize, totalSize) => {
           //下载进度监听
           this.hasProgress = true
           this.currentPercent = current
+          this.downloadedSize = (downloadedSize/(1024*1024)).toFixed(2)
+          this.totalSize = (totalSize/(1024*1024)).toFixed(2)
         })
           .then(fileName => {
             //下载完成
@@ -223,7 +227,7 @@ export default {
       display: flex;
       position: relative;
       align-items: center;
-      border-radius: 6rpx;
+      border-radius: 15rpx;
       background-color: #dcdcdc;
       display: flex;
       justify-content: flex-start;
@@ -247,6 +251,7 @@ export default {
       }
 
       .txt {
+        width: max-content;
         font-size: 28rpx;
         position: absolute;
         top: 50%;

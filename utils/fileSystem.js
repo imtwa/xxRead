@@ -62,7 +62,7 @@ export const downloadApp = (downloadUrl, progressCallBack = () => {}) => {
           let hasProgress = task.totalSize && task.totalSize > 0 //是否能获取到App大小
           if (hasProgress) {
             let current = parseInt((100 * task.downloadedSize) / task.totalSize) //获取下载进度百分比
-            progressCallBack(current)
+            progressCallBack(current, task.downloadedSize, task.totalSize)
           }
           break
         case 4: // 下载完成
