@@ -39,14 +39,14 @@
     </view>
     <!-- 更新弹窗 -->
     <u-popup :show="vispopup" :round="10" mode="center" @close="popupclose" @open="popupopen">
-      <UserUpdate></UserUpdate>
+      <UserUpdate :item="getItems[0]" @close="popupclose"></UserUpdate>
     </u-popup>
   </view>
 </template>
 
 <script>
 //引入HTML 文本解析器
-import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
+// import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
 import UserUpdate from './components/userUpdate.vue'
 import update from '@/api/update.js'
 
@@ -58,7 +58,7 @@ export default {
     return {
       name: 'xx阅读',
       version: '1.0.0',
-      vispopup: true,
+      vispopup: false,
       getItems: [],
       items: [
         {
@@ -146,8 +146,10 @@ export default {
     // console.log(accountInfo);
     this.name = accountInfo.appName
     this.version = accountInfo.appWgtVersion
+    // 本地存储 防止无网络情况
     this.getItems.splice(0)
     this.getItems.push(...this.items.reverse())
+    // 获取远程更新情况
     this.getUp()
   },
   methods: {
@@ -160,37 +162,38 @@ export default {
     //关闭菜单弹窗
     popupclose() {
       this.vispopup = false
-      console.log('菜单弹窗关闭啦')
+      // console.log('菜单弹窗关闭啦')
     },
     //打开了菜单弹窗
     popupopen() {
-      console.log('菜单弹窗打开啦')
+      // console.log('菜单弹窗打开啦')
     },
     async getUp() {
       const res = await update.getUpdate()
       if (res !== '') {
         this.getItems.splice(0) // 清空数组
         this.getItems.push(...res)
-        if (this.version != res[0].newversion) {
-          const data =
-            '百度网盘链接：https://pan.baidu.com/s/19SJYyOaue5YBnQtcRKpG9g?pwd=data 提取码：data'
-          uni.setClipboardData({
-            data: data,
-            showToast: false,
-            success: function () {
-              console.log('剪切板设置success')
-              uni.showToast({
-                icon: 'none',
-                duration: 3500,
-                title:
-                  '发现新版本' +
-                  newversion +
-                  '~\n下载链接已复制到剪切板，快去更新吧~\n' +
-                  '新版本更新：' +
-                  title
-              })
-            }
-          })
+        if (this.version != res[0].title) {
+          this.vispopup = true
+          // const data =
+          //   '百度网盘链接：https://pan.baidu.com/s/19SJYyOaue5YBnQtcRKpG9g?pwd=data 提取码：data'
+          // uni.setClipboardData({
+          //   data: data,
+          //   showToast: false,
+          //   success: function () {
+          //     console.log('剪切板设置success')
+          //     uni.showToast({
+          //       icon: 'none',
+          //       duration: 3500,
+          //       title:
+          //         '发现新版本' +
+          //         newversion +
+          //         '~\n下载链接已复制到剪切板，快去更新吧~\n' +
+          //         '新版本更新：' +
+          //         title
+          //     })
+          //  }
+          // })
         }
       } else {
         this.getItems.splice(0)

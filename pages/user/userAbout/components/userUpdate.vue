@@ -3,10 +3,10 @@
     <view class="upgrade-popup">
       <image class="header-bg" src="@/static/images/user/uasrUpdate.png" mode="widthFix"></image>
       <view class="main">
-        <view class="version">发现新版本{{ versionName }}</view>
+        <view class="version">发现新版本v{{ item.title }}</view>
         <view class="content">
           <text class="title">更新内容</text>
-          <view class="desc" v-html="versionDesc"></view>
+          <view class="desc" v-html="item.description"></view>
         </view>
         <!--下载状态-进度条显示 -->
         <view class="footer" v-if="isStartDownload">
@@ -38,14 +38,18 @@
 </template>
 
 <script>
+import { downloadApp, installApp } from '@/utils/fileSystem.js'
 export default {
   name: 'UserUpdate',
+  props: {
+    item: {
+      type: Object,
+      default: {}
+    }
+  },
   data() {
     return {
       isForceUpdate: false, //是否强制更新
-      versionName: '2.1.4', //版本名称
-      versionDesc: '阅读界面增加多个字体选择，加入背景颜色调色盘，优化少量BUG', //更新说明
-      downloadUrl: '', //APP下载链接
       isDownloadFinish: false, //是否下载完成
       hasProgress: false, //是否能显示进度条
       currentPercent: 0, //当前下载百分比
@@ -53,13 +57,77 @@ export default {
       fileName: '' //下载后app本地路径名称
     }
   },
-  methods: {}
+  computed: {
+    //设置进度条样式，实时更新进度位置
+    setProStyle() {
+      return {
+        width: (510 * this.currentPercent) / 100 + 'rpx' //510：按钮进度条宽度
+      }
+    },
+    //百分比文字
+    percentText() {
+      let percent = this.currentPercent
+      if (typeof percent !== 'number' || isNaN(percent)) return '下载中...'
+      if (percent < 100) return `下载中${percent}%`
+      return '立即安装'
+    }
+  },
+  // onBackPress(options) {
+  //     // 禁用返回
+  //     if (options.from == 'backbutton') {
+  //       return true;
+  //     }
+  //   },
+  methods: {
+    handleClose() {
+      this.$emit('close')
+    },
+    //更新
+    handleUpgrade() {
+      if (this.item.downloadUrl) {
+        this.isStartDownload = true
+        //开始下载App
+        downloadApp(this.item.downloadUrl, current => {
+          //下载进度监听
+          this.hasProgress = true
+          this.currentPercent = current
+        })
+          .then(fileName => {
+            //下载完成
+            this.isDownloadFinish = true
+            this.fileName = fileName
+            if (fileName) {
+              //自动安装App
+              this.handleInstallApp()
+            }
+          })
+          .catch(e => {
+            console.log(e, 'e')
+          })
+      } else {
+        uni.showToast({
+          title: '下载链接不存在',
+          icon: 'none'
+        })
+      }
+    },
+    //安装app
+    handleInstallApp() {
+      //下载完成才能安装，防止下载过程中点击
+      if (this.isDownloadFinish && this.fileName) {
+        installApp(this.fileName, () => {
+          //安装成功,关闭升级弹窗
+          this.$emit('close')
+        })
+      }
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .upgrade-popup {
-  width: 500rpx;
+  width: 600rpx;
   height: auto;
   position: fixed;
   top: 50%;
@@ -93,7 +161,7 @@ export default {
   }
 
   .content {
-    margin-top: 60rpx;
+    margin-top: 30rpx;
 
     .title {
       font-size: 28rpx;
@@ -118,7 +186,7 @@ export default {
     align-items: center;
     position: relative;
     flex-shrink: 0;
-    margin-top: 100rpx;
+    margin-top: 20rpx;
 
     .btn {
       width: 246rpx;

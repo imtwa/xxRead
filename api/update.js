@@ -23,11 +23,11 @@ class update {
       for (let i = 0; i < p.length; i = i + 4) {
         const description = p[i + 1]
         const title = p[i]
-        const newurl = /href="([^"]+)"/.exec(p[i + 2])[1]
+        const downloadUrl = /href="([^"]+)"/.exec(p[i + 2])[1]
         list.push({
           description,
           title,
-          newurl
+          downloadUrl
         })
       }
 

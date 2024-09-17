@@ -101,7 +101,7 @@ export default {
       const res = await update.getUpdate()
       if (res !== '') {
         // console.log(res);
-        if (version !== res[0].newversion) {
+        if (version !== res[0].title) {
           console.log('更新了')
           this.visUp = true
         }
