@@ -97,7 +97,7 @@ export default {
 .content {
   height: 250rpx;
   padding: 16rpx;
-  border-bottom: 1px solid rgba(239, 239, 239, 0.8);
+  // border-bottom: 1px solid rgba(239, 239, 239, 0.3);
 }
 
 .newbook {
@@ -108,7 +108,7 @@ export default {
 .pic {
   width: 150rpx;
   height: 200rpx;
-  margin-right: 10px;
+  margin-right: 4px;
   // box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   background-color: #efefef;
@@ -122,7 +122,7 @@ export default {
 
 .text {
   width: 70%;
-  padding-left: 10px;
+  padding-left: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;

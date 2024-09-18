@@ -186,14 +186,14 @@
       {
         "pagePath": "pages/books/books",
         "text": "书城",
-        "iconPath": "static/images/tabBar/books0.png",
-        "selectedIconPath": "static/images/tabBar/books1.png"
+        "iconPath": "static/images/tabBar/books0.svg",
+        "selectedIconPath": "static/images/tabBar/books1.svg"
       },
       {
         "pagePath": "pages/user/user",
         "text": "我的",
         "iconPath": "static/images/tabBar/user0.png",
-        "selectedIconPath": "static/images/tabBar/user1.png"
+        "selectedIconPath": "static/images/tabBar/user1.svg"
       }
     ]
   }

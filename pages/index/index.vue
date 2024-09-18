@@ -37,7 +37,7 @@
       </view>
 
       <view class="index-menu" v-show="visMenu">
-        <view class="item">
+        <view class="item" @click="refresh">
           <view class="item-left">
             <u-icon name="reload" bold size="18"></u-icon>
           </view>
@@ -246,17 +246,23 @@ export default {
       console.log(e)
       // 读取文件内容
       const content = await readTxt(e)
-      const that = this
       // 如果读取到内容
       if (content) {
         console.log(content)
-
         //处理读取到文本内容之后的逻辑
       } else {
         //处理读取不到的逻辑
+        uni.showToast({
+          icon: 'none',
+          duration: 3000,
+          title: '读取' + e + '失败了...'
+        })
       }
     },
 
+    /**
+     * 判断读取文件权限 并获取权限
+     */
     async openFileSystem() {
       try {
         // 获取Android应用的上下文
@@ -268,7 +274,7 @@ export default {
         //如果已经授权,获取到的permissionState为0，未授权为-1
         if (permissionState === 0) {
           this.permissionGranted = true
-          //已经授权编写业务逻辑
+          // 打开文件选择器
           this.openFile()
         } else {
           // 未授权，请求权限
@@ -459,6 +465,14 @@ export default {
     // 切换列表宫格格式
     toVisList() {
       this.visList = !this.visList
+    },
+
+    /**
+     * 点击刷新目录
+     */
+    refresh() {
+      // 手动调用下拉刷新
+      uni.startPullDownRefresh()
     },
 
     /**
@@ -1072,7 +1086,8 @@ export default {
     color: #555;
     text-align: center;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* 限制显示的行数 */
+    -webkit-line-clamp: 2;
+    /* 限制显示的行数 */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-align: center;
