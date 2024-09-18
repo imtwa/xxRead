@@ -56,7 +56,7 @@ const store = new Vuex.Store({
     getUserInfo(state) {
       const accountInfo = uni.getSystemInfoSync()
       // 获取用户信息
-      state.userInfo.nickname = accountInfo.appId.slice(-6)
+      state.userInfo.nickname = accountInfo.deviceId.slice(-6)
     },
     //将书籍添加进书架
     addBookShelf(state, newbook) {
