@@ -1,4 +1,4 @@
-import { stripPTags } from './utils.js'
+import { stripPTags, deepCopy } from './utils.js'
 
 /**
  *
@@ -21,6 +21,48 @@ export function outputTxT(bookTxt) {
     }
   }
   return str
+}
+
+/**
+ * @param {Array} str - 分隔好的数组
+ * @returns {Object} book - 书籍对象
+ */
+export function inputTxT(str) {
+  let book = {}
+  book.bookname = str[0]
+  book.author = str[1]
+  book.intro = str[3]
+  book.origin = 'local'
+  book.tags = ['本地书籍']
+  book.imgurl = 'http://blog.imtwa.top/usr/uploads/2024/09/1814539350.png'
+  book.chapters = []
+  let chapter = {
+    chaptername: '前言',
+    text: '',
+    visD: true
+  }
+  for (let i = 4; i < str.length; ) {
+    if (str[i] === '') {
+      if (chapter.text !== '') {
+        book.chapters.push(deepCopy(chapter))
+      }
+      chapter.text = ''
+      chapter.chaptername = str[i + 1]
+      if (str[i + 2] === '') {
+        chapter.text = '<p>暂无内容<p>'
+      }
+      i = i + 2
+    } else {
+      chapter.text += `<p>${str[i]}</p>`
+      i++
+    }
+  }
+  if (chapter.text === '') {
+    chapter.text = '<p>暂无内容<p>'
+    book.chapters.push(deepCopy(chapter))
+  }
+
+  return book
 }
 
 /**

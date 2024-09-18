@@ -159,7 +159,7 @@
 import store from '@/store/index.js'
 import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
 import { deepCopy } from '@/utils/utils.js'
-import { outputTxT, readTxt } from '@/utils/fileSystem.js'
+import { outputTxT, inputTxT, readTxt } from '@/utils/fileSystem.js'
 
 export default {
   data() {
@@ -243,13 +243,18 @@ export default {
 
   methods: {
     async resultPath(e) {
-      console.log(e)
+      // console.log(e)
       // 读取文件内容
       const content = await readTxt(e)
+      // console.log(content)
+
       // 如果读取到内容
       if (content) {
-        console.log(content)
-        //处理读取到文本内容之后的逻辑
+        let inputBook = inputTxT(content)
+        inputBook.bookurl = e
+        // console.log(inputBook)
+        // 加入书架
+        this.$store.commit('addBookShelf', inputBook)
       } else {
         //处理读取不到的逻辑
         uni.showToast({
