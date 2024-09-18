@@ -125,6 +125,31 @@ export function getComplementaryColor(hexColor) {
 }
 
 /**
+ * 文件大小转换对应单位大小
+ * @param size 文件大小，字节（B）单位
+ * @returns 返回 string
+ */
+export function transformFileSizeUnit(size) {
+  if (!size) return ''
+  let sizestr = ''
+  if (size < 0.1 * 1024) {
+    // 如果小于0.1KB转化成B
+    sizestr = size.toFixed(2) + 'B'
+  } else if (size < 1 * 1024 * 1024) {
+    // 如果小于1MB转化成KB
+    sizestr = (size / 1024).toFixed(2) + 'KB'
+  } else if (size < 1 * 1024 * 1024 * 1024) {
+    // 如果小于1GB转化成MB
+    sizestr = (size / (1024 * 1024)).toFixed(2) + 'MB'
+  } else {
+    // 其他转化成GB
+    sizestr = (size / (1024 * 1024 * 1024)).toFixed(2) + 'GB'
+  }
+
+  return sizestr.replace('.00', '')
+}
+
+/**
  * 判断是否是对象类型
  * @param {*} value
  * @returns

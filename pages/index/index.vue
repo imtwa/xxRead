@@ -43,7 +43,7 @@
           </view>
           <view class="item-right">刷新目录</view>
         </view>
-        <view class="item" @click="openFile">
+        <view class="item" @click="openFileSystem">
           <view class="item-left">
             <u-icon name="plus-circle" bold size="16"></u-icon>
           </view>
@@ -245,9 +245,8 @@ export default {
     async resultPath(e) {
       console.log(e)
       // 读取文件内容
-      const content = await FileJS.readTxt(e)
+      const content = await readTxt(e)
       const that = this
-      console.log(content)
       // 如果读取到内容
       if (content) {
         console.log(content)
@@ -255,6 +254,31 @@ export default {
         //处理读取到文本内容之后的逻辑
       } else {
         //处理读取不到的逻辑
+      }
+    },
+
+    async openFileSystem() {
+      try {
+        // 获取Android应用的上下文
+        const context = plus.android.runtimeMainActivity().getApplicationContext()
+        // 请求的权限
+        const permission = 'android.permission.READ_EXTERNAL_STORAGE'
+        // 检查权限状态
+        const permissionState = context.checkCallingOrSelfPermission(permission)
+        //如果已经授权,获取到的permissionState为0，未授权为-1
+        if (permissionState === 0) {
+          this.permissionGranted = true
+          //已经授权编写业务逻辑
+          this.openFile()
+        } else {
+          // 未授权，请求权限
+          const activity = plus.android.runtimeMainActivity()
+          const requestCode = 100 // 自定义请求码
+          activity.requestPermissions([permission], requestCode)
+          this.openFile()
+        }
+      } catch (error) {
+        console.error('Error requesting permission:', error)
       }
     },
 
@@ -328,7 +352,6 @@ export default {
           }
           // 回调
           that.resultPath(path)
-          console.log(path)
 
           // that.$emit('result', path)
         }
@@ -1008,8 +1031,8 @@ export default {
 
   .book-container {
     display: grid;
-    grid-template-columns: repeat(3, 30%);
-    margin-left: 5%;
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+    margin: 0 5%;
     /* 创建三列，每列宽度相等 */
     grid-gap: 8px;
     /* 设置网格线之间的间距 */
@@ -1039,17 +1062,19 @@ export default {
     width: 92px;
     max-width: 100%;
     height: 128px;
-    box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.2);
+    // box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     background-color: #efefef;
   }
 
   .book-name {
     font-size: 14px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     color: #555;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 限制显示的行数 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     text-align: center;
   }
 

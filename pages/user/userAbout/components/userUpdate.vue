@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { downloadApp, installApp } from '@/utils/fileSystem.js'
+import { downloadApp, installApp, transformFileSizeUnit } from '@/utils/fileSystem.js'
 export default {
   name: 'UserUpdate',
   props: {
@@ -70,7 +70,8 @@ export default {
     percentText() {
       let percent = this.currentPercent
       if (typeof percent !== 'number' || isNaN(percent)) return '下载中...'
-      if (percent < 100) return `下载中 ${this.downloadedSize}MB/${this.totalSize}MB ${percent}%`
+      if (percent < 100)
+        return `下载中 ${transformFileSizeUnit(this.downloadedSize)}/${transformFileSizeUnit(this.totalSize)} ${percent}%`
       return '立即安装'
     }
   },

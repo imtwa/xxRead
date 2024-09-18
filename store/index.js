@@ -242,13 +242,13 @@ const store = new Vuex.Store({
           console.log('历史记录存入缓存成功')
         }
       })
-      uni.setStorage({
-        key: 'userInfo',
-        data: state.userInfo,
-        success: res => {
-          console.log('用户信息存入缓存成功')
-        }
-      })
+      // uni.setStorage({
+      //   key: 'userInfo',
+      //   data: state.userInfo,
+      //   success: res => {
+      //     console.log('用户信息存入缓存成功')
+      //   }
+      // })
       uni.setStorage({
         key: 'bookTxts',
         data: state.bookTxts,

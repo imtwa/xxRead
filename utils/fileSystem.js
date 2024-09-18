@@ -137,7 +137,7 @@ const onInstallListening = (callBack = () => {}) => {
  * 获取手机内置存储的根路径
  * @return {String}
  */
-const root = function () {
+export const root = function () {
   const environment = plus.android.importClass('android.os.Environment')
   return environment.getExternalStorageDirectory()
 }
@@ -147,7 +147,7 @@ const root = function () {
  * @param {String} path 文件夹路径
  * @return {Array<String>} 文件和文件夹列表
  */
-const filelist = function (dir = '') {
+export const filelist = function (dir = '') {
   const File = plus.android.importClass('java.io.File')
   let list = []
   let file = new File(dir)
@@ -163,7 +163,7 @@ const filelist = function (dir = '') {
  * 创建文件
  * @return {boolean} flase=失败（已存在、操作失败），true=成功
  */
-const createNewFile = function (path = '') {
+export const createNewFile = function (path = '') {
   const File = plus.android.importClass('java.io.File')
   let file = new File(path)
   if (!file.exists()) {
@@ -176,7 +176,7 @@ const createNewFile = function (path = '') {
  * 创建文件夹
  * @return {boolean} flase=失败（已存在、操作失败），true=成功
  */
-const mkdirs = function (path = '') {
+export const mkdirs = function (path = '') {
   const File = plus.android.importClass('java.io.File')
   let file = new File(path)
   if (!file.exists()) {
@@ -191,7 +191,7 @@ const mkdirs = function (path = '') {
  * @param {String} charset 编码
  * @return {Array<String>} 内容列表（按行读取）,文件不存在或异常则返回false
  */
-const readTxt = function (path = '', charset = 'utf-8') {
+export const readTxt = function (path = '', charset = 'utf-8') {
   const File = plus.android.importClass('java.io.File')
   const InputStreamReader = plus.android.importClass('java.io.InputStreamReader')
   const BufferedReader = plus.android.importClass('java.io.BufferedReader')
@@ -232,7 +232,7 @@ const readTxt = function (path = '', charset = 'utf-8') {
  * @param {String} charset 编码
  * @return {boolean} true=成功，false=失败
  */
-const writeTxt = function (path = '', content = '', append = false, charset = 'utf-8') {
+export const writeTxt = function (path = '', content = '', append = false, charset = 'utf-8') {
   const File = plus.android.importClass('java.io.File')
   const FileOutputStream = plus.android.importClass('java.io.FileOutputStream')
   const OutputStreamWriter = plus.android.importClass('java.io.OutputStreamWriter')
@@ -261,7 +261,7 @@ const writeTxt = function (path = '', content = '', append = false, charset = 'u
  * @param path 文件路径
  * @return true=存在 false=不存在
  */
-const isFileExist = function (path = '') {
+export const isFileExist = function (path = '') {
   const File = plus.android.importClass('java.io.File')
   return new File(path).exists()
 }
@@ -270,22 +270,11 @@ const isFileExist = function (path = '') {
  * 删除文件
  * @param {String} path
  */
-const deleteFile = function (path = '') {
+export const deleteFile = function (path = '') {
   const File = plus.android.importClass('java.io.File')
   let file = new File(path)
   if (file.exists()) {
     return file.delete()
   }
   return false
-}
-
-export default {
-  root,
-  filelist,
-  createNewFile,
-  mkdirs,
-  readTxt,
-  writeTxt,
-  isFileExist,
-  deleteFile
 }
