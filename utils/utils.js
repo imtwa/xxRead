@@ -130,6 +130,8 @@ export function getComplementaryColor(hexColor) {
  * @returns 返回 string
  */
 export function transformFileSizeUnit(size) {
+  size = Number(size) || 0 // 尝试将size转换为数字，如果转换失败则使用0
+
   if (!size) return ''
   let sizestr = ''
   if (size < 0.1 * 1024) {

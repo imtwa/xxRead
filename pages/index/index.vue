@@ -152,16 +152,32 @@
       @confirm="confirmmodalX"
       @close="closemodalX"
     ></u-modal>
+    <!-- 更新弹窗 -->
+    <u-popup
+      :show="visUpdatePopup"
+      :round="10"
+      mode="center"
+      :closeOnClickOverlay="false"
+      @close="upadatePopupclose"
+      @open="upadtePopupopen"
+    >
+      <UserUpdate :item="getUpdateItems[0]" @close="upadatePopupclose"></UserUpdate>
+    </u-popup>
   </view>
 </template>
 
 <script>
 import store from '@/store/index.js'
 import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
+import UserUpdate from '@/components/userUpdate.vue'
 import { deepCopy } from '@/utils/utils.js'
+import update from '@/api/update.js'
 import { outputTxT, inputTxT, readTxt } from '@/utils/fileSystem.js'
 
 export default {
+  components: {
+    UserUpdate
+  },
   data() {
     return {
       //书架列表
@@ -172,6 +188,10 @@ export default {
       visnobook: false,
       //是否显示底部弹窗
       vispopup: false,
+      // 更新弹窗
+      visUpdatePopup: false,
+      // 更新内容
+      getUpdateItems: [],
       //是否显示菜单
       visMenu: false,
       //在哪本书打开的弹窗
@@ -203,6 +223,14 @@ export default {
   onReady() {
     // 检查更新
     this.updateBookshelf()
+    this.$nextTick(() => {
+      // 检测软件更新
+      this.getUp()
+    })
+  },
+  mounted() {
+    // // 检测软件更新
+    // this.getUp()
   },
   onShow() {
     // //页面显示时就刷新值
@@ -242,6 +270,33 @@ export default {
   },
 
   methods: {
+    //关闭菜单弹窗
+    upadatePopupclose() {
+      this.visUpdatePopup = false
+      // console.log('菜单弹窗关闭啦')
+    },
+    //打开了菜单弹窗
+    upadtePopupopen() {
+      // console.log('菜单弹窗打开啦')
+    },
+    /**
+     * 获取更新信息 打开弹窗
+     */
+    async getUp() {
+      const res = await update.getUpdate()
+      if (res !== '') {
+        this.getUpdateItems.splice(0) // 清空数组
+        this.getUpdateItems.push(...res)
+
+        const accountInfo = uni.getSystemInfoSync()
+        let version = accountInfo.appWgtVersion
+
+        if (version != res[0].title) {
+          console.log('index更新了')
+          this.visUpdatePopup = true
+        }
+      }
+    },
     async resultPath(e) {
       // console.log(e)
       // 读取文件内容
@@ -252,11 +307,18 @@ export default {
       if (content) {
         let inputBook = inputTxT(content)
         inputBook.bookurl = e
-        // console.log(inputBook)
+        console.log(inputBook)
         // 加入书架
         this.$store.commit('addBookShelf', inputBook)
+        // 取消加载提示
+        uni.hideLoading()
+        uni.showToast({
+          icon: 'none',
+          duration: 3000,
+          title: '导入' + inputBook.bookname + '成功！'
+        })
       } else {
-        //处理读取不到的逻辑
+        // 处理读取不到的逻辑
         uni.showToast({
           icon: 'none',
           duration: 3000,
@@ -348,6 +410,10 @@ export default {
         // 返回路径
         let path = ''
         if (resultCode == Activity.RESULT_OK) {
+          uni.showLoading({
+            title: '导入ing...'
+          })
+
           let uri = data.getData()
           if ('file' == uri.getScheme().toLowerCase()) {
             //使用第三方应用打开
@@ -520,6 +586,7 @@ export default {
       // 	const readPercent = (readIndex * 100) / readAll;
 
       // 	return `作者：${item.author}\n读到 ${readIndex} 章 共 ${readAll} 章 ${readPercent.toFixed(2)}%`;
+
       if (item?.chapters[item.chapters.length - 1]?.chaptername) {
         return `最新章节：${item?.chapters[item.chapters.length - 1]?.chaptername}`
       }
@@ -951,7 +1018,7 @@ export default {
   transform: translateY(-10%);
   //transition: transform 0.3s ease, opacity 0.3s ease;
   /* 应用动画 */
-  animation: fadeInFromTop 0.3s forwards;
+  animation: fadeInFromTop 0.2s forwards;
   /* 清除过渡效果*/
   transition: none;
 

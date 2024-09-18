@@ -216,6 +216,9 @@ export default {
   methods: {
     // 获取书源
     getSourceName() {
+      if (this.book.origin === 'local') {
+        return
+      }
       const index = origins.findIndex(item => item.bookSourceUrl === this.book.origin.trim())
       this.book.bookSourceName = origins[index].bookSourceName
     },

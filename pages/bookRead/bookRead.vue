@@ -2431,6 +2431,7 @@ export default {
       // 加载的这章在哪个目录下
       let chapindex = 0
 
+      // 章节的url一定要不一样！！！
       for (let i = 0; i < this.bookall.chapters.length; i++) {
         if (this.bookall.chapters[i].chapterurl === chapterId) {
           chapindex = i

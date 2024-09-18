@@ -33,22 +33,25 @@ export function inputTxT(str) {
   book.author = str[1]
   book.intro = str[3]
   book.origin = 'local'
-  book.tags = ['本地书籍']
+  book.readIndex = 0
+  book.bookSourceName = '本地书籍'
   book.imgurl = 'http://blog.imtwa.top/usr/uploads/2024/09/1814539350.png'
   book.chapters = []
   let chapter = {
     chaptername: '前言',
+    chapterurl: 'local',
     text: '',
     visD: true
   }
   for (let i = 4; i < str.length; ) {
     if (str[i] === '') {
       if (chapter.text !== '') {
+        chapter.chapterurl = `local${book.chapters.length + 1}`
         book.chapters.push(deepCopy(chapter))
       }
       chapter.text = ''
       chapter.chaptername = str[i + 1]
-      if (str[i + 2] === '') {
+      if (i + 2 < str.length && str[i + 2] === '') {
         chapter.text = '<p>暂无内容<p>'
       }
       i = i + 2
@@ -57,11 +60,14 @@ export function inputTxT(str) {
       i++
     }
   }
-  if (chapter.text === '') {
-    chapter.text = '<p>暂无内容<p>'
+  if (!!chapter?.chaptername) {
+    if (chapter.text == '') {
+      chapter.text = '<p>暂无内容<p>'
+    }
     book.chapters.push(deepCopy(chapter))
   }
 
+  book.readAll = book.chapters.length
   return book
 }
 

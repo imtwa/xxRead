@@ -38,7 +38,8 @@
 </template>
 
 <script>
-import { downloadApp, installApp, transformFileSizeUnit } from '@/utils/fileSystem.js'
+import { downloadApp, installApp } from '@/utils/fileSystem.js'
+import { transformFileSizeUnit } from '@/utils/utils.js'
 export default {
   name: 'UserUpdate',
   props: {
@@ -94,8 +95,8 @@ export default {
           //下载进度监听
           this.hasProgress = true
           this.currentPercent = current
-          this.downloadedSize = (downloadedSize / (1024 * 1024)).toFixed(2)
-          this.totalSize = (totalSize / (1024 * 1024)).toFixed(2)
+          this.downloadedSize = downloadedSize
+          this.totalSize = totalSize
         })
           .then(fileName => {
             //下载完成

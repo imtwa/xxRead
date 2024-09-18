@@ -141,7 +141,7 @@ const store = new Vuex.Store({
         try {
           const newbook = await getNetwork.homePage(book)
           // 新获取的目录更多了===更新了
-          if (newbook.chapters.length > book.chapters.length) {
+          if (newbook !== -1 && newbook.chapters.length > book.chapters.length) {
             // 要用一个变量中转一下，否则报错没有book.chapters.push这个函数
             let chapter = book.chapters
             for (let k = book.chapters.length; k < newbook.chapters.length; k++) {

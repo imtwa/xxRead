@@ -54,7 +54,7 @@
 <script>
 //引入HTML 文本解析器
 // import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
-import UserUpdate from './components/userUpdate.vue'
+import UserUpdate from '@/components/userUpdate.vue'
 import update from '@/api/update.js'
 
 export default {
