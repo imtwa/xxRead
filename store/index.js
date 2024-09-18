@@ -53,7 +53,11 @@ const store = new Vuex.Store({
   },
   mutations: {
     //相当于同步的操作
-
+    getUserInfo(state) {
+      const accountInfo = uni.getSystemInfoSync()
+      // 获取用户信息
+      state.userInfo.nickname = accountInfo.appId.slice(-6)
+    },
     //将书籍添加进书架
     addBookShelf(state, newbook) {
       // 查找是否在书架中
@@ -306,16 +310,16 @@ const store = new Vuex.Store({
         }
       })
 
-      uni.getStorage({
-        key: 'userInfo',
-        success: res => {
-          state.userInfo = res.data
-          console.log('用户数据读取缓存成功')
-        },
-        fail: res => {
-          console.log('缓存内没有用户数据')
-        }
-      })
+      // uni.getStorage({
+      //   key: 'userInfo',
+      //   success: res => {
+      //     state.userInfo = res.data
+      //     console.log('用户数据读取缓存成功')
+      //   },
+      //   fail: res => {
+      //     console.log('缓存内没有用户数据')
+      //   }
+      // })
       uni.getStorage({
         key: 'bookOrigins',
         success: res => {

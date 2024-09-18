@@ -8,6 +8,7 @@ export default {
     console.log('App Launch')
     //在初始化的时候读取缓存数据
     this.$store.commit('getBookShelfFromStorage')
+    this.$store.commit('getUserInfo')
     // 检查更新
     // this.$store.commit('updateBookshelf')
     // this.updateBookshelf();

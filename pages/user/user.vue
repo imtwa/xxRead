@@ -5,7 +5,7 @@
         <image class="avatar" :src="userInfo.avatarUrl" @click.stop="toShow"></image>
       </view>
       <view class="profile-right">
-        <view class="nickname">{{ userInfo.nickname }}</view>
+        <view class="nickname">用户{{ userInfo.nickname }}</view>
         <view class="bio">{{ userInfo.bio }}</view>
       </view>
     </view>
@@ -89,6 +89,7 @@ export default {
     // 使用 mapState 辅助函数将 Vuex 中的状态映射为组件的计算属性
     ...mapState(['userInfo'])
   },
+  mounted() {},
   methods: {
     toShow() {
       uni.navigateTo({
@@ -238,7 +239,7 @@ export default {
       margin-bottom: 8px;
 
       .nickname {
-        font-size: 20px;
+        font-size: 18px;
         color: #f4f4f4;
         font-weight: bold;
         // margin-bottom: 8px;

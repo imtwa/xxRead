@@ -332,7 +332,14 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "uni-view",
-    { attrs: { _i: 0 } },
+    {
+      attrs: { _i: 0 },
+      on: {
+        click: function ($event) {
+          return _vm.$handleViewEvent($event)
+        },
+      },
+    },
     [
       _c(
         "uni-view",
@@ -415,16 +422,16 @@ var render = function () {
                         "margin-top": "5px",
                       },
                       attrs: { _i: 12 },
+                      on: {
+                        click: function ($event) {
+                          return _vm.$handleViewEvent($event, { stop: true })
+                        },
+                      },
                     },
                     [
                       _c("u-icon", {
                         staticStyle: { transform: "rotate(90deg)" },
                         attrs: { _i: 13 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
                       }),
                     ],
                     1
@@ -8539,7 +8546,7 @@ var render = function () {
               _c(
                 "uni-view",
                 { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
-                [_vm._v(_vm._$g(5, "t0-0"))]
+                [_vm._v("用户" + _vm._$g(5, "t0-0"))]
               ),
               _c(
                 "uni-view",
@@ -8904,7 +8911,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 13);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\n * 这里是uni-app内置的常用样式变量\n *\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\n *\n */\n/**\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\n *\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\n */\n/* uview-ui的主体样式 */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n/**\n * 这里是uni-app内置的常用样式变量\n *\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\n *\n */\n/**\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\n *\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.page[data-v-5bac9036] {\n  height: 100vh;\n  background-color: #f5f5f5;\n}\n.page .boby[data-v-5bac9036] {\n  margin: 32px 16px;\n  background-color: white;\n  border-radius: 16px;\n}\n.page .boby .list[data-v-5bac9036] {\n  height: 48px;\n  border-bottom: 1px solid #efefef;\n  display: flex;\n  align-items: center;\n}\n.page .boby .list .img[data-v-5bac9036] {\n  width: 48px;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.page .boby .list .img uni-image[data-v-5bac9036] {\n  width: 50%;\n  height: 50%;\n}\n.page .boby .list .text[data-v-5bac9036] {\n  flex-grow: 1;\n  color: #444;\n  display: flex;\n}\n.page .boby .list .text .badge[data-v-5bac9036] {\n  margin-left: 4px;\n  margin-top: 6px;\n}\n.page .boby .list .arrow[data-v-5bac9036] {\n  margin-left: auto;\n  width: 32px;\n  height: 100%;\n}\n.page .profile-wrapper[data-v-5bac9036] {\n  display: flex;\n  align-items: center;\n  margin-left: 2px;\n  margin-right: 2px;\n  height: 128px;\n  background: linear-gradient(to top, #00a8ff 100%, #fff 100%);\n  border-radius: 16px;\n}\n.page .profile-wrapper .profile-left[data-v-5bac9036] {\n  padding-left: 24px;\n  margin-bottom: 4px;\n}\n.page .profile-wrapper .profile-left .avatar[data-v-5bac9036] {\n  width: 64px;\n  height: 64px;\n  border-radius: 50%;\n}\n.page .profile-wrapper .profile-right[data-v-5bac9036] {\n  padding-left: 32px;\n  margin-bottom: 8px;\n}\n.page .profile-wrapper .profile-right .nickname[data-v-5bac9036] {\n  font-size: 20px;\n  color: #f4f4f4;\n  font-weight: bold;\n}\n.page .profile-wrapper .profile-right .bio[data-v-5bac9036] {\n  margin-top: 0;\n  font-size: 14px;\n  color: #efefef;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\n * 这里是uni-app内置的常用样式变量\n *\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\n *\n */\n/**\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\n *\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\n */\n/* uview-ui的主体样式 */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n/**\n * 这里是uni-app内置的常用样式变量\n *\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\n *\n */\n/**\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\n *\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.page[data-v-5bac9036] {\n  height: 100vh;\n  background-color: #f5f5f5;\n}\n.page .boby[data-v-5bac9036] {\n  margin: 32px 16px;\n  background-color: white;\n  border-radius: 16px;\n}\n.page .boby .list[data-v-5bac9036] {\n  height: 48px;\n  border-bottom: 1px solid #efefef;\n  display: flex;\n  align-items: center;\n}\n.page .boby .list .img[data-v-5bac9036] {\n  width: 48px;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.page .boby .list .img uni-image[data-v-5bac9036] {\n  width: 50%;\n  height: 50%;\n}\n.page .boby .list .text[data-v-5bac9036] {\n  flex-grow: 1;\n  color: #444;\n  display: flex;\n}\n.page .boby .list .text .badge[data-v-5bac9036] {\n  margin-left: 4px;\n  margin-top: 6px;\n}\n.page .boby .list .arrow[data-v-5bac9036] {\n  margin-left: auto;\n  width: 32px;\n  height: 100%;\n}\n.page .profile-wrapper[data-v-5bac9036] {\n  display: flex;\n  align-items: center;\n  margin-left: 2px;\n  margin-right: 2px;\n  height: 128px;\n  background: linear-gradient(to top, #00a8ff 100%, #fff 100%);\n  border-radius: 16px;\n}\n.page .profile-wrapper .profile-left[data-v-5bac9036] {\n  padding-left: 24px;\n  margin-bottom: 4px;\n}\n.page .profile-wrapper .profile-left .avatar[data-v-5bac9036] {\n  width: 64px;\n  height: 64px;\n  border-radius: 50%;\n}\n.page .profile-wrapper .profile-right[data-v-5bac9036] {\n  padding-left: 32px;\n  margin-bottom: 8px;\n}\n.page .profile-wrapper .profile-right .nickname[data-v-5bac9036] {\n  font-size: 18px;\n  color: #f4f4f4;\n  font-weight: bold;\n}\n.page .profile-wrapper .profile-right .bio[data-v-5bac9036] {\n  margin-top: 0;\n  font-size: 14px;\n  color: #efefef;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

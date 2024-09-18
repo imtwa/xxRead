@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view @click="visMenu = false">
     <!-- 导航栏 -->
     <view class="bar">
       <view class="uni-bar">
@@ -20,6 +20,7 @@
             <icon type="search" color="#2f2f2f"></icon>
           </navigator>
           <view
+            @click.stop="visMenu = !visMenu"
             style="
               width: 50rpx;
               display: flex;
@@ -29,13 +30,7 @@
               margin-top: 5px;
             "
           >
-            <u-icon
-              name="more-dot-fill"
-              color="#000"
-              size="23"
-              style="transform: rotate(90deg)"
-              @click="visMenu = !visMenu"
-            >
+            <u-icon name="more-dot-fill" color="#000" size="23" style="transform: rotate(90deg)">
             </u-icon>
           </view>
         </view>
@@ -164,7 +159,7 @@
 import store from '@/store/index.js'
 import HTMLParser from '@/uni_modules/html-parser/js_sdk/index.js'
 import { deepCopy } from '@/utils/utils.js'
-import { outputTxT } from '@/utils/fileSystem.js'
+import { outputTxT, readTxt } from '@/utils/fileSystem.js'
 
 export default {
   data() {
@@ -247,44 +242,20 @@ export default {
   },
 
   methods: {
-    resultPath(e) {
+    async resultPath(e) {
       console.log(e)
+      // 读取文件内容
+      const content = await FileJS.readTxt(e)
+      const that = this
+      console.log(content)
+      // 如果读取到内容
+      if (content) {
+        console.log(content)
 
-      // 使用plus.io模块的resolveLocalFileSystemURL方法来获取文件系统中的文件
-      plus.io.resolveLocalFileSystemURL(
-        e,
-        function (entry) {
-          // 成功获取文件入口对象后，读取文件
-          entry.file(
-            function (file) {
-              var fileReader = new plus.io.FileReader()
-
-              fileReader.onload = function (e) {
-                // 读取文件成功，e.target.result就是文件内容
-                var text = e.target.result
-                console.log(text)
-                // 这里可以对文本进行处理，比如显示在页面上
-              }
-
-              fileReader.onerror = function (e) {
-                // 读取文件失败
-                console.error('Failed to read file:', e)
-              }
-
-              // 以文本方式读取文件
-              fileReader.readAsText(file, 'utf-8')
-            },
-            function (e) {
-              // 获取文件失败
-              console.error('Failed to get file:', e)
-            }
-          )
-        },
-        function (e) {
-          // 解析文件路径失败
-          console.error('Failed to resolve file URL:', e)
-        }
-      )
+        //处理读取到文本内容之后的逻辑
+      } else {
+        //处理读取不到的逻辑
+      }
     },
 
     /**
@@ -317,7 +288,6 @@ export default {
       let main = plus.android.runtimeMainActivity()
       let Intent = plus.android.importClass('android.content.Intent')
 
-      //
       let fileIntent = new Intent(Intent.ACTION_GET_CONTENT)
       //fileIntent.setType(“image/*”);//选择图片
       //fileIntent.setType(“audio/*”); //选择音频
@@ -358,7 +328,8 @@ export default {
           }
           // 回调
           that.resultPath(path)
-          return path
+          console.log(path)
+
           // that.$emit('result', path)
         }
         // 4.4 以上 从Uri 获取文件绝对路径
@@ -868,6 +839,9 @@ export default {
     },
     //点击了跳转阅读页
     goBookRead(index) {
+      if (this.visMenu) {
+        return
+      }
       //传过来的是倒序的索引，需要转变成在vuex中的索引
       const bookShelfIndex = this.bookShelf.length - 1 - index
       const readIndex = this.bookShelf[index].readIndex
