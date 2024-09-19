@@ -190,6 +190,15 @@ export default {
             title: '章节已经全部下载完成'
           })
         } else {
+          if (this.bookShelf[ind].origin === 'local') {
+            // 弹窗
+            uni.showToast({
+              title: '本地书籍不支持下载',
+              duration: 3000,
+              icon: 'none'
+            })
+            return
+          }
           // console.log(this.bookShelf[ind].bookname);
           this.bookShelf[ind].vis = true
           this.confirmmodalX(ind)

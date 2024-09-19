@@ -713,7 +713,7 @@ export default {
 
     handleDownload() {
       console.log('下载事件被触发')
-      if(this.spbook.origin === 'local'){
+      if (this.spbook.origin === 'local') {
         // 弹窗
         uni.showToast({
           title: '本地书籍不支持下载',
