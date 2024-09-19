@@ -713,6 +713,15 @@ export default {
 
     handleDownload() {
       console.log('下载事件被触发')
+      if(this.spbook.origin === 'local'){
+        // 弹窗
+        uni.showToast({
+          title: '本地书籍不支持下载',
+          duration: 3000,
+          icon: 'none'
+        })
+        return
+      }
       // 计算有多少章没有下载
       let count = 0
       //查找具有visD属性且值为true的元素数量

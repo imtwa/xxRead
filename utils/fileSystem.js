@@ -52,7 +52,10 @@ export function inputTxT(str) {
       chapter.text = ''
       chapter.chaptername = str[i + 1]
       if (i + 2 < str.length && str[i + 2] === '') {
-        chapter.text = '<p>暂无内容<p>'
+        chapter.text = ''
+        chapter.visD = false
+      } else {
+        chapter.visD = true
       }
       i = i + 2
     } else {

@@ -2444,7 +2444,10 @@ export default {
       // const visend = this.book.isUpdated && endIndex < 10 ? false : true;
       // 存在，且不刷新
 
-      if (this.bookall.chapters[chapindex].hasOwnProperty('text') && !this.refreshData) {
+      // 判断是否使用缓存数据条件
+      // 缓存章节有text属性
+      // 如果刷新需要看是否是本地书籍 本地书籍走缓存 网络url刷新时重新获取
+      if (this.bookall.chapters[chapindex].hasOwnProperty('text') && (!this.refreshData || chapterId.startsWith('local'))) {
         // 对象包含 text 属性
         //直接用
         this.text = this.bookall.chapters[chapindex].text
