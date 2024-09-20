@@ -28,6 +28,13 @@ node install
 npm run lintfix
 ```
 
+设置保存时自动格式化
+
+```
+在vsCode的设置中搜索formatOnSave 打开保存时格式化
+右键在 使用...进行格式化 里面选择 prettier即可
+```
+
 # 功能介绍
 
 - 搜索功能
