@@ -231,6 +231,7 @@ export default {
   mounted() {
     // // 检测软件更新
     // this.getUp()
+    // this.resultPath('/storage/emulated/0/Download/Documents/《穿书后所有人都开始爱我》.txt')
   },
   onShow() {
     // //页面显示时就刷新值
@@ -298,16 +299,27 @@ export default {
       }
     },
     async resultPath(e) {
-      // console.log(e)
+      console.log(e)
+      const File = plus.android.importClass('java.io.File')
+      let fileLen = new File(e).length()
+      let fileSize = (fileLen / (1024 * 1024)).toFixed(2)
+      uni.showLoading({
+        title: `导入ing...\n预计 ${fileSize * 25}s`
+      })
       // 读取文件内容
+      const startTime = Date.now() // 记录开始时间
       const content = await readTxt(e)
+      const endTime = Date.now() // 记录结束时间
+
+      // 计算并打印耗时
+      console.log(`读取文件耗时：${endTime - startTime} 毫秒`)
       // console.log(content)
 
       // 如果读取到内容
       if (content) {
         let inputBook = inputTxT(content)
         inputBook.bookurl = e
-        console.log(inputBook)
+        // console.log(inputBook)
         // 加入书架
         this.$store.commit('addBookShelf', inputBook)
         // 取消加载提示
@@ -410,10 +422,6 @@ export default {
         // 返回路径
         let path = ''
         if (resultCode == Activity.RESULT_OK) {
-          uni.showLoading({
-            title: '导入ing...'
-          })
-
           let uri = data.getData()
           if ('file' == uri.getScheme().toLowerCase()) {
             //使用第三方应用打开
@@ -1168,6 +1176,7 @@ export default {
     text-align: center;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2; // 为-webkit-line-clamp属性定义标准属性line-clamp
     /* 限制显示的行数 */
     -webkit-box-orient: vertical;
     overflow: hidden;

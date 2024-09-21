@@ -1,4 +1,4 @@
-import { stripPTags, deepCopy } from './utils.js'
+import { stripPTags, deepCopy, removeConsecutiveDuplicates } from './utils.js'
 
 /**
  *
@@ -24,50 +24,74 @@ export function outputTxT(bookTxt) {
 }
 
 /**
- * @param {Array} str - 分隔好的数组
+ * @param {Array} strs - 分隔好的数组
  * @returns {Object} book - 书籍对象
  */
-export function inputTxT(str) {
+export function inputTxT(strs) {
+  // 连续的换行只保留一个
+  // strs = removeConsecutiveDuplicates(strs, '')
+  console.log(strs)
+
+  /**
+   * 导入支持的格式
+   * 前四行为书籍信息
+   * 1、书名
+   * 2、作者
+   * 3、固定名称 在导出时为“内容简介”
+   * 4、简介
+   * 5、换行
+   * 如果导入的内容不按照格式，直接全部放在一个章节里
+   */
   let book = {}
-  book.bookname = str[0]
-  book.author = str[1]
-  book.intro = str[3]
+  book.bookname = strs[0]
+  book.author = strs[1]
+  book.intro = strs[3]
   book.origin = 'local'
   book.readIndex = 0
   book.bookSourceName = '本地书籍'
   book.imgurl = 'http://blog.imtwa.top/usr/uploads/2024/09/1814539350.png'
   book.chapters = []
   let chapter = {
-    chaptername: '前言',
+    chaptername: '',
     chapterurl: 'local',
     text: '',
     visD: true
   }
-  for (let i = 4; i < str.length; ) {
-    if (str[i] === '') {
-      if (chapter.text !== '') {
-        chapter.chapterurl = `local${book.chapters.length + 1}`
-        book.chapters.push(deepCopy(chapter))
-      }
-      chapter.text = ''
-      chapter.chaptername = str[i + 1]
-      if (i + 2 < str.length && str[i + 2] === '') {
-        chapter.text = ''
-        chapter.visD = false
-      } else {
-        chapter.visD = true
-      }
-      i = i + 2
-    } else {
-      chapter.text += `<p>${str[i]}</p>`
-      i++
-    }
-  }
-  if (!!chapter?.chaptername) {
-    if (chapter.text == '') {
-      chapter.text = '<p>暂无内容<p>'
+
+  if (strs[2] !== '内容简介：') {
+    chapter.chaptername = '章节内容'
+    chapter.text = ''
+    for (let i = 4; i < strs.length; i++) {
+      chapter.text += `<p>${strs[i]}</p>`
     }
     book.chapters.push(deepCopy(chapter))
+  } else {
+    for (let i = 4; i < strs.length; ) {
+      if (strs[i] === '') {
+        if (!!chapter?.chaptername) {
+          chapter.chapterurl = `local${book.chapters.length + 1}`
+          book.chapters.push(deepCopy(chapter))
+        }
+        chapter.text = ''
+        chapter.chaptername = strs[i + 1]
+        if (i + 2 < strs.length && strs[i + 2] === '') {
+          chapter.text = ''
+          chapter.visD = false
+        } else {
+          chapter.visD = true
+        }
+        i = i + 2
+      } else {
+        chapter.text += `<p>${strs[i]}</p>`
+        i++
+      }
+    }
+    if (!!chapter?.chaptername) {
+      if (chapter.text == '') {
+        chapter.text = '<p>暂无内容<p>'
+      }
+      book.chapters.push(deepCopy(chapter))
+    }
   }
 
   book.readAll = book.chapters.length

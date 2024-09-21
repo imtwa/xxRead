@@ -90,6 +90,27 @@ export function stripPTags(text) {
 }
 
 /**
+ * 移除数组中连续重复的目标元素，只保留一个
+ * @param {Array} strs - 需要去重的数组
+ * @param {any} target - 要去重的目标元素
+ * @return {Array} - 去重后的新数组
+ */
+export function removeConsecutiveDuplicates(strs, target) {
+  // 初始化结果数组
+  const result = []
+
+  // 遍历数组
+  strs.forEach((item, index) => {
+    // 如果是数组的第一个元素或者当前元素不等于target或者当前元素与前一个元素不同，则添加到结果数组中
+    if (index === 0 || item !== target || item !== strs[index - 1]) {
+      result.push(item)
+    }
+  })
+
+  return result
+}
+
+/**
  * 获取十六进制颜色的互补色。
  *
  * @param {string} hexColor - 十六进制颜色字符串，格式为 '#RRGGBB' 或 '#RGB'。
