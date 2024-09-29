@@ -298,6 +298,9 @@ export default {
         }
       }
     },
+    /**
+     * 根据路径获取文件内容
+     */
     async resultPath(e) {
       console.log(e)
       const File = plus.android.importClass('java.io.File')
@@ -319,6 +322,19 @@ export default {
       if (content) {
         let inputBook = inputTxT(content)
         inputBook.bookurl = e
+        // 将书籍加入缓存
+        const key = 'bookall' + inputBook.bookurl
+        uni.setStorage({
+          key: key,
+          data: inputBook,
+          success: function () {
+            console.log('导入文件缓存成功')
+          }
+        })
+        // 这里只保留目录 不保留内容
+        inputBook.chapters.forEach(chapter => {
+          chapter.text = ''
+        })
         // console.log(inputBook)
         // 加入书架
         this.$store.commit('addBookShelf', inputBook)
@@ -360,6 +376,7 @@ export default {
           const activity = plus.android.runtimeMainActivity()
           const requestCode = 100 // 自定义请求码
           activity.requestPermissions([permission], requestCode)
+          // 打开文件选择器
           this.openFile()
         }
       } catch (error) {

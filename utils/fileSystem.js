@@ -7,7 +7,7 @@ import { stripPTags, deepCopy, removeConsecutiveDuplicates } from './utils.js'
  */
 export function outputTxT(bookTxt) {
   let str = ''
-  str += `${bookTxt.bookname.trim()}\n作者：${bookTxt.author}\n内容简介：\n${bookTxt.intro}\n\n`
+  str += `${bookTxt.bookname.trim()}\n作者：${bookTxt.author}\n简介：\n${bookTxt.intro}\n\n`
   for (const item in bookTxt.chapters) {
     if (Object.prototype.hasOwnProperty.call(bookTxt.chapters, item)) {
       const element = bookTxt.chapters[item]
@@ -37,7 +37,7 @@ export function inputTxT(strs) {
    * 前四行为书籍信息
    * 1、书名
    * 2、作者
-   * 3、固定名称 在导出时为“内容简介”
+   * 3、固定名称 在导出时为“简介：”
    * 4、简介
    * 5、换行
    * 如果导入的内容不按照格式，直接全部放在一个章节里
@@ -58,7 +58,8 @@ export function inputTxT(strs) {
     visD: true
   }
 
-  if (strs[2] !== '内容简介：') {
+  // 导入的内容不按照格式，直接全部放在一个章节里
+  if (strs[2] !== '简介：') {
     chapter.chaptername = '章节内容'
     chapter.text = ''
     for (let i = 4; i < strs.length; i++) {
@@ -67,13 +68,16 @@ export function inputTxT(strs) {
     book.chapters.push(deepCopy(chapter))
   } else {
     for (let i = 4; i < strs.length; ) {
+      // 如果为空 考虑将内容加入章节
       if (strs[i] === '') {
+        // 有目录 加入章节
         if (!!chapter?.chaptername) {
           chapter.chapterurl = `local${book.chapters.length + 1}`
           book.chapters.push(deepCopy(chapter))
         }
         chapter.text = ''
         chapter.chaptername = strs[i + 1]
+        // 章节名上下都为'' 内容为空
         if (i + 2 < strs.length && strs[i + 2] === '') {
           chapter.text = ''
           chapter.visD = false
@@ -86,10 +90,8 @@ export function inputTxT(strs) {
         i++
       }
     }
+    // 出循环再判断一次
     if (!!chapter?.chaptername) {
-      if (chapter.text == '') {
-        chapter.text = '<p>暂无内容<p>'
-      }
       book.chapters.push(deepCopy(chapter))
     }
   }

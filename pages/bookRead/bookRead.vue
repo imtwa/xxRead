@@ -898,6 +898,10 @@ export default {
     directoryListItemColor() {
       return index => {
         if (this.bookall.chapters[index].hasOwnProperty('text')) {
+          // 包含text 但内容为空 也是没有缓存过
+          if (this.bookall.chapters[index].text === '') {
+            return 'gray'
+          }
           // 对象包含 text 属性
           return '' // 否则返回默认颜色
         } else {
