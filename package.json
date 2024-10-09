@@ -17,15 +17,25 @@
     "dev": "vue-cli-service serve",
     "lint:prettier": "prettier --check .",
     "lintfix": "prettier --write --list-different .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint:prettier"
     }
   },
+  "lint-staged": {
+    "**/*.vue": [
+      "npm run lintfix"
+    ],
+    "**/*.js": [
+      "npm run lintfix"
+    ]
+  },
   "devDependencies": {
     "husky": "^8.0.0",
+    "lint-staged": "^15.2.10",
     "prettier": "^3.3.3"
   }
 }
