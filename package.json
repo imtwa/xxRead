@@ -26,10 +26,7 @@
     }
   },
   "lint-staged": {
-    "**/*.vue": [
-      "npm run lintfix"
-    ],
-    "**/*.js": [
+    "**/*.{js,vue}": [
       "npm run lintfix"
     ]
   },
